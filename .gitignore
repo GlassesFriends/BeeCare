@@ -1,3 +1,10 @@
+# Pictures 
+static/img/*
+
+# migrations
+apps/**/**/migrations/*
+!apps/**/**/migrations/__init__.py*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -127,3 +134,4 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+Intranet/settings.py
