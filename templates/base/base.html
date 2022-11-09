@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>{% block title %}{% endblock title %}</title>
+    <meta name="description" content="AxolotlTeam Intranet.">
+    <link rel="stylesheet" href="/static/css/main.css">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/static/css/styles.min.css">
+
+    <!-- Sweet alert 2 -->
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="/static/js/sweetAlert2.js"></script>
+    <!-- Sweet alert 2 -->
+</head>
+
+<body id="page-top">
+    <div id="wrapper">
+        {% include 'base/navbarL.html' %}
+        <div class="d-flex flex-column" id="content-wrapper">
+            <div id="content">
+                {% if messages %}
+                    {% for m in messages %}
+                        <script>
+                            MessageConfirm('Barf barf..', '{{m}}');
+                        </script>
+                    {% endfor %}
+                {% endif %}
+                {% include 'base/navbarU.html' %}
+                {% block content %}
+                {% endblock %}
+            </div>
+        {% include 'base/footer.html' %}
+        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
+    <script src="/static/bootstrap/js/bootstrap.min.js"></script>
+
+    <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+    
+    <script src="/static/js/chart.min.js"></script>
+    <script src="/static/js/script.min.js"></script>
+</body>
+
+</html>
