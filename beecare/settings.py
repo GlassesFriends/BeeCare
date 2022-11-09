@@ -37,7 +37,7 @@ DEBUG = config('DEBUG', cast=bool)
 ALLOWED_HOSTS = [
     'localhost',        # IP local
     '127.0.0.1',        # IP local
-    '192.168.17.94',    # IP de desarrollo 
+    '192.168.17.75',    # IP de desarrollo 
     '192.168.32.99',    # IP de desarrollo
     '192.168.100.120',  # IP de desarrollo
     ]

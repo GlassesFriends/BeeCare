@@ -1,0 +1,68 @@
+*::selection{
+    color: brown;
+    background-color: #d4d5da;
+    font-weight: 1010;
+}
+
+.btn-center{
+    width:100%;
+}
+.userName-own{
+    font-weight: 900;
+    font-size: xx-large;
+}
+
+.userNames{
+    font-weight: 500;
+    font-size:medium;
+}
+
+.hr-Bold{
+    margin: auto;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    width: 90%;
+    height: 200%;
+    color: black;
+}
+.team-member{
+    margin: 0.25em;
+    margin-bottom: 0.5em;
+    align-items: center center;
+    font-size: larger;
+    background-color: white;
+    border-radius: 0.5em;
+}
+.team-member-name{
+    text-align: right;
+}
+.profile-label{
+    font-size: x-large;
+    width: 100%;
+    text-align: center;
+}
+.btn-profile{
+    width: 50%;
+}
+.btn-profile-cont{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.mailto-link{
+    color: inherit;
+    text-decoration: none;
+}
+.mailto-link:hover{
+    color: brown;
+}
+.mailto-link:active{
+    padding: 0.1em;
+    color: rgb(42, 110, 165);
+    background-color: white;
+    border-radius: 0.2em;
+}
+.userPhoto{
+    background-color: #C9E265;
+    border: 0.02em dotted #858796;
+}
