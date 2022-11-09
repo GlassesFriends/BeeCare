@@ -64,7 +64,7 @@ BASE_APPS = [
 # |=====|     APLICACIONES LOCALES    |=====|
 # |=========================================|
 LOCAL_APPS = [
-    # 'apps.member',
+    'apps.member',
     # 'apps.post',
     # 'apps.reaction',
     # 'apps.sighting',

@@ -13,6 +13,9 @@ from django.urls import path, include
 # |=========================================|
 
 # |=| Biblioteca que permite redireccionar|=|
+from . import views
+
+# |=| Biblioteca que permite redireccionar|=|
 from django.shortcuts import redirect
 
 # |=============================================================|
@@ -20,18 +23,6 @@ from django.shortcuts import redirect
 # |=============================================================|
 
 urlpatterns = [
-    # |=========================================|
-    # |=====| REDIRECCIONAMIENTO DE HOME  |=====|
-    # |=========================================|
-    path('', lambda req: redirect('/memb/')),
-    
-    # |=========================================|
-    # |=====|     DIRS. DE TRABAJADORES   |=====|
-    # |=========================================|
-    path('memb/', include('apps.member.urls')),
-
-    # |=========================================|
-    # |=====|   DIRS. DE ADMINISTRACIÓN   |=====|
-    # |=========================================|
-    path('admin/', admin.site.urls),
+    # |=| Reloj checador.                     |=|
+    path('', views.Dashboard, name='home'),
 ]
