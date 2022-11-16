@@ -24,7 +24,7 @@ from django.contrib import messages
 # |=========================================|
 from datetime import datetime, date, timedelta
 from .decorators import user_auth, allowed_users
-from apps.member.forms import CreateUserForm, CreateMemberForm
+from apps.member.forms import CreateUserForm
 
 # |=========================================|
 # |=====|     REFERENCIAS A MODELOS   |=====|
@@ -105,7 +105,7 @@ def memberSignOut(request):
 
 # @user_auth
 # @allowed_users(allowed_roles=['admin'])
-def memberSignIn(request):
+def memberSignUp(request):
     
     # |=| Inicializamos una instancia del |=|
     # |=| formulario para registrar un    |=|
