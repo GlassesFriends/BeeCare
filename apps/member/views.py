@@ -58,8 +58,9 @@ def Dashboard(request):
 # |=| se hace referencia para cerrar la   |=|
 # |=| sesión del usuario registrado.      |=|
 # |=========================================|
-@user_auth
+# @user_auth
 def memberSignOut(request):
+    print("No cerre sesión")
     logout(request)
     return redirect('signin')
 
