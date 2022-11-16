@@ -47,11 +47,11 @@ def get_default_memb_image():
 # |=====|  MODELO TRABAJADOR (memb) |=====|
 # |=========================================|
 class member(models.Model):
-    # |=| Se trata del nombre del empleado.     |=|
+    # |=| Se trata del nombre del miembro.      |=|
     membFirstName = models.CharField(
         max_length=20, verbose_name=u"Nombres", null=False)
     
-    # |=| Se trata del apellido del empleado.   |=|
+    # |=| Se trata del apellido del miembro.    |=|
     membLastName = models.CharField(
         max_length=20, verbose_name=u"Apellidos", null=False)
     
@@ -59,13 +59,7 @@ class member(models.Model):
     membDateBirth = models.DateField(
         verbose_name=u"Fecha de nacimiento", null=True)
     
-    # |=| Este será considerado como su nombre  |=|
-    # |=| de usuario (username).                |=|
-    # |=| Este se tomará del model de django.   |=|
-    membEmail = models.EmailField(
-        max_length=32, verbose_name=u"Correo electrónico", unique=True)
-    
-    # |=| Se trata del apellido del empleado.   |=|
+    # |=| Se trata del apellido del miembro.    |=|
     membPhone = models.CharField(
         max_length=20, verbose_name=u"Número de teléfono", null=True)
     
@@ -87,19 +81,40 @@ class member(models.Model):
     
     # |=| Registro de la fecha de registro del  |=|
     # |=| trabajador.                           |=|
-    membDateRegistered = models.DateField(auto_now_add=True)
+    membregdate = models.DateField(auto_now_add=True)
     
     # |=| "Bandera" para saber si el trabajador |=|
     # |=| es activo o no.                       |=|
     membIsActive = models.BooleanField(
         default=False, verbose_name=u"Usuario activo")
     
+    # |=| Este será considerado como su nombre  |=|
+    # |=| de usuario (username).                |=|
+    # |=| Este se tomará del model de django.   |=|
+    membEmail = models.EmailField(
+        max_length=32, verbose_name=u"Correo electrónico", unique=True)
+    
     # |=| Relación uno a uno con el modelo user |=|
     membUser = models.OneToOneField(User, null=False, on_delete=models.CASCADE)
 
+    # |=| --------------------------------------------------------------------- |=|
+    # |=| MUY IMPORTANTE PARA LA INTEGRIDAD,  MUY IMPORTANTE PARA LA INTEGRIDAD |=|
+    # |=| --------------------------------------------------------------------- |=|
+    
     # |=| Asignación de "nombre" de objeto.     |=|
     def __str__(self):
         return "%s %s" % (self.membLastName, self.membFirstName)
+    # |=| --------------------------------------------------------------------- |=|
+    # |=| ----------------------| EJEMPLO DE IMPRESION |----------------------- |=|
+    # |=| --------------------------------------------------------------------- |=|
+    # |=| ------------| {{member}} = González Álvaro               |----------- |=|
+    # |=| ------------| {{member.membLastName}} != González Álvaro |----------- |=|
+    # |=| --------------------------------------------------------------------- |=|
+    
+    
+    # |=| --------------------------------------------------------------------- |=|
+    # |=| MUY IMPORTANTE PARA LA INTEGRIDAD,  MUY IMPORTANTE PARA LA INTEGRIDAD |=|
+    # |=| --------------------------------------------------------------------- |=|
 
     # |=| Permite una ubicación rápida de las   |=|
     # |=| instancias creadas de este model.     |=|
