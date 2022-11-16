@@ -11,24 +11,39 @@
                 class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"
                 style="--bs-primary: #F09C10;--bs-primary-rgb: 240,156,16;--bs-secondary: #FECA51;--bs-secondary-rgb: 254,202,81;--bs-success: #B1DFC4;--bs-success-rgb: 177,223,196;--bs-info: #B1DFC4;--bs-info-rgb: 177,223,196;--bs-warning: #FECA51;--bs-warning-rgb: 254,202,81;--bs-danger: #E03600;--bs-danger-rgb: 224,54,0;--bs-light: #EBEBEB;--bs-light-rgb: 235,235,235;--bs-dark: #494038;--bs-dark-rgb: 73,64,56;--bs-body-color: #2d2d2d;--bs-body-bg: #d6d6d6;"></span></button>
         <div class="collapse navbar-collapse" id="navcol-1">
+            <!-- |---------------------------------------------------------------| -->
+            <!-- |--------------------| ELEMENTOS DEL NAVBAR |-------------------| -->
+            <!-- |---------------------------------------------------------------| -->
+            <!-- | Cada uno de los elementos del navbar cuenta con una variable  | -->
+            <!-- | permita validar que se encuentra activa esa sección.          | -->
+            <!-- |---------------------------------------------------------------| -->
             <ul class="navbar-nav mx-auto" style="font-size: 21px;">
                 <li class="nav-item">
-                    <a class="nav-link active" href="/index.html">Inicio</a>
+                    <a class="nav-link {{home}}" href="/index.html">Inicio</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="features.html">Foro</a>
+                    <a class="nav-link {{forum}}" href="features.html">Foro</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="integrations.html">Avistamientos</a>
+                    <a class="nav-link {{sighting}}" href="integrations.html">Avistamientos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="integrations.html">BeeCare</a>
+                    <a class="nav-link {{company}}" href="integrations.html">BeeCare</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="pricing.html">Contacto</a>
+                    <a class="nav-link {{signUp}}" href="pricing.html">Quiero participar</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{contactUs}}" href="pricing.html">Contacto</a>
                 </li>
                 <li class="nav-item"></li>
             </ul>
+            <!-- |---------------------------------------------------------------| -->
+            <!-- |------------------| FORMULARIO DE BUSQUEDA |-------------------| -->
+            <!-- |---------------------------------------------------------------| -->
+            <!-- | La busqueda de elementos dependerá de los nombres de los      | -->
+            <!-- | avistamientos o post.                                         | -->
+            <!-- |---------------------------------------------------------------| -->
             <form class="d-none d-sm-inline-block me-auto ms-md-3 my-2 my-md-0 mw-100 navbar-search"
                 style="padding-right: 0px;padding-left: 11px;">
                 <div class="input-group"
@@ -40,6 +55,13 @@
                             class="fas fa-search"></i></button>
                 </div>
             </form>
+        
+            <!-- |---------------------------------------------------------------| -->
+            <!-- |------------------| PIN DE USUARIO VALIDADO |------------------| -->
+            <!-- |---------------------------------------------------------------| -->
+            <!-- | El pin se encuentra validado respecto al inicio de sesión del | -->
+            <!-- | usuario.                                                      | -->
+            <!-- |---------------------------------------------------------------| -->
             {% if user.is_authenticated %}
             <div class="d-none d-sm-block topbar-divider"
                 style="padding-bottom: 40px;padding-left: 0px;margin-left: 18px;padding-right: 0px;margin-right: 20px;">
