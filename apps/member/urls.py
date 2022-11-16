@@ -23,6 +23,8 @@ from django.shortcuts import redirect
 # |=============================================================|
 
 urlpatterns = [
-    # |=| Reloj checador.                     |=|
+    # |=| Dashboard de miembros.              |=|
     path('', views.Dashboard, name='home'),
+    # |=| Registro de nuevos miembros         |=|
+    path('signup', views.memberRegister, name='signup'),
 ]
