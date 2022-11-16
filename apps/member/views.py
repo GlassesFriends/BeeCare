@@ -166,3 +166,42 @@ def memberSignUp(request):
         'form': form,
         }
     return render(request, 'member/signup.html', context)
+
+
+
+# |=========================================|
+# |=====|    INICIO DE SESIÓN         |=====|
+# |=========================================|
+# |=| Se muestran los trabajadores que se |=|
+# |=| han registrado y estan ACTIVOS ante |=|
+# |=| el sistema.                         |=|
+# |=========================================|
+def memberSignIn(request):
+    # |=| Validamos el formulario actual  |=|
+    # |=| respecto al métpdp POST.        |=|
+    if request.method == 'POST':
+        # |=| Se obtienen los datos del   |=|
+        # |=| formulario.                 |=|
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        
+        # |=| Se activa la sesión.        |=|
+        user = authenticate(request, username=username, password=password)
+        
+        # |=| Si el trabajador si existe   =|
+        # |=| envia directamente a 'home', =|
+        if user is not None:
+            # |=| Se envia mensaje de      =|
+            # |=| bienvenida.              =|
+            login(request, user)
+            text = 'Bienvenido ' + request.user.member.membFirstName
+            messages.success(request, text)
+            return redirect('home')
+        
+        # |=| en caso contrario enviará un =|
+        # |=| mensaje de usuario no valido =|
+        else:
+            messages.info(request, 'Tu usuario o contraseña es incorrecto, si necesitas ayuda comunicate al departamento de sistemas.')
+            
+    context = {}
+    return render(request, 'member/signin.html', context)

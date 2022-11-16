@@ -29,4 +29,6 @@ urlpatterns = [
     path('signup', views.memberSignUp, name='signup'),
     # |=| Cierre de sesión de miembros.       |=|
     path('signout', views.memberSignOut, name='signout'),
+    # |=| Inicio de sesión de miembros.       |=|
+    path('signin', views.memberSignIn, name='signin'),
 ]

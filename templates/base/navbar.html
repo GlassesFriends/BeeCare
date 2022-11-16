@@ -19,7 +19,7 @@
             <!-- |---------------------------------------------------------------| -->
             <ul class="navbar-nav mx-auto" style="font-size: 21px;">
                 <li class="nav-item">
-                    <a class="nav-link {{home}}" href="/index.html">Inicio</a>
+                    <a class="nav-link {{home}}" href="{% url 'home' %}">Inicio</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link {{forum}}" href="features.html">Foro</a>
@@ -30,9 +30,11 @@
                 <li class="nav-item">
                     <a class="nav-link {{company}}" href="integrations.html">BeeCare</a>
                 </li>
+                {% if user.is_authenticated == False %}
                 <li class="nav-item">
-                    <a class="nav-link {{signUp}}" href="pricing.html">Quiero participar</a>
+                    <a class="nav-link {{signUp}}" href="{% url 'signup' %}">Quiero participar</a>
                 </li>
+                {% endif %}
                 <li class="nav-item">
                     <a class="nav-link {{contactUs}}" href="pricing.html">Contacto</a>
                 </li>
@@ -98,8 +100,9 @@
                                     class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Settings</a>
                             <a class="dropdown-item" href="#">
                                 <i class="fas fa-list fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Activity log</a>
-                            <div class="dropdown-divider"></div><a class="dropdown-item" href="#"><i
-                                    class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Logout</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" onclick="WorkerLogOut('{% url 'signout' %}')"><i
+                                    class="fas fa-sign-out-alt fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Cerrar sesión</a>
                         </div>
                     </div>
                 </li>
