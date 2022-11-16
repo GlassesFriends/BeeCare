@@ -59,9 +59,9 @@ def Dashboard(request):
 # |=| sesión del usuario registrado.      |=|
 # |=========================================|
 @user_auth
-def workerLogout(request):
+def memberSignOut(request):
     logout(request)
-    return redirect('workerLogin')
+    return redirect('signin')
 
 
 # |=========================================|
@@ -105,7 +105,7 @@ def workerLogout(request):
 
 # @user_auth
 # @allowed_users(allowed_roles=['admin'])
-def memberRegister(request):
+def memberSignIn(request):
     
     # |=| Inicializamos una instancia del |=|
     # |=| formulario para registrar un    |=|
