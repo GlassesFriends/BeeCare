@@ -3,14 +3,17 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>{% block title %}{% endblock title %}</title>
-    <meta name="description" content="AxolotlTeam Intranet.">
-    <link rel="stylesheet" href="/static/css/main.css">
-    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/fonts/fontawesome-all.min.css">
-    <link rel="stylesheet" href="/static/css/styles.min.css">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <meta name="description" content="AxolotlTeam Intranet." />
+    <link rel="stylesheet" href="/static/css/main.css" />
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/static/fonts/fontawesome-all.min.css" />
+    <link rel="stylesheet" href="/static/css/styles.min.css" />
 
     <!-- Sweet alert 2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -18,29 +21,28 @@
     <!-- Sweet alert 2 -->
 </head>
 
-<body id="page-top">
-    <div id="wrapper">
-        {% include 'base/navbarL.html' %}
-        <div class="d-flex flex-column" id="content-wrapper">
-            <div id="content">
-                {% if messages %}
-                    {% for m in messages %}
-                        <script>
-                            MessageConfirm('Barf barf..', '{{m}}');
-                        </script>
-                    {% endfor %}
-                {% endif %}
-                {% include 'base/navbarU.html' %}
-                {% block content %}
-                {% endblock %}
-            </div>
+<body
+    style="font-family: 'League Spartan', sans-serif;--bs-body-bg: #d6d6d6;--bs-light: #EBEBEB;--bs-light-rgb: 235,235,235;--bs-primary: #F09C10;--bs-primary-rgb: 240,156,16;--bs-secondary: #FECA51;--bs-secondary-rgb: 254,202,81;--bs-success: #B1DFC4;--bs-success-rgb: 177,223,196;--bs-info: #B1DFC4;--bs-info-rgb: 177,223,196;--bs-warning: #FECA51;--bs-warning-rgb: 254,202,81;--bs-danger: #E03600;--bs-danger-rgb: 224,54,0;--bs-dark: #494038;--bs-dark-rgb: 73,64,56;--bs-body-color: #2d2d2d;background: #EBEBEB;">
+    <div class="d-flex flex-column" id="content-wrapper">
+        <div id="content">
+            {% if messages %}
+            {% for m in messages %}
+            <script>
+                MessageConfirm('Barf barf..', '{{m}}')
+            </script>
+            {% endfor %}
+            {% endif %}
+            {% include 'base/navbar.html' %}
+            {% block content %}
+
+            {% endblock %}
+        </div>
         {% include 'base/footer.html' %}
-        </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
-    </div>
+    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
     <script src="/static/bootstrap/js/bootstrap.min.js"></script>
 
     <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
-    
+
     <script src="/static/js/chart.min.js"></script>
     <script src="/static/js/script.min.js"></script>
 </body>
