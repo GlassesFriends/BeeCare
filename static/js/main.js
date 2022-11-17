@@ -1,4 +1,4 @@
-function WorkerLogOut(url) {
+function memberSignOut(url) {
     Swal.fire({
         title: '¿Deseas cerrar sesión?',
         icon: 'warning',
