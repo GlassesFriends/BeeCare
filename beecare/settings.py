@@ -13,6 +13,16 @@ import os
 # |=========================================|
 from decouple import config
 
+# |=========================================|
+# |=====|   BIBLIOTECAS ADICIONALES   |=====|
+# |=========================================|
+# |=====|    MODULO DE CLOUDINARY     |=====|
+# |=========================================|
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
+
+
 # |=============================================================|
 # |===============|       DIRECTORIO BASE       |===============|
 # |=============================================================|
@@ -75,6 +85,8 @@ LOCAL_APPS = [
 THIRD_APPS = [
     # |=| App del campo color.            |=|
     'colorfield',
+    'cloudinary_storage',
+    'cloudinary',
 ]
 # |=========================================|
 # |=====|   CONJUNTO TOTAL DE APPS    |=====|
@@ -209,16 +221,37 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
- 
+
 # |=========================================|
 # |=====|  DIRECTORIO DE MULTIMEDIA   |=====|
 # |=========================================|
 # |=| Esta ruta se utilizará para los     |=|
 # |=| archivos multimedia del proyecto.   |=|
 # |=========================================|
-MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img')
+
+# |=========================================|
+# |=====|  DIRECTORIO DE MULTIMEDIA   |=====|
+# |=========================================|
+# |=====|     MEDIA DE CLOUDINARY     |=====|
+# |=========================================|
+
+MEDIA_URL = '/Beecare/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'static/img')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# |=========================================|
+# |====| PERMISOS CLOUDINARY CONEXIÓN  |====|
+# |=========================================|
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': config('CLOUD_NAME'),
+    'API_KEY':  config('API_KEY'),
+    'API_SECRET':  config('API_SECRET'),
+}
+
