@@ -116,7 +116,7 @@ def memberSignUp(request):
     # |=| Validamos el método de nuestro  |=|
     # |=| formulario.                     |=|
     if request.method == 'POST':
-        userForm = CreateUserForm(request.POST)
+        userForm = CreateUserForm(request.POST,request.FILES)
         if userForm.is_valid():
             # |=| Capturamos los datos del|=|
             # |=| formulario.             |=|
@@ -127,7 +127,7 @@ def memberSignUp(request):
             last_name = userForm.cleaned_data.get('last_name')
             print(request.POST.get('membDateBirth'))
             print(request.POST.get('membPhone'))
-            print(request.POST.get('membProfilePicture'))
+            print(request.FILES.get('membProfilePicture'))
             
             # |=| Asignamos el grupo      |=|
             # |=| 'member' al nuevo user. |=|
@@ -149,7 +149,9 @@ def memberSignUp(request):
                 # |=| request.            |=|
                 membDateBirth =         request.POST.get('membDateBirth'),
                 membPhone =             request.POST.get('membPhone'),
-                membProfilePicture =    request.POST.get('membProfilePicture'),
+                # |=| Usar FILES en lugar |=|
+                # |=| de POST para imagen |=|
+                membProfilePicture =    request.FILES.get('membProfilePicture'),
                 
                 membEmail =             user.username,
                 membUser =              user,
@@ -164,7 +166,6 @@ def memberSignUp(request):
             
     context = {
         'signUp': 'active',
-        'form': form,
         }
     return render(request, 'member/signup.html', context)
 
