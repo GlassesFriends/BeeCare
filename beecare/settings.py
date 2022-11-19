@@ -77,7 +77,7 @@ LOCAL_APPS = [
     'apps.member',
     # 'apps.post',
     # 'apps.reaction',
-    # 'apps.sighting',
+    'apps.sighting',
 ]
 # |=========================================|
 # |=====|   APLICACIONES DE TERCEROS  |=====|

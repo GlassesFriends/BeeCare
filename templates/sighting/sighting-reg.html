@@ -1,0 +1,192 @@
+{% extends 'base/base.html' %}
+{% block content %}
+
+    <header class="header">
+        <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background:url(&quot;/static/img/Bees/bee2.png&quot;)no-repeat center center;background-size: cover ;padding-top:100px;padding-bottom:175px;">
+            <div class="container">
+                <div class="col-md-6 offset-md-3 header-title">
+                    <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;margin-top: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;"><strong>MAPA DE AVISTAMIENTOS</strong></h1>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="container py-4 py-xl-5" style="padding-left: 0px;padding-right: 0px;margin-top: 0px;padding-top: 8px;margin-bottom: -64px;padding-bottom: 66px;">
+        <div class="row">
+            <div class="col">
+                <h1 style="font-size: 42px;">Registro de nuevo avistamiento</h1>
+            </div>
+        </div>
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3" style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
+            <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
+                    <div class="row">
+                        <div class="col-12 col-sm-12 col-md-5 col-lg-5 col-xl-6 col-xxl-6">
+                                <div id="mapa" allowfullscreen="" frameborder="0" loading="lazy" width="100%" height="100%" style="padding-bottom: 0px;border-radius: 20px;align-items: stretch;max-height: 100%;min-height: 100%;"></div>                            
+                        </div>
+                        <div class="col-12 col-sm-12 col-md-7 col-lg-7 col-xl-6 col-xxl-6" style="text-align: center;">
+                            <!-- Aquí inicia el formulario -->
+                            <form method="POST" enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-xxl-12" style="margin-bottom: 8px;">
+                                        <div>
+                                            <h4 class="fw-bold" style="font-size: 32px;text-align: center;">Nuevo avistamiento</h4>
+                                            <p class="text-muted" style="font-size: 12px;text-align: center;">Llena los siguientes datos, incluyendo la ubicación de tu avistamiento, después de registrar el avistamiento, espera a que sea aprobado para su publicación.</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-12" style="margin-bottom: 8px;margin-top: 8px;">
+                                        <div class="row">
+                                            <div class="col-sm-12 col-xxl-12">
+                                                <img id="previewSightingReg" style="display: inline-grid;border-radius: 20px;margin-bottom: 4px;margin-top: 4px;margin-right: 4px;margin-left: 4px;width: 220px;height: 120px;background: #d9d9d9;padding-top: 4px;padding-bottom: 4px;padding-left: 4px;padding-right: 5px;" width="220" height="120" src="/static/img/logos/Bee%20Care%20Logo%20in%20a%20Circle.svg"></div>
+                                        </div>
+                                    </div>
+                                    <input type="number" name="sighLat" id="sighLat" readonly hidden required>
+                                    <input type="number" name="sighLng" id="sighLng" readonly hidden required>
+     
+                                    <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Imagen del avistamiento</label>
+                                                <div class="input-group" style="border-radius: 8px;border-style: none;">
+                                                    <input type="file"  class="form-control" style="border-style: none;border-radius: 20px;background: var(--bs-light);" name="sighPicture" id="sighPicture" onchange="load_ImgBee(event)" required>                            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Nombre de la abeja</label>
+                                                <div class="input-group" style="border-radius: 8px;border-style: none;">
+                                                    <input type="text" class="form-control" style="background: var(--bs-light);border-radius: 20px;border-style: none;" name="beeName"  id="beeName"  list="list1beeName" placeholder="Abeja 1" required>
+                                                    <datalist id="list1beeName">
+                                                        {% for bee in bees %}
+                                                        <option value="{{bee.beeName}}"></option>
+                                                        {% endfor %}
+                                                      </datalist>                                    
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
+                                        <div class="row">
+                                            <div class="col-sm-6 col-md-6" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Familia</label>
+                                                <div class="input-group" style="border-radius: 8px;border-style: none;">
+
+                                                    <input type="text"  class="form-control" style="background: var(--bs-light);border-radius: 20px;border-style: none;"  name="familyName" id="familyName" list="list2familyName" onchange="autoFieldSubfamily()" placeholder="Familia 1" required>
+                                                    <datalist id="list2familyName">
+                                                                                         
+                                                    </datalist>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-6 col-md-6" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Sub-familia</label>
+                                                <div class="input-group" style="border-radius: 8px;border-style: none;">
+
+                                                    <input type="text" class="form-control" style="background: var(--bs-light);border-radius: 20px;border-style: none;" name="subfamilyName" id="subfamilyName" list="list3subfamilyName" placeholder="Sub-familia 1" required>
+                                                    <datalist id="list3subfamilyName">
+                        
+                                                    </datalist>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Especie</label>
+                                                <div class="input-group" style="border-radius: 8px;border-style: none;">
+                                                    
+                                                    <input type="text" class="form-select" style="background: var(--bs-light);border-radius: 20px;border-style: none;" name="speciesName" id="speciesName"  list="list4speciesName" placeholder="Especie 1" required>
+                                                    <datalist id="list4speciesName">
+                                                        {% for specie in species %}
+                                                        <option value="{{specie.speciesName}}"></option>
+                                                        {% endfor %}
+                                                    </datalist>
+                                                    <br><br>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Genero</label>
+                                                <div class="input-group" style="border-radius: 8px;border-style: none;">
+                                                    
+                                                    <input type="text" class="form-control" style="background: var(--bs-light);border-radius: 20px;border-style: none;" name="genderName" id="genderName" list="list5genderName" placeholder="Genero 1" required>
+                                                    <datalist id="list5genderName">
+                                                        {% for gender in genders %}
+                                                        <option value="{{gender.genderName}}"></option>
+                                                        {% endfor %}
+                                                    </datalist>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Comentario</label>
+                                                <div class="input-group" style="border-radius: 8px;border-style: none;">
+                                                    
+                                                    <textarea type="text"  class="form-control" style="background: var(--bs-light);border-style: none;border-radius: 20px;" name="sighComment" id="sighComment"></textarea>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
+                                        <div class="row">
+                                            <div class="col-md-12" style="text-align: center;"><button class="btn btn-primary" type="submit" style="background: var(--bs-primary);border-style: none;border-radius: 20px;">Registrar avistamiento</button></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                            <!-- Aquí termina el formulario -->                     
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-4 py-xl-5" style="margin-bottom: -50px;padding-left: 0px;padding-right: 0px;padding-top: 0px;margin-top: -120px;">
+        <div class="row">
+            <div class="col">
+                <h1 style="font-size: 42px;">Avistamientos recientes</h1>
+            </div>
+        </div>
+        <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3" style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 col-xxl-4">
+                <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
+                    <div class="card-body">
+                        <div>
+                            <h4 class="fw-bold" style="font-size: 44px;text-align: center;">Misión</h4>
+                            <p class="text-muted" style="font-size: 18px;text-align: center;">Erat netus est hendrerit, nullam et quis ad cras porttitor iaculis. Bibendum vulputate cras aenean.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 col-xxl-4">
+                <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
+                    <div class="card-body">
+                        <div>
+                            <h4 class="fw-bold" style="font-size: 44px;text-align: center;">Misión</h4>
+                            <p class="text-muted" style="font-size: 18px;text-align: center;">Erat netus est hendrerit, nullam et quis ad cras porttitor iaculis. Bibendum vulputate cras aenean.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-md-12 col-lg-6 col-xl-4 col-xxl-4">
+                <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
+                    <div class="card-body">
+                        <div>
+                            <h4 class="fw-bold" style="font-size: 44px;text-align: center;">Misión</h4>
+                            <p class="text-muted" style="font-size: 18px;text-align: center;">Erat netus est hendrerit, nullam et quis ad cras porttitor iaculis. Bibendum vulputate cras aenean.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src="/static/js/scriptsMap.js"> </script>
+<script src="/static/js/scriptsImg.js"> </script>
+{% endblock %}
