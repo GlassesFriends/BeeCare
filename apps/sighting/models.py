@@ -66,27 +66,7 @@ class species (models.Model):
 # |=========================================|
 
 class bee (models.Model):
-    beeName = models.CharField(max_length=256,choices=(
-        ('Abeja Melífera Europea', 'Abeja Melífera Europea'),
-        ('Abejorro Zumbador', 'Abejorro Zumbador'), 
-        ('Abejas Verde Metálico', 'Abejas Verde Metálico'), 
-        ('Halictus ligatus', 'Halictus ligatus'), 
-        ('Subgénero Agapostemon', 'Subgénero Agapostemon'), 
-        ('Agapostemon peninsularis', 'Agapostemon peninsularis'), 
-        ('Agapostemon melliventris', 'Agapostemon melliventris'), 
-        ('Agapostemon texanus', 'Agapostemon texanus'), 
-        ('Abejas Metálicas del Sudor', 'Abejas Metálicas del Sudor'), 
-        ('Abejas Cortadoras de Hojas', 'Abejas Cortadoras de Hojas'), 
-        ('Género Lasioglossum', 'Género Lasioglossum'), 
-        ('Abejas de Cara Amarilla', 'Abejas de Cara Amarilla'), 
-        ('Anthophora urbana', 'Anthophora urbana'), 
-        ('Abejas Cornudas', 'Abejas Cornudas'), 
-        ('Colletes ochraceus', 'Colletes ochraceus'), 
-        ('Abejorro Zumbador', 'Abejorro Zumbador'), 
-        ('Abejorro Californiano', 'Abejorro Californiano'), 
-        ('Bombus melanopygus', 'Bombus melanopygus'), 
-
-    ))
+    beeName = models.CharField(max_length=64)
     beeSpecies = models.ForeignKey(species,on_delete=models.CASCADE)
     beeSubfamily = models.ForeignKey(subfamily,on_delete=models.CASCADE)
     beeGender = models.ForeignKey(gender,on_delete=models.CASCADE)

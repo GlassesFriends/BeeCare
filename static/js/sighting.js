@@ -5,6 +5,7 @@ var dataSubfamilys = [];
 $(function () {
     var coordsArray = [];
     var contentInfo = [];
+    var contentStatus = [];
     var contentImage = [];
 
     var dataSightingBees = [];
@@ -22,7 +23,7 @@ $(function () {
 
     const listSightings = async () => {
         try {
-            const response = await fetch("../coord/");
+            const response = await fetch("../coord-personal/");
             const data = await response.json();
 
             if (data.message == "Success") {
@@ -32,6 +33,7 @@ $(function () {
                     listlng = parseFloat(data.sighting[j]['sighLng']);
 
                     liststring = (data.sighting[j]['sighComment']);
+                    listboolean = (data.sighting[j]['sighApproved']);
 
                     listSightingBee = parseFloat(data.sighting[j]['sighBee_id']);
 
@@ -40,6 +42,7 @@ $(function () {
 
                     coordsArray.push({ lat: listlat, lng: listlng });
                     contentInfo.push(liststring);
+                    contentStatus.push(listboolean);
                     dataSightingBees.push([listSightingBee]);
                     contentImage.push("https://res.cloudinary.com/dwxkhmtb3/" + listImage);
                 }
@@ -115,9 +118,9 @@ $(function () {
                     position: new google.maps.LatLng(center),
                     map: map,
                     icon: "/static/img/icons/BeePin.png",
-                    draggable: true,
+                    draggable: false,
                     animation: google.maps.Animation.DROP,
-                    title: 'Colocame donde hay abejas!',
+                    title: '¿Ves alguna abeja?',
                 });
 
 
@@ -145,21 +148,31 @@ $(function () {
                         draggable: false,
                         title: 'Avistamientos de abejas',
                         icon: "/static/img/icons/BeeSighting.png",
+
                     });
                     google.maps.event.addListener(marker2, 'click', (function (marker2, i) {
                         return function () {
+                            let card = '';
+                            let head = '';
+                            
+                            if (contentStatus[i]) {
+                                card += '<div class="card border-primary';
+                                head += '<div class="card-header bg-primary">Avistamiento confirmado</div>';
+                            }
+                            else{
+                                card += '<div class="card border-danger';
+                                head += '<div class="card-header bg-danger text-white">Avistamiento en espera</div>';
+                            }
+                            
                             infowindow2.setContent(
-
-                                "<table>" +
-                                "<tr>" +
-                                "<td>" + "<h4>" + dataSightingBees[i]['1'] + "</h4>" + "</td>" +
-                                "<td>" + "</td>" +
-                                "</tr>" +
-                                "<tr>" +
-                                "<td>" + contentInfo[i] + "</td>" +
-                                "<td>" + `<div align="left"><img src="` + contentImage[i] + `"+ style="width: 80px;height:60px;border-radius:30%;">` + "</td>" +
-                                "</tr>" +
-                                "</table>"
+                                card +
+                                '" style="width: 12rem;">'+
+                                head +
+                                '<img class="card-img-top" src="' + contentImage[i] + '" alt="Card image cap">'+
+                                    '<div class="card-body">'+
+                                        '<p class="card-text"> Comentario ' + contentInfo[i] + '</p>'+
+                                    '</div>'+
+                                '</div>'
 
                             );
                             infowindow2.open(map, marker2)
@@ -167,21 +180,7 @@ $(function () {
                     })(marker2, i));
                 }
 
-                google.maps.event.addListener(marker1, 'position_changed', function () {
-                    getMarkerCoords(marker1);
-                });
-
             }
-            function getMarkerCoords(marker) {
-                var markerCoords = marker.getPosition();
-                console.log(markerCoords.lat() + ' ' + markerCoords.lng());
-                $('#sighLat').val(markerCoords.lat());
-                $('#sighLng').val(markerCoords.lng());
-            }
-
-
-
-
 
             const response2 = await fetch("../family/");
             const data2 = await response2.json();

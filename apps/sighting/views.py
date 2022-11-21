@@ -33,8 +33,8 @@ from .forms import SubfamilyForm,FamilyForm,GenderForm,SpeciesForm,BeeForm,Sight
 # |=============================================================|
 
 # |=| Método para ingresar avistamiento |=|
-@user_auth
-def sightingMember(request):
+
+def sightingRegister(request):
     # |========================================|
     # |=| Almacenamiento de valores de la BD |=|
     field_family = family.objects.all().order_by('familyName')
@@ -146,6 +146,7 @@ def sightingMember(request):
                             print('Si cargo chido 5')
                             # |=|      Guardado de datos para bee      |=|
                             beee.save()
+                            print('REgistró abeja')
 
                             # |==========================================|
                             # |=| Válidación de formulario de sighting |=|
@@ -169,8 +170,10 @@ def sightingMember(request):
                                 print('Si cargo chido 6')
                                 # |=|     Guardado de datos para sighting  |=|
                                 sigh.save()
+                            else:
+                                print("No jalo el avistamiento")
 
-            return redirect ('home')
+            return redirect ('sighting-reg')
         else:
             print('jajaja no fununcie')
     context = { 
@@ -182,6 +185,15 @@ def sightingMember(request):
         'bees':field_bee,
     }
     return render(request,'sighting/sighting-reg.html', context)
+# |=| Método para ingresar avistamiento |=|
+
+def sightingMap(request):
+        
+    context = { 
+
+        'sighting-map':'active',
+    }
+    return render(request,'sighting/sighting-map.html', context)
 
 # |=| Método para Json de sightings |=|
 def get_Sighting(request):
@@ -191,6 +203,21 @@ def get_Sighting(request):
         data = {'message': "Success",'sighting':sightings}
     else:
         data = {'message': "No se encontro"}
+    return JsonResponse(data)
+
+# |=| Método para Json de sightings |=|
+def get_Sighting_Personal(request):
+    sightings = list(sighting.objects.values().filter(sighMember=request.user.member))
+
+    if(len(sightings) > 0):
+        data = {
+            'message': "Success",
+            'sighting':sightings,
+            }
+    else:
+        data = {
+            'message': "No se encontro",
+            }
     return JsonResponse(data)
 
 # |=| Método para Json de bees      |=|
@@ -219,6 +246,17 @@ def get_Subfamily(request):
 
     if(len(subfamilys) > 0):
         data = {'message': "Success",'subfamily':subfamilys}
+    else:
+        data = {'message': "No se encontro"}
+    return JsonResponse(data)
+
+
+# |=| Avistamientos aprobados       |=|
+def get_Sighting_map(request):
+    sightings = list(sighting.objects.values().filter(sighMember=request.user.member))
+
+    if(len(sightings) > 0):
+        data = {'message': "Success",'sighting':sightings}
     else:
         data = {'message': "No se encontro"}
     return JsonResponse(data)

@@ -24,10 +24,14 @@ from django.shortcuts import redirect
 # |=============================================================|
 
 urlpatterns = [
+    # |=| Registro de nuevos avistamientos personales         |=|
+    path('sightings/', views.sightingMap, name='sighting-map'),
     # |=| Registro de nuevos avistamientos.                   |=|
-    path('sighting-map/', views.sightingMember, name='sighting-map'),
+    path('sighting-reg/', views.sightingRegister, name='sighting-reg'),
     # |=| Json de get_Sighting .                              |=|
     path('coord/', views.get_Sighting,name='coord'),
+    # |=| Json de get_Sighting .                              |=|
+    path('coord-personal/', views.get_Sighting_Personal,name='coord-personal'),
     # |=| Json de get_Bee .                                   |=|
     path('bee/', views.get_Bee,name='bee'),
     # |=| Json de get_Family .                                |=|
