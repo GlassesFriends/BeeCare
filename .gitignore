@@ -3,6 +3,7 @@ static/img/*
 !static/img/Bees
 !static/img/illustrations
 !static/img/logos
+!static/img/icons
 
 # migrations
 apps/**/**/migrations/*
