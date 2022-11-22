@@ -188,9 +188,10 @@ def sightingRegister(request):
 # |=| Método para ingresar avistamiento |=|
 
 def sightingMap(request):
+    mySightings = sighting.objects.all().filter(sighMember=request.user.member)
         
     context = { 
-
+        'sightings': mySightings,
         'sighting-map':'active',
     }
     return render(request,'sighting/sighting-map.html', context)

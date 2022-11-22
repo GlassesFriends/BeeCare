@@ -92,7 +92,11 @@ class sighting (models.Model):
     sighComment = models.CharField(max_length=1024)
     sighDate = models.DateTimeField(auto_now_add=True,auto_now=False)
     sighApproved = models.BooleanField(default=False)
-    sighBee = models.ForeignKey(bee,on_delete=models.CASCADE)
+    sighBee = models.ForeignKey(
+        bee,
+        on_delete=models.CASCADE,
+        null=False
+        )
     sighMember = models.ForeignKey(member,on_delete=models.CASCADE)
 
     def __str__(self):

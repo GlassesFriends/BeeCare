@@ -23,57 +23,36 @@
   </div>
   <div class="container py-4 py-xl-5" style="margin-top: -26px;">
     <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+      <!-- Tarjetas de avistamientos -->
+      {% for sighting in sightings %}
       <div class="col-xxl-4">
         <div class="card" style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
-          <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;" src="/static/img/Bees/bee0.jpg" />
+          <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;" src="https://res.cloudinary.com/dwxkhmtb3/{{sighting.sighPicture}}" />
           <div class="card-body p-4" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
-            <p class="text-primary card-text mb-0">Avistamiento</p>
-            <h4 class="card-title">Abeja Melífera Europea (Apis mellifera)<br /></h4>
-            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
+            <p class="text-{% if sighting.sighApproved %}primary{% else %}danger{% endif %} card-text mb-0">Avistamiento 
+              {% if sighting.sighApproved %}
+              aprobado
+              {% else %}
+              en espera de aprobación
+              {% endif %}
+            </p>
+            <h4 class="card-title">{{sighting.sighBee.beeName}}<br/></h4>
+            <p class="card-text"><strong>Fecha del avistamiento: </strong>{{sighting.sighDate}}</p>
+            <p class="card-text"><strong>Familia: </strong>{{sighting.sighBee.beeSubfamily.subfamilyFamily}}</p>
+            <p class="card-text"><strong>Sub-familia: </strong>{{sighting.sighBee.beeSubfamily}}</p>
+            <p class="card-text"><strong>Comentario: </strong>{{sighting.sighComment}}</p>
+            <p class="card-text"></p>
             <div class="d-flex">
-              <img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="/static/img/logos/Generic%20upload%20photo.svg" />
               <div>
-                <p class="fw-bold mb-0">Álvaro González</p>
-                <p class="text-muted mb-0">Administrador</p>
+                <p class="fw-bold mb-0"><strong>Registrado por: </strong>{{sighting.sighMember}}</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-xxl-4">
-        <div class="card" style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
-          <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;" src="/static/img/Bees/bee0.jpg" />
-          <div class="card-body p-4" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
-            <p class="text-primary card-text mb-0">Avistamiento</p>
-            <h4 class="card-title">Abeja Melífera Europea (Apis mellifera)<br /></h4>
-            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-            <div class="d-flex">
-              <img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="/static/img/logos/Generic%20upload%20photo.svg" />
-              <div>
-                <p class="fw-bold mb-0">Álvaro González</p>
-                <p class="text-muted mb-0">Administrador</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-xxl-4">
-        <div class="card" style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
-          <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;" src="/static/img/Bees/bee0.jpg" />
-          <div class="card-body p-4" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
-            <p class="text-primary card-text mb-0">Avistamiento</p>
-            <h4 class="card-title">Abeja Melífera Europea (Apis mellifera)<br /></h4>
-            <p class="card-text">Nullam id dolor id nibh ultricies vehicula ut id elit. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus.</p>
-            <div class="d-flex">
-              <img class="rounded-circle flex-shrink-0 me-3 fit-cover" width="50" height="50" src="/static/img/logos/Generic%20upload%20photo.svg" />
-              <div>
-                <p class="fw-bold mb-0">Álvaro González</p>
-                <p class="text-muted mb-0">Administrador</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
+      
+      <!-- Tarjetas de avistamientos -->
     </div>
   </div>
 
