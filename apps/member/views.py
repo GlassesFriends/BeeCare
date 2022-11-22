@@ -13,7 +13,7 @@ from django.forms import inlineformset_factory
 # |=====|       BIBLIOTECAS BASE      |=====|
 # |=========================================|
 from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.models import Group
+from django.contrib.auth.models import Group,User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
@@ -214,26 +214,49 @@ def memberSignIn(request):
 # |=| Se muestran los trabajadores que se |=|
 # |=| han logeado en la página.           |=|
 # |=========================================|
-
+@user_auth
 def memberUpdate(request):
     profile = member.objects.get(id=request.user.member.pk)
-    form = UpdateMemberProfile(instance = member)
+    user_update = User.objects.get(id=request.user.pk)
+
+    form_profile = UpdateMemberProfile(instance = profile)
+    form_user = CreateUserForm(instance = user_update)
+
     if request.method == 'POST':
         print("Aqui entro al post")
-        form = UpdateMemberProfile(request.POST,request.FILES, instance = profile)
-        print("Si soy válido")
-        if form.is_valid():
-            print("Si soy válido")
-            form.save()
-            print("Si guarde datos")
+        form_profile = UpdateMemberProfile(request.POST,request.FILES, instance = profile)
+        form_user = CreateUserForm(request.POST, instance = user_update)
+        print("Si soy válido en POST")
+        if form_user.is_valid():
+            print("Si soy válido en formulario")
+            password1 = form_user.cleaned_data.get('password1')
+            password2 = form_user.cleaned_data.get('password2')
+
+            if password1 == password2:
+
+                usernameIn = request.user
+                passwordIn = password1
+
+                user_update.set_password(password1)
+
+                form_user.save()
+                login(request, usernameIn, passwordIn)
+                print("Si guarde datos 1")
+
+        if form_profile.is_valid():
+            print("Si soy válido x2")
+            form_profile.save()
+                   
             text = "Datos actualizados correctamente."
             messages.warning(request,text)
             return redirect('profile')
+    
         else:
             print("No fununcie")
 
     context = {
-        'form': form
+        'form_profile': form_profile,
+        'form_user':form_user
     }
     return render(request,'member/profile.html',context)
 
