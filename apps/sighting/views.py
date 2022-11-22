@@ -188,13 +188,25 @@ def sightingRegister(request):
 # |=| Método para ingresar avistamiento |=|
 
 def sightingMap(request):
-    mySightings = sighting.objects.all().filter(sighMember=request.user.member)
+    mySightings = sighting.objects.all()
         
     context = { 
         'sightings': mySightings,
         'sighting-map':'active',
     }
+    
     return render(request,'sighting/sighting-map.html', context)
+
+def sightingMapOwn(request):
+    mySightings = sighting.objects.all().filter(
+        sighMember=request.user.member
+        )
+        
+    context = { 
+        'sightings': mySightings,
+        'sighting-map':'active',
+    }
+    return render(request,'sighting/sightings.html', context)
 
 # |=| Método para Json de sightings |=|
 def get_Sighting(request):
@@ -209,6 +221,21 @@ def get_Sighting(request):
 # |=| Método para Json de sightings |=|
 def get_Sighting_Personal(request):
     sightings = list(sighting.objects.values().filter(sighMember=request.user.member))
+
+    if(len(sightings) > 0):
+        data = {
+            'message': "Success",
+            'sighting':sightings,
+            }
+    else:
+        data = {
+            'message': "No se encontro",
+            }
+    return JsonResponse(data)
+
+# |=| Método para Json de sightings |=|
+def get_Sighting_General(request):
+    sightings = list(sighting.objects.all())
 
     if(len(sightings) > 0):
         data = {
