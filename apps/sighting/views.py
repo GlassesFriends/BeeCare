@@ -34,6 +34,7 @@ from .forms import SubfamilyForm,FamilyForm,GenderForm,SpeciesForm,BeeForm,Sight
 
 # |=| Método para ingresar avistamiento |=|
 
+@user_auth
 def sightingRegister(request):
     # |========================================|
     # |=| Almacenamiento de valores de la BD |=|
@@ -197,6 +198,7 @@ def sightingMap(request):
     
     return render(request,'sighting/sighting-map.html', context)
 
+@user_auth
 def sightingMapOwn(request):
     mySightings = sighting.objects.all().filter(
         sighMember=request.user.member
