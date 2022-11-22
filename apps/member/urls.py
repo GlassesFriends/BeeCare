@@ -31,4 +31,7 @@ urlpatterns = [
     path('signout', views.memberSignOut, name='signout'),
     # |=| Inicio de sesión de miembros.       |=|
     path('signin', views.memberSignIn, name='signin'),
+    # |=| Actualización de datos del usuario. |=|
+    path('profile', views.memberUpdate, name='profile'),
+
 ]

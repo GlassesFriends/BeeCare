@@ -8,6 +8,9 @@
             </div>
         </div>
     </div>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}  
+    
     <div class="container py-4 py-xl-5" style="padding-left: 0px;padding-right: 0px;margin-top: 0px;padding-top: 8px;margin-bottom: -64px;padding-bottom: 66px;">
         <h4 class="fw-bold" style="font-size: 41px;text-align: center;color: rgb(73,64,56);">Mi perfil de usuario</h4>
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3" style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
@@ -15,9 +18,13 @@
                 <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
                     <div class="col-md-12 col-xxl-12" style="text-align: center;font-size: 22px;"><label class="col-form-label" style="text-align: left;margin-left: 8px;"><strong>Fotografía de perfil</strong></label></div>
                     <div class="row" style="text-align: center;">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12"><img style="max-width: 90%;border-radius: 20%%;margin-right: 8px;margin-left: 8px;margin-bottom: 8px;margin-top: 8px;border-top-left-radius: 20%;border-top-right-radius: 20%;border-bottom-right-radius: 20%;border-bottom-left-radius: 20%;border-style: solid;border-color: var(--bs-light);" src="/static/img/logos/Generic%20upload%20photo.svg"></div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                            <img style="max-width: 90%;border-radius: 20%%;margin-right: 8px;margin-left: 8px;margin-bottom: 8px;margin-top: 8px;border-top-left-radius: 20%;border-top-right-radius: 20%;border-bottom-right-radius: 20%;border-bottom-left-radius: 20%;border-style: solid;border-color: var(--bs-light);" id="img_profile"  src="{{user.member.membProfilePicture.url}}">
+                        </div>
                         <div class="col-md-12" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Cambiar imagen</label>
-                            <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="file" style="border-style: none;border-radius: 20px;background: var(--bs-light);text-align: left;" name="memberPhoto" accept="image/*"></div>
+                            <div class="input-group" style="border-radius: 8px;border-style: none;">
+                                <input class="form-control" type="file" style="border-style: none;border-radius: 20px;background: var(--bs-light);text-align: left;" name="membProfilePicture" onchange="load_Profile(event)" accept="image/*">
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -26,7 +33,7 @@
                 <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
                     <div class="row" style="text-align: center;">
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="text-align: center;">
-                            <form>
+                                         
                                 <div class="row">
                                     <div class="col-xxl-12" style="margin-bottom: 8px;">
                                         <div>
@@ -37,26 +44,26 @@
                                         <div class="row">
                                             <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-6" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Nombre(s)</label>
                                                 <div class="input-group" style="border-radius: 8px;border-style: none;">
-                                                    <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Bee" inputmode="latin-name" name="memberFirstName" required="" minlength="3" value="{{user.member.membFirstName}}">
+                                                    <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Bee" inputmode="latin-name" name="membFirstName"  required="" minlength="3" value="{{user.member.membFirstName}}">
                                                 </div>
                                             </div>
                                             <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-6" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Apellido(s)</label>
-                                                <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Care" inputmode="latin-name" name="memberLastName" required="" minlength="3" value="{{user.member.membLastName}}"></div>
+                                                <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Care" inputmode="latin-name" name="membLastName" required="" minlength="3" value="{{user.member.membLastName}}"></div>
                                             </div>
                                             <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-4" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Fecha de nacimiento</label>
-                                                <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="date" style="border-style: none;border-radius: 20px;background: var(--bs-gray-200);" name="memberBirthDate" required="" value="{{user.member.membDateBirth}}"></div>
+                                                <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="date" style="border-style: none;border-radius: 20px;background: var(--bs-gray-200);" name="membDateBirth" value="{{user.member.membDateBirth}}" required></div>
                                             </div>
                                             <div class="col-md-12 col-xxl-4" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Correo electrónico</label>
-                                                <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="bienvenido@beecare.com" inputmode="email" name="memberEmail" required="" minlength="5" maxlength="64" value="{{user.member.membEmail}}"></div>
+                                                <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="bienvenido@beecare.com" inputmode="email" name="membEmail" required="" minlength="5" maxlength="64" value="{{user.member.membEmail}}"></div>
                                             </div>
                                             <div class="col-md-12 col-xxl-4" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Número de teléfono</label>
-                                                <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" inputmode="tel" placeholder="(###) ### ####" maxlength="10" minlength="10" name="memberPhone" required="" value="{{user.member.membPhone}}"></div>
+                                                <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" inputmode="tel" placeholder="(###) ### ####" maxlength="10" minlength="10" name="membPhone" required="" value="{{user.member.membPhone}}"></div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
                                         <div class="row">
-                                            <div class="col-md-12" style="text-align: center;"><button class="btn btn-primary" type="submit" style="background: var(--bs-primary);border-style: none;border-radius: 20px;">Actualizar mis datos</button></div>
+                                            <div class="col-md-12" style="text-align: center;"><input class="btn btn-primary" type="submit" style="background: var(--bs-primary);border-style: none;border-radius: 20px;" value="Actualizar mis datos"></div>
                                         </div>
                                     </div>
                                 </div>
@@ -67,5 +74,7 @@
             </div>
         </div>
     </div>
+    <script src="/static/js/scriptsImg.js"> </script>
 </header>
+
 {% endblock %}

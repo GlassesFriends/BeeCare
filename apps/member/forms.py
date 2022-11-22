@@ -29,3 +29,8 @@ class CreateUserForm(UserCreationForm):
 	class Meta:
 		model = User
 		fields = ['first_name', 'last_name', 'username', 'password1', 'password2']
+
+class UpdateMemberProfile(ModelForm):
+	class Meta:
+		model = member
+		fields = ['membFirstName','membLastName','membDateBirth','membPhone','membProfilePicture','membEmail']

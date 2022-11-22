@@ -24,7 +24,7 @@ from django.contrib import messages
 # |=========================================|
 from datetime import datetime, date, timedelta
 from .decorators import user_auth, allowed_users
-from apps.member.forms import CreateUserForm
+from apps.member.forms import CreateUserForm,UpdateMemberProfile
 
 # |=========================================|
 # |=====|     REFERENCIAS A MODELOS   |=====|
@@ -207,3 +207,33 @@ def memberSignIn(request):
             
     context = {}
     return render(request, 'member/signin.html', context)
+
+# |=========================================|
+# |=====|   ACTUALIZACIÓN DE DATOS    |=====|
+# |=========================================|
+# |=| Se muestran los trabajadores que se |=|
+# |=| han logeado en la página.           |=|
+# |=========================================|
+
+def memberUpdate(request):
+    profile = member.objects.get(id=request.user.member.pk)
+    form = UpdateMemberProfile(instance = member)
+    if request.method == 'POST':
+        print("Aqui entro al post")
+        form = UpdateMemberProfile(request.POST,request.FILES, instance = profile)
+        print("Si soy válido")
+        if form.is_valid():
+            print("Si soy válido")
+            form.save()
+            print("Si guarde datos")
+            text = "Datos actualizados correctamente."
+            messages.warning(request,text)
+            return redirect('profile')
+        else:
+            print("No fununcie")
+
+    context = {
+        'form': form
+    }
+    return render(request,'member/profile.html',context)
+
