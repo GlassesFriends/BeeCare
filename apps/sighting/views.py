@@ -235,7 +235,7 @@ def get_Sighting_Personal(request):
 
 # |=| Método para Json de sightings |=|
 def get_Sighting_General(request):
-    sightings = list(sighting.objects.all())
+    sightings = list(sighting.objects.values())
 
     if(len(sightings) > 0):
         data = {
