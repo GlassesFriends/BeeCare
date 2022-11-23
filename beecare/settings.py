@@ -53,6 +53,7 @@ ALLOWED_HOSTS = [
     'beecare.glassesfriends.com',  # PRODUCCIÓN
     'beecaretest.herokuapp.com',  # Heroku
     'gf-beecare.herokuapp.com',  # Heroku
+    'gf-beecare.azurewebsites.net',  # Heroku
     ]
 
 # |=============================================================|

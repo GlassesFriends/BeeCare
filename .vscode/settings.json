@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/d777b6d9-0e32-4d75-8b42-ca39c710c02c/AppServices/subscriptions/d777b6d9-0e32-4d75-8b42-ca39c710c02c/resourceGroups/appsvc_linux_centralus/providers/Microsoft.Web/sites/gf-beecare",
+    "appService.deploySubpath": "."
+}
