@@ -16,3 +16,5 @@ sqlparse==0.4.2
 tzdata==2022.2
 urllib3==1.26.12
 wincertstore==0.2
+whitenoise
+gunicorn
