@@ -175,8 +175,10 @@ DATABASES = {
         'NAME': config('SQL_DB_T'),
         'USER': config('SQL_USER'),
         'PASSWORD': config('SQL_PASSWORD'),
-        'HOST': 'beecare.database.windows.net' + config('SQL_INSTANCE'),
-        'OPTIONS': {'driver': 'ODBC Driver 17 for SQL Server', },
+        'HOST': 'beecare.database.windows.net',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+            },
     }
 }
 
