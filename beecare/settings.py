@@ -216,7 +216,7 @@ USE_TZ = True
 # |=|  estilos y archivos de javascript a nuestra app web.    |=|
 # |=============================================================|
 
-#STATIC_ROOT='/static/'
+STATIC_ROOT='/static/'
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
