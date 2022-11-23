@@ -52,9 +52,14 @@ ALLOWED_HOSTS = [
     '192.168.100.120',  # IP de desarrollo
     'beecare.glassesfriends.com',  # PRODUCCIÓN
     'https://beecare.glassesfriends.com',  # PRODUCCIÓN
+    'http://beecare.glassesfriends.com',  # PRODUCCIÓN
+    'https://beecare.glassesfriends.com/memb/signup',  # PRODUCCIÓN
     'beecaretest.herokuapp.com',  # Heroku
     'gf-beecare.herokuapp.com',  # Heroku
-    'gf-beecare.azurewebsites.net',  # Heroku
+    'gf-beecare.azurewebsites.net',  # Azure
+    'https://gf-beecare.azurewebsites.net',  # Azure
+    'http://gf-beecare.azurewebsites.net',  # Azure
+    'https://gf-beecare.azurewebsites.net/memb/signup',  # Azure
     ]
 
 CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS
