@@ -1,1 +1,1 @@
-web: gunicorn beecare.wsgi --log-file -
+web: gunicorn beecare.wsgi:application --log-file - --log-level debug
