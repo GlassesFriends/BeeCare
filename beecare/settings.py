@@ -57,6 +57,8 @@ ALLOWED_HOSTS = [
     'gf-beecare.azurewebsites.net',  # Heroku
     ]
 
+CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS
+
 # |=============================================================|
 # |===============|  APLICACIONES DEL PROYECTO  |===============|
 # |=============================================================|
