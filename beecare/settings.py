@@ -51,6 +51,7 @@ ALLOWED_HOSTS = [
     '192.168.32.99',    # IP de desarrollo
     '192.168.100.120',  # IP de desarrollo
     'beecaretest.herokuapp.com',  # Heroku
+    'gf-beecare.herokuapp.com',  # Heroku
     ]
 
 # |=============================================================|
