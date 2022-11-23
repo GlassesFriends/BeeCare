@@ -30,7 +30,25 @@ class CreateUserForm(UserCreationForm):
 		model = User
 		fields = ['first_name', 'last_name', 'username', 'password1', 'password2']
 
+# |=========================================|
+# |=====|    FORMULARIO DE MEMBER     |=====|
+# |=========================================|
+# |=| Se da formato a cada uno de los     |=|
+# |=| campos que se utilizarán.           |=|
+# |=========================================|
+
 class UpdateMemberProfile(ModelForm):
 	class Meta:
 		model = member
 		fields = ['membFirstName','membLastName','membDateBirth','membPhone','membProfilePicture','membEmail']
+
+# |=========================================|
+# |=====|    FORMULARIO DE UserUBF    |=====|
+# |=========================================|
+# |=| Se da formato a cada uno de los     |=|
+# |=| campos que se utilizarán.           |=|
+# |=========================================|
+class UpdateJustBasicFilesUser(ModelForm):
+	class Meta:
+		model = User
+		fields = ['first_name', 'last_name', 'username']

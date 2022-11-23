@@ -10,8 +10,12 @@
         </div>
     </div>
     <form method="POST" enctype="multipart/form-data">
-        {% csrf_token %}  
-      
+        {% csrf_token %}
+    <div style="display:none"hidden> 
+        <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200); display: none;" placeholder="Bee" inputmode="latin-name" name="first_name" id="first_name" required="" minlength="3" value="{{user.member.membFirstName}}" readonly hidden>
+        <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200); display: none;" placeholder="Care" inputmode="latin-name" name="last_name" id="last_name" required="" minlength="3" value="{{user.member.membLastName}}" readonly hidden>
+        <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200); display: none;" placeholder="bienvenido@beecare.com" inputmode="email" name="username" id="username" required="" minlength="5" maxlength="64" value="{{user.member.membEmail}}" readonly >
+    </div> 
     <div class="container py-4 py-xl-5" style="padding-left: 0px;padding-right: 0px;margin-top: 0px;padding-top: 8px;margin-bottom: -64px;padding-bottom: 66px;">
         <h4 class="fw-bold" style="font-size: 41px;text-align: center;color: rgb(73,64,56);">Mi perfil de usuario</h4>
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3" style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
@@ -41,25 +45,37 @@
                                             <h4 class="fw-bold" style="font-size: 32px;text-align: center;">Mi información</h4>
                                         </div>
                                     </div>
-                                    <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
-                                        <div class="row">
-                                            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-6" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Nombre(s)</label>
-                                                <div class="input-group" style="border-radius: 8px;border-style: none;">
-                                                    <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Bee" inputmode="latin-name" name="membFirstName"  required="" minlength="3" value="{{user.member.membFirstName}}">
-                                                </div>
+                                <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
+                                    <div class="row">
+                                        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-6" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Nombre(s)</label>
+                                            <div class="input-group" style="border-radius: 8px;border-style: none;">
+                                                <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Bee" inputmode="latin-name" name="membFirstName" id="membFirstName" onchange="autoField_first_name(row = null)" required="" minlength="3" value="{{user.member.membFirstName}}">
                                             </div>
-                                            <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-6" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Apellido(s)</label>
-                                                <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Care" inputmode="latin-name" name="membLastName" required="" minlength="3" value="{{user.member.membLastName}}"></div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-6" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Apellido(s)</label>
+                                            <div class="input-group" style="border-radius: 8px;border-style: none;">
+                                                <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Care" inputmode="latin-name" name="membLastName" id="membLastName" onchange="autoField_last_name(row = null)" required="" minlength="3" value="{{user.member.membLastName}}">
                                             </div>
-                                            <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-4" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Fecha de nacimiento</label>
-                                                <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="date" style="border-style: none;border-radius: 20px;background: var(--bs-gray-200);" name="membDateBirth" value="{{user.member.membDateBirth|date:'Y-m-d'}}"  required> </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-4" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Fecha de nacimiento</label>
+                                            <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="date" style="border-style: none;border-radius: 20px;background: var(--bs-gray-200);" name="membDateBirth" value="{{user.member.membDateBirth|date:'Y-m-d'}}"  required> </div>
+                                        </div>
+                                        <div class="col-md-12 col-xxl-4" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Correo electrónico</label>
+                                            <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="bienvenido@beecare.com" inputmode="email" name="membEmail" id="membEmail" onchange="autoField_mail(row = null)" minlength="5" maxlength="64" value="{{user.member.membEmail}}"></div>
+                                        </div>
+                                        <div class="col-md-12 col-xxl-4" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Número de teléfono</label>
+                                            <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" inputmode="tel" placeholder="(###) ### ####" maxlength="10" minlength="10" name="membPhone"  value="{{user.member.membPhone}}"></div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-6" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Contraseña</label>
+                                            <div class="input-group" style="border-radius: 8px;border-style: none;">
+                                                <input class="form-control" name="password1" type="password" style="background: var(--bs-gray-200);border-style: none;border-radius: 20px;"  placeholder="Ingresa tu contraseña">                          
                                             </div>
-                                            <div class="col-md-12 col-xxl-4" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Correo electrónico</label>
-                                                <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="bienvenido@beecare.com" inputmode="email" name="membEmail" required="" minlength="5" maxlength="64" value="{{user.member.membEmail}}"></div>
+                                        </div>
+                                        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-6" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Repetir contraseña</label>
+                                            <div class="input-group" style="border-radius: 8px;border-style: none;">
+                                                <input class="form-control" name="password2" type="password" style="background: var(--bs-gray-200);border-style: none;border-radius: 20px;" placeholder="Confirma tu contraseña">                          
                                             </div>
-                                            <div class="col-md-12 col-xxl-4" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Número de teléfono</label>
-                                                <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" inputmode="tel" placeholder="(###) ### ####" maxlength="10" minlength="10" name="membPhone" required="" value="{{user.member.membPhone}}"></div>
-                                            </div>
+                                        </div>
                                         </div>
                                     </div>
                                     <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">

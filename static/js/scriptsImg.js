@@ -13,3 +13,20 @@ var load_Profile = function(event) {
     URL.revokeObjectURL(output1.src) // free memory
   }
 };
+
+function autoField_first_name(){
+  let user_fname = document.getElementById("membFirstName").value;
+  document.getElementById("first_name").value = user_fname;
+ }
+ 
+ function autoField_last_name(){
+   let user_lname = document.getElementById("membLastName").value;
+   document.getElementById("last_name").value = user_lname;
+  }
+ 
+  function autoField_mail(){
+   let user_mail = document.getElementById("membEmail").value;
+   document.getElementById("username").value = user_mail;
+  }
+ 
+ 

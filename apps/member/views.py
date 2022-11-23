@@ -24,7 +24,7 @@ from django.contrib import messages
 # |=========================================|
 from datetime import datetime, date, timedelta
 from .decorators import user_auth, allowed_users
-from apps.member.forms import CreateUserForm,UpdateMemberProfile
+from apps.member.forms import CreateUserForm,UpdateMemberProfile,UpdateJustBasicFilesUser
 
 # |=========================================|
 # |=====|     REFERENCIAS A MODELOS   |=====|
@@ -218,15 +218,20 @@ def memberSignIn(request):
 def memberUpdate(request):
     profile = member.objects.get(id=request.user.member.pk)
     user_update = User.objects.get(id=request.user.pk)
+    user_update_nopass = User.objects.get(id=request.user.pk)
 
     form_profile = UpdateMemberProfile(instance = profile)
     form_user = CreateUserForm(instance = user_update)
+    form_nopass = UpdateJustBasicFilesUser(instance = user_update_nopass)
 
     if request.method == 'POST':
         print("Aqui entro al post")
         form_profile = UpdateMemberProfile(request.POST,request.FILES, instance = profile)
         form_user = CreateUserForm(request.POST, instance = user_update)
+        form_nopass = UpdateJustBasicFilesUser(request.POST,instance=user_update_nopass)
         print("Si soy válido en POST")
+
+
         if form_user.is_valid():
             print("Si soy válido en formulario")
             password1 = form_user.cleaned_data.get('password1')
@@ -246,10 +251,14 @@ def memberUpdate(request):
         if form_profile.is_valid():
             print("Si soy válido x2")
             form_profile.save()
-                   
             text = "Datos actualizados correctamente."
             messages.warning(request,text)
-            return redirect('profile')
+
+            if form_nopass.is_valid():
+                print("Si soy válido en sin pass")
+                form_nopass.save()
+
+                return redirect('profile')
     
         else:
             print("No fununcie")
@@ -259,4 +268,3 @@ def memberUpdate(request):
         'form_user':form_user
     }
     return render(request,'member/profile.html',context)
-
