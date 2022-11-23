@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block content %}
 <section class="text-center text-white d-sm-none d-md-block d-none d-sm-block"
     style="background: url(&quot;/static/img/Bees/cover0.jpg&quot;) no-repeat center center;background-size: cover;height: 707px;padding-top: 55px;margin-bottom: 2px;padding-bottom: 84px;margin-top: 92px;">
@@ -17,7 +18,7 @@
         <div class="col"
             style="padding: 0px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;display: flex;">
             <picture style="display: flex;">
-                <img class="img-fluid d-sm-none d-md-block d-none d-sm-block" src="/static/img/Bees/bee0.jpg"
+                <img class="img-fluid d-sm-none d-md-block d-none d-sm-block" src={%static '/img/Bees/bee0.jpg' %}
                     style="border-top-left-radius: 20px;border-bottom-left-radius: 20px;height: auto;max-height: 100%;display: flex;"
                     width="660" height="359" />
             </picture>
@@ -99,7 +100,7 @@
         <div class="col"
             style="padding: 0px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;display: flex;">
             <picture style="display: flex;">
-                <img class="img-fluid d-sm-none d-md-block d-none d-sm-block" src="/static/img/Bees/bee2.png"
+                <img class="img-fluid d-sm-none d-md-block d-none d-sm-block" src={%static '/img/Bees/bee2.png' %}
                     style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;height: auto;max-height: 100%;display: flex;border-top-right-radius: 20px;border-bottom-right-radius: 20px;"
                     width="660" height="359" />
             </picture>
@@ -112,7 +113,7 @@
         <div class="col"
             style="padding: 0px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;display: flex;">
             <picture style="display: flex;">
-                <img class="img-fluid d-none d-sm-block" src="/static/img/Bees/bee3.png"
+                <img class="img-fluid d-none d-sm-block" src={%static '/img/Bees/bee3.png' %}
                     style="border-top-left-radius: 20px;border-bottom-left-radius: 20px;height: auto;max-height: 100%;display: flex;"
                     width="660" height="359" />
             </picture>

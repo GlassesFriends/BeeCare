@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block content %}
 
     <header class="header">
@@ -40,7 +41,7 @@
                                     <div class="col-xxl-12" style="margin-bottom: 8px;margin-top: 8px;">
                                         <div class="row">
                                             <div class="col-sm-12 col-xxl-12">
-                                                <img id="previewSightingReg" style="display: inline-grid;border-radius: 20px;margin-bottom: 4px;margin-top: 4px;margin-right: 4px;margin-left: 4px;width: 220px;height: 120px;background: #d9d9d9;padding-top: 4px;padding-bottom: 4px;padding-left: 4px;padding-right: 5px;" width="220" height="120" src="/static/img/logos/Bee%20Care%20Logo%20in%20a%20Circle.svg"></div>
+                                                <img id="previewSightingReg" style="display: inline-grid;border-radius: 20px;margin-bottom: 4px;margin-top: 4px;margin-right: 4px;margin-left: 4px;width: 220px;height: 120px;background: #d9d9d9;padding-top: 4px;padding-bottom: 4px;padding-left: 4px;padding-right: 5px;" width="220" height="120" src={%static '/img/logos/Bee%20Care%20Logo%20in%20a%20Circle.svg' %}></div>
                                         </div>
                                     </div>
                                     <input type="number" name="sighLat" id="sighLat" readonly hidden required>
@@ -151,6 +152,6 @@
     </div>
 
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-<script src="/static/js/scriptsMap.js"> </script>
-<script src="/static/js/scriptsImg.js"> </script>
+<script src={%static '/js/scriptsMap.js' %}> </script>
+<script src={%static '/js/scriptsImg.js' %}> </script>
 {% endblock %}

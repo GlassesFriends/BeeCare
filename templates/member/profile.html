@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block content %}
 <header class="header">
     <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/bee2.png&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
@@ -74,7 +75,7 @@
             </div>
         </div>
     </div>
-    <script src="/static/js/scriptsImg.js"> </script>
+    <script src={%static '/js/scriptsImg.js' %}> </script>
 </header>
 
 {% endblock %}

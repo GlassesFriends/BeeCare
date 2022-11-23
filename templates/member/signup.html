@@ -1,4 +1,5 @@
 {% extends 'base/base.html' %}
+{% load static %}
 {% block content %}
   <header class="header">
     <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/bee2.png&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
@@ -37,7 +38,7 @@
                   <div class="col-xxl-12" style="margin-bottom: 8px;margin-top: 8px;text-align: center;border-radius: 20px;padding-bottom: 16px;padding-top: 16px;padding-right: 16px;padding-left: 16px;background: var(--bs-light);border-style: none;border-color: var(--bs-dark);">
                     <div class="row" style="text-align: center;">
                       <div class="col-12 col-sm-3 col-md-3 col-lg-2 col-xl-2 col-xxl-2" style="text-align: center;">
-                        <img id="img_profile"  style="display: inline-grid;border-radius: 10%;margin-bottom: 4px;margin-top: 4px;margin-right: 4px;margin-left: 4px;width: 120px;height: 120px;background: var(--bs-card-bg);padding-top: 4px;padding-bottom: 4px;padding-left: 4px;padding-right: 5px;border: 2px solid var(--bs-gray-500) ;" width="220" height="120" src="/static/img/logos/Generic%20upload%20photo.svg" />
+                        <img id="img_profile"  style="display: inline-grid;border-radius: 10%;margin-bottom: 4px;margin-top: 4px;margin-right: 4px;margin-left: 4px;width: 120px;height: 120px;background: var(--bs-card-bg);padding-top: 4px;padding-bottom: 4px;padding-left: 4px;padding-right: 5px;border: 2px solid var(--bs-gray-500) ;" width="220" height="120" src={%static '/img/logos/Generic%20upload%20photo.svg' %} />
                       </div>
                       <div class="col d-none d-sm-block">
                         <div class="row">
@@ -146,5 +147,5 @@
       </div>
     </div>
   </div>
-  <script src="/static/js/scriptsImg.js"> </script>
+  <script src={%static '/js/scriptsImg.js' %}> </script>
 {% endblock %}
