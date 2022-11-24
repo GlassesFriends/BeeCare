@@ -1,0 +1,107 @@
+{% extends 'base/base.html' %}
+
+{% load blog_extras %}
+
+{% block content %}
+<header class="header">
+    <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;{{post.bPostCoverImage.url}}&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
+      <div class="container">
+        <div class="col-md-6 offset-md-3 header-title">
+          <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;"><strong>{{ post.bPostTitle }}</strong></h1>
+        </div>
+      </div>
+    </div>
+</header>
+
+<div class="container py-4 py-xl-5" style="margin-top: -26px;">
+        <h2 class="text-3xl">{{ post.bPostTitle }}</h2>
+
+        <span class="mb-4 block text-xs text-gray-600">
+            <strong> {{ post.category.categoryTitle }} </strong> | {{ post.bPostCreated_at }}
+        </span>
+
+        <p class="mb-6 font-semibold">{{ post.bPostIntro }}</p>
+
+        <p class="text-gray-800">
+            {{ post.bPostBody | convert_markdown | safe }}
+        </p>
+    </div>
+
+    <div class="container py-4 py-xl-3" style="margin-top: -26px;">
+        <h3 class="mb-4 text-xl"><strong>Sección de comentarios</strong></h3>
+
+        {% for comment in post.comments.all %}
+
+            <div class="mb-4 w-full py-1 px-4 col-sm-12 col-md-8 col-lg-8 col-xl-12 col-xxl-8" style="box-shadow: 0px 0px;text-shadow: 0px 0px;">
+                <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
+                    <div class="row" style="text-align: left;">
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="text-align: left;">
+                            <strong>{{ comment.commentName }}</strong> | {{ comment.commentCreated_at|timesince }} ago<br>
+
+                            <p class="text-gray-500">{{ comment.commentText }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>    
+        {% endfor %}
+
+        <h3 class="mb-4 text-xl">Has un comentario</h3>
+
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xl-12 col-xxl-8" style="box-shadow: 0px 0px;text-shadow: 0px 0px;">
+            <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
+                <div class="row" style="text-align: center;">
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="text-align: center;">
+                        
+                        <form method="post" action="." class="space-y-4">
+                            {% csrf_token %}
+                            <div class="row">
+                                <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
+                                    <div class="row">
+                                        <div class="col-md-12 col-xxl-4" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Nombre</label>
+                                            <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Bee" inputmode="email" name="membEmail" required="" minlength="5" maxlength="64" value="{{user.member.membFirstName}}" readonly></div>
+                                        </div>
+                                        <div class="col-md-12 col-xxl-4" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Correo electrónico</label>
+                                            <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="bienvenido@beecare.com" inputmode="email" name="membEmail" required="" minlength="5" maxlength="64" value="{{user.member.membEmail}}" readonly></div>
+                                        </div>
+                                        <div class="col-md-12 col-xxl-4" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Comentario</label>
+                                            <div class="input-group" style="border-radius: 8px;border-style: none;"><input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" inputmode="tel" placeholder="Escribe un comentario" maxlength="250" minlength="10" name="membPhone" required="" value="{{user.member.membPhone}}"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
+                                    <div class="row">
+                                        <div class="col-md-12" style="text-align: center;"><input class="btn btn-primary" type="submit" style="background: var(--bs-primary);border-style: none;border-radius: 20px;" value="Enviar"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <form method="post" action="." class="space-y-4">
+            {% csrf_token %}
+
+            <div>
+                <label>Nombre</label><br>
+                <input type="text" name="name" class="w-full py-4 px-6 rounded-xl bg-white">
+            </div>
+
+            <div>
+                <label>Correo electrónico</label><br>
+                <input type="email" name="email" class="w-full py-4 px-6 rounded-xl bg-white">
+            </div>
+
+            <div>
+                <label>Comentario</label><br>
+                <textarea name="comment" class="w-full py-4 px-6 rounded-xl bg-white"></textarea>
+            </div>
+
+            <div>
+                <button class="py-4 px-6 rounded-xl bg-emerald-800 text-white">Submit</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
