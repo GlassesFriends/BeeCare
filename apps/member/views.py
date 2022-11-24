@@ -279,3 +279,11 @@ def memberUpdate(request):
         'form_user':form_user
     }
     return render(request,'member/profile.html',context)
+
+# |==========================================|
+# |=====|      Error 404 Not Found     |=====|
+# |==========================================|
+# |=|   Proceso de Ckech in de trabajador. |=|
+# |==========================================|
+def error404(request, exception):
+    return render(request, 'errors/404.html')

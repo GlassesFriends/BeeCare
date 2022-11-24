@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+
+<body class="text-bg-light" style="background: var(--bs-gray-400);--bs-light: #EBEBEB;--bs-light-rgb: 235,235,235;">
+    <section class="py-5 mt-5">
+        <div class="container">
+            <div class="row row-cols-1 d-flex justify-content-center align-items-center">
+                <div class="col-md-10 text-center">
+                    <div class="card" style="border-radius: 20;border-width: 0px;"></div>
+                </div>
+                <div class="col text-center" style="margin-top: 23px;padding-top: 30px;">
+                    <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
+                        <div class="card-body">
+                            <img src={%static '/img/illustrations/404Error.png' %} width="100" height="100";/>
+                            <div>
+                                <h4 class="fw-bold text-dark" style="font-size: 44px;text-align: center;">Hmmm...</h4>
+                                <p class="fs-5 text-muted" style="font-size: 18px;text-align: center;"><span style="color: rgb(45, 45, 45);">Parece que no se han encontrado abejas por esta ruta...</span><br></p>
+                                <p class="fs-5 text-dark" style="font-size: 18px;text-align: center;--bs-dark: #494038;--bs-dark-rgb: 73,64,56;"><strong>Intenta con una ruta diferente ¡o vuelve a la página de principal&nbsp;para seguir con la búsqueda!</strong><br></p><button class="btn btn-primary" type="button" style="background: var(--bs-primary);border-style: none;border-radius: 20px;--bs-secondary: #F09C10;--bs-secondary-rgb: 240,156,16;--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;">Volver a la página principal</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+
+{% endblock %}
