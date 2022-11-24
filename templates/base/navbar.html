@@ -93,14 +93,17 @@
                             style="border-top-left-radius: 0;border-top-right-radius: 0;border-bottom-right-radius: 0;border-bottom-left-radius: 0;"><img
                                 width="100" height="80"
                                 style="width: 44px;height: 42px;border-radius: 8px;background: #00000000;border: 2px none var(--bs-black);"
-                                src={%static '/img/logos/Generic%20upload%20photo.svg' %} /></a>
+                                src={{user.member.membProfilePicture.url}} /></a>
                         <div class="dropdown-menu shadow dropdown-menu-end animated--grow-in">
 
                             <a class="dropdown-item" href="{% url 'sighting-own' %}"><i
                                     class="fas fa-user fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Mi perfil</a>
 
                             <a class="dropdown-item" href="{% url 'sighting-own' %}"><i
-                                    class="fas fa-cogs fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Mis avistamientos</a>
+                                    class="fas fa-camera-retro fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Mis avistamientos</a>
+
+                            <a class="dropdown-item" href="{% url 'sighting-reg' %}"><i
+                                    class="fas fa-binoculars fa-sm fa-fw me-2 text-gray-400"></i>&nbsp;Registrar avistamiento</a>
 
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" onclick="memberSignOut('{% url 'signout' %}')"><i
