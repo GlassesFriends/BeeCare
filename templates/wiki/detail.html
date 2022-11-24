@@ -10,7 +10,7 @@
             <div class="col-md-6 offset-md-3 header-title">
                 <h1 class="text-center"
                     style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;">
-                    <strong>{{ post.bPostTitle }}</strong>
+                    <strong>{% block title %}{{ post.bPostTitle }}{% endblock title %}</strong>
                 </h1>
             </div>
         </div>

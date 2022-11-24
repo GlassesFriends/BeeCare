@@ -8,7 +8,7 @@
       <div class="col-md-6 offset-md-3 header-title">
         <h1 class="text-center"
           style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;margin-top: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;">
-          <strong>MAPA DE AVISTAMIENTOS</strong></h1>
+          <strong>{% block title %}Mapa de avistamientos{% endblock title %}</strong></h1>
       </div>
     </div>
   </div>
@@ -32,16 +32,19 @@
               <div>
                   <h4 style="font-size: 44px;font-weight: bold;text-align: center;"> ¿Haz visto una abeja?</h4>
                   <p style="font-size: 18px;text-align: center;">
-                      Presiona el siguiente botón para registrar tu avistamiento y que otros
-                      más puedan conocer acerca de la existencia de abejas.<br />
-                  </p>
-                  <div class="row align-items-center" style="text-align: center;">
+                      {% if user.is_authenticated %}
+                      ¡Excelente!, recuerda que puedes compartirnos tu avistamiento.<br />
+                      {% else %}
+                      ¡Excelente!, registrate para poder compartir tu avistamiento.<br />
+                      {% endif %}
+                    </p>
+                    <div class="row align-items-center" style="text-align: center;">
                       <div class="col-xxl-12 align-items-center">
-                        <a href="{% url 'sighting-reg'%}">
-                          <button class="btn btn-primary" type="button"
-                              style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">Saber
-                              más</button>
-                        </a>
+                        {% if user.is_authenticated %}
+                        <a class="btn btn-primary" href="{% url 'sighting-reg' %}" type="button" style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;"> Registrar avistamiento</a>
+                        {% else %}
+                        <a class="btn btn-primary" href="{% url 'signup' %}" type="button" style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;"> ¡Quiero registrarme!</a>
+                        {% endif %}
                       </div>
                   </div>
               </div>

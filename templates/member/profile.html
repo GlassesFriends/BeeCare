@@ -17,7 +17,7 @@
         <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200); display: none;" placeholder="bienvenido@beecare.com" inputmode="email" name="username" id="username" required="" minlength="5" maxlength="64" value="{{user.member.membEmail}}" readonly >
     </div> 
     <div class="container py-4 py-xl-5" style="padding-left: 0px;padding-right: 0px;margin-top: 0px;padding-top: 8px;margin-bottom: -64px;padding-bottom: 66px;">
-        <h4 class="fw-bold" style="font-size: 41px;text-align: center;color: rgb(73,64,56);">Mi perfil de usuario</h4>
+        <h4 class="fw-bold" style="font-size: 41px;text-align: center;color: rgb(73,64,56);">{% block title %}Mi perfil de usuario{% endblock title %}</h4>
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3" style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
             <div class="col-sm-12 col-md-4 col-lg-4 col-xl-3 col-xxl-4" style="box-shadow: 0px 0px;text-shadow: 0px 0px;">
                 <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
