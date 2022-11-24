@@ -85,13 +85,15 @@
                         the industry's standard dummy text ever since the 1500s.<br />
                     </p>
                     <div class="row align-items-center" style="text-align: center;">
-                        <div class="col-xxl-12 align-items-center">
-                            <button class="btn btn-primary" type="button"
-                                style="width: 190px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;margin: 0px;margin-right: 16px;border-style: none;margin-left: 16px;padding-right: 0px;padding-left: 0px;border-radius: 20px;">
-                                Quiero registrar un avistamiento</button>
-                            <button class="btn btn-primary" type="button"
-                                style="width: 190px;background: var(--bs-gray-700);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 16px;border-style: none;margin-left: 16px;border-radius: 20px;">
-                                Mapa de avistamientos de mi localidad</button>
+                        <div class="row align-items-center" style="text-align: center;">
+                            <div class="col-lg-6 col-xl-6 col-xxl-6 align-items-center"><a class="btn btn-primary" href="
+                                {% if user.is_authenticated %}
+                                {% url 'sighting-reg' %}
+                                {% else %}
+                                {% url 'signup' %}
+                                {% endif %}
+                                " type="button" style="width: 190px;background: var(--bs-gray-700);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 16px;border-style: none;margin-left: 16px;border-radius: 20px;">¡Quiero registrar un avistamiento!</a></div>
+                            <div class="col-lg-6 col-xl-6 col-xxl-6 align-items-center"><a class="btn btn-primary" href="{% url 'sighting-map' %}" type="button" style="width: 190px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;margin: 0px;margin-right: 16px;border-style: none;margin-left: 16px;padding-right: 0px;padding-left: 0px;border-radius: 20px;">¿Qué avistamientos hay en mi localidad?</a></div>
                         </div>
                     </div>
                 </div>
