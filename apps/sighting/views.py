@@ -290,3 +290,13 @@ def get_Sighting_map(request):
     else:
         data = {'message': "No se encontro"}
     return JsonResponse(data)
+
+
+def get_sightings(request,pk):
+    sightings = sighting.objects.filter(pk=pk)
+    context =  {
+        'message': "Success",
+        'avistamiento':sightings
+        }
+    return render(request,'sighting/avistamiento.html',context)
+

@@ -11,26 +11,29 @@
           src={%static '/img/logos/Bee%20Care%20Logo%20in%20a%20Circle.png' %} width="100" height="100"
           style="display: inline-block;position: sticky;background: var(--bs-secondary);height: 100px;width: 100px;">
       </div>
-      <div class="col-sm-4 col-md-3 col-lg-3 text-center text-lg-start d-flex flex-column">
-        <h3 class="fs-6 fw-bold">Foro</h3>
+      <div class="col-sm-4 col-md-3 col-lg-2 text-center text-lg-start d-flex flex-column">
+        <div class="fw-bold d-flex align-items-center mb-2"><span>Foro</span></div>
         <ul class="list-unstyled">
-          <li><a href="#">Iniciar sesión</a></li>
-          <li><a href="#">Registro</a></li>
+          <li><a href="{% url 'signin' %}">Iniciar sesión</a></li>
+          <li><a href="{% url 'signup' %}">Registro</a></li>
         </ul>
       </div>
-      <div class="col-sm-4 col-md-3 col-lg-3 text-center text-lg-start d-flex flex-column">
-        <h3 class="fs-6 fw-bold">Careers</h3>
-        <ul class="list-unstyled">
-          <li><a href="#">Job openings</a></li>
-          <li><a href="#">Employee success</a></li>
-          <li><a href="#">Benefits</a></li>
+      <div class="col-sm-4 col-md-3 col-lg-4 text-center text-lg-start d-flex flex-column">
+        <div class="fw-bold d-flex align-items-center mb-2"><span>Wiki</span></div>
+        <ul class="list-unstyled;" style="color:black ;">
+          <li><a href="{% url 'wiki' 'que-son-las-abejas' %}">¿Qué son las abejas?</a></li>
+          <li><a href="{% url 'wiki' 'abejas-nativas-de-mexico'%}">Abejas nativas de México</a></li>
+          <li><a href="{% url 'wiki' 'apicultura-en-mexico'%}">Apicultura en México</a></li>
+          <li><a href="{% url 'wiki' 'sobre-el-proyecto'%}">Sobre el proyecto</a></li>
         </ul>
       </div>
 
       <div
-        class="col-lg-3 col-xl-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last">
-        <div class="fw-bold d-flex align-items-center mb-2"><span>BeeCare</span></div>
-        <p class="text-muted">Sem eleifend donec molestie, integer quisque orci aliquam.</p>
+        class="col-lg-6 col-xl-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last">
+        <div class="fw-bold d-flex align-items-center mb-2"><span>Contactanos</span></div>
+        <p class="text-muted">Para contactar a los desarrolladores u obtener más información,
+          mandar correo a contacto@glassesfriends.com
+        </p>
       </div>
     </div>
   </div>
