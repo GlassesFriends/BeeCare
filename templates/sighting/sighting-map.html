@@ -8,7 +8,8 @@
       <div class="col-md-6 offset-md-3 header-title">
         <h1 class="text-center"
           style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;margin-top: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;">
-          <strong>{% block title %}Mapa de avistamientos{% endblock title %}</strong></h1>
+          <strong>{% block title %}Mapa de avistamientos{% endblock title %}</strong>
+        </h1>
       </div>
     </div>
   </div>
@@ -17,41 +18,44 @@
 <div class="container py-4 py-xl-5"
   style="margin-bottom: -50px;padding-left: 0px;padding-right: 0px;margin-top: -48px;">
   <div class="container py-4 py-xl-5"
-  style="padding-right: 0px;padding-left: 0px;margin-bottom: -24px;padding-bottom: 36px;padding-top: 16px;margin-top: -6px;">
-  <div class="row row-cols-1 row-cols-md-2" style="background: var(--bs-white);border-radius: 20px;">
-      <div class="col"
-          style="padding: 0px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;display: flex;">
-          <picture style="display: flex;">
-              <img class="img-fluid d-none d-sm-block" src={%static '/img/Bees/bee6.png' %}
-                  style="border-top-left-radius: 20px;border-bottom-left-radius: 20px;height: auto;max-height: 100%;display: flex;"
-                  width="660" height="359" />
-          </picture>
+    style="padding-right: 0px;padding-left: 0px;margin-bottom: -24px;padding-bottom: 36px;padding-top: 16px;margin-top: -6px;">
+    <div class="row row-cols-1 row-cols-md-2" style="background: var(--bs-white);border-radius: 20px;">
+      <div class="col" style="padding: 0px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;display: flex;">
+        <picture style="display: flex;">
+          <img class="img-fluid d-none d-sm-block" src={%static '/img/Bees/bee6.png' %}
+            style="border-top-left-radius: 20px;border-bottom-left-radius: 20px;height: auto;max-height: 100%;display: flex;"
+            width="660" height="359" />
+        </picture>
       </div>
       <div class="col-xxl-6 d-flex flex-column justify-content-center p-4">
-          <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
-              <div>
-                  <h4 style="font-size: 44px;font-weight: bold;text-align: center;"> ¿Haz visto una abeja?</h4>
-                  <p style="font-size: 18px;text-align: center;">
-                      {% if user.is_authenticated %}
-                      ¡Excelente!, recuerda que puedes compartirnos tu avistamiento.<br />
-                      {% else %}
-                      ¡Excelente!, registrate para poder compartir tu avistamiento.<br />
-                      {% endif %}
-                    </p>
-                    <div class="row align-items-center" style="text-align: center;">
-                      <div class="col-xxl-12 align-items-center">
-                        {% if user.is_authenticated %}
-                        <a class="btn btn-primary" href="{% url 'sighting-reg' %}" type="button" style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;"> Registrar avistamiento</a>
-                        {% else %}
-                        <a class="btn btn-primary" href="{% url 'signup' %}" type="button" style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;"> ¡Quiero registrarme!</a>
-                        {% endif %}
-                      </div>
-                  </div>
+        <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
+          <div>
+            <h4 style="font-size: 44px;font-weight: bold;text-align: center;"> ¿Haz visto una abeja?</h4>
+            <p style="font-size: 18px;text-align: center;">
+              {% if user.is_authenticated %}
+              ¡Excelente!, recuerda que puedes compartirnos tu avistamiento.<br />
+              {% else %}
+              ¡Excelente!, registrate para poder compartir tu avistamiento.<br />
+              {% endif %}
+            </p>
+            <div class="row align-items-center" style="text-align: center;">
+              <div class="col-xxl-12 align-items-center">
+                {% if user.is_authenticated %}
+                <a class="btn btn-primary" href="{% url 'sighting-reg' %}" type="button"
+                  style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">
+                  Registrar avistamiento</a>
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'signup' %}" type="button"
+                  style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">
+                  ¡Quiero registrarme!</a>
+                {% endif %}
               </div>
+            </div>
           </div>
+        </div>
       </div>
+    </div>
   </div>
-</div>
   <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3"
     style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;background: var(--bs-white);border-radius: 20px;">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="border-style: none;">
@@ -67,7 +71,7 @@
 <div class="container py-4 py-xl-5" style="margin-top: -26px;">
   <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
     <!-- Tarjetas de avistamientos -->
- 
+
     {% for sighting in sightings %}
     <div class="col-xxl-4">
       <div class="card"
