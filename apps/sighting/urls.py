@@ -42,5 +42,7 @@ urlpatterns = [
     path('family/', views.get_Family,name='family'),
     # |=| Json de get_Subfamily.                              |=|
     path('subfamily/', views.get_Subfamily,name='subfamily'),
+    
+    path('avistamiento/<int:pk>/',views.get_sightings,name='avistamiento'),
 
 ]
