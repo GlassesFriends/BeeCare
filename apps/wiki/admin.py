@@ -7,17 +7,17 @@
 # |=========================================|
 from django.contrib import admin
 
-from .models import Category, BeePost, Comment
+from .models import category, beePost, comment
 
 # Register your models here.
-@admin.register(Category)
+@admin.register(category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ["id", "categoryTitle"]
     
-@admin.register(BeePost)
+@admin.register(beePost)
 class PostAdmin(admin.ModelAdmin):
     list_display = ["id", "bPostTitle", "bPostSlug", "bPostCreated_at"]
 
-@admin.register(Comment)
+@admin.register(comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ["id", "commentName", "commentEmail", "commentCreated_at"]
+    list_display = ["id", "commentMember", "commentCreated_at"]

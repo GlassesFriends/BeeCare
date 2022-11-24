@@ -13,13 +13,14 @@ from django.db import models
 from statistics import mode
 from django.db import models
 from pathlib import Path
+from apps.member.models import member
 
 # Create your models here.
 
 # |=========================================|
 # |========|     MODELO CATEGORY    |=======|
 # |=========================================|
-class Category(models.Model):
+class category(models.Model):
     categoryTitle = models.CharField(max_length=255)
 
     def __str__(self):
@@ -28,8 +29,8 @@ class Category(models.Model):
 # |=========================================|
 # |========|     MODELO BEEPOST     |=======|
 # |=========================================|
-class BeePost(models.Model):
-    bPostCategory = models.ForeignKey(Category, related_name='posts', on_delete=models.CASCADE)
+class beePost(models.Model):
+    bPostCategory = models.ForeignKey(category, related_name='posts', on_delete=models.CASCADE)
     bPostCoverImage = models.ImageField(upload_to='BeePost/',blank=True)
     bPostTitle = models.CharField(max_length=255)
     bPostSlug = models.SlugField(max_length=255)
@@ -46,9 +47,8 @@ class BeePost(models.Model):
 # |=========================================|
 # |========|     MODELO COMMENT     |=======|
 # |=========================================|
-class Comment(models.Model):
-    commentBeepost = models.ForeignKey(BeePost, related_name='comments', on_delete=models.CASCADE)
-    commentName = models.CharField(max_length=255)
-    commentEmail = models.EmailField(max_length=255)
+class comment(models.Model):
+    commentBeepost = models.ForeignKey(beePost, related_name='comments', on_delete=models.CASCADE)
+    commentMember = models.ForeignKey(member, related_name='email', on_delete=models.CASCADE)
     commentText = models.TextField()
     commentCreated_at = models.DateTimeField(auto_now_add=True)
