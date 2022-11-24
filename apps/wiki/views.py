@@ -16,8 +16,13 @@ from .models import category, beePost, comment
 # |=| Método para la página con la lista de artículos publicados |=|
 def wikihome(request):
     posts = beePost.objects.all()
+    
+    context = {
+        'posts': posts,
+        'wiki': 'active',
+        }
 
-    return render(request, 'wiki/wikihome.html', {'posts': posts})
+    return render(request, 'wiki/wikihome.html', context)
 
 # |=| Método para la asignación de página para cada artículo |=|
 def article_detail(request, bPostSlug):
@@ -35,5 +40,9 @@ def article_detail(request, bPostSlug):
             )
 
             return redirect('article_detail', bPostSlug=post.bPostSlug)
-
-    return render(request, 'wiki/detail.html', {'post': post})
+        
+    context = {
+        'post': post,
+        'wiki': 'active',
+        }
+    return render(request, 'wiki/detail.html', context)

@@ -184,6 +184,7 @@ def sightingRegister(request):
         'genders':field_gender,
         'species':field_species,
         'bees':field_bee,
+        'avist':'active',
     }
     return render(request,'sighting/sighting-reg.html', context)
 # |=| Método para ingresar avistamiento |=|
@@ -193,7 +194,7 @@ def sightingMap(request):
         
     context = { 
         'sightings': mySightings,
-        'sighting-map':'active',
+        'avist':'active',
     }
     
     return render(request,'sighting/sighting-map.html', context)
@@ -206,7 +207,7 @@ def sightingMapOwn(request):
         
     context = { 
         'sightings': mySightings,
-        'sighting-map':'active',
+        'avist':'active',
     }
     return render(request,'sighting/sightings.html', context)
 
@@ -296,7 +297,8 @@ def get_sightings(request,pk):
     sightings = sighting.objects.filter(pk=pk)
     context =  {
         'message': "Success",
-        'avistamiento':sightings
+        'avistamiento':sightings,
+        'avist':'active',
         }
     return render(request,'sighting/avistamiento.html',context)
 
