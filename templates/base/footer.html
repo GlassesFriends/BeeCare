@@ -7,29 +7,41 @@
 <footer class="bg-primary-gradient" style="background: var(--bs-secondary);font-size: 20px;margin-top: 32px;">
   <div class="container py-4 py-lg-5" style="text-align: center;">
     <div class="row justify-content-center" style="text-align: center;">
-      <div class="col-lg-3" style="text-align: center;"><img
+      <div class="col-lg-2" style="text-align: center;"><img
           src={%static '/img/logos/Bee%20Care%20Logo%20in%20a%20Circle.png' %} width="100" height="100"
           style="display: inline-block;position: sticky;background: var(--bs-secondary);height: 150px;width: 150px;">
       </div>
-      <div class="col-sm-4 col-md-3 col-lg-2 text-center text-lg-start d-flex flex-column">
+      <div class="col-sm-4 col-md-3 col-lg-4 text-center text-lg-start d-flex flex-column">
+        {% if user.is_authenticated == False %}
         <div class="fw-bold d-flex align-items-center mb-2"><span>Foro</span></div>
-        <ul class="list-unstyled" style="color:black ;">
+        {% endif %}
+        {% if user.is_authenticated %}
+        <div class="fw-bold d-flex align-items-center mb-2"><span>Avistamientos</span></div>
+        {% endif %}
+        <ul class="list-unstyled;" style="color:black ;">
+          {% if user.is_authenticated == False %}
           <li><a href="{% url 'signin' %}">Iniciar sesión</a></li>
           <li><a href="{% url 'signup' %}">Registro</a></li>
+          {% endif %}
+          {% if user.is_authenticated %}
+          <li><a href="{% url 'sighting-reg' %}">Registrar avistamientos</a></li>
+          <li><a href="{% url 'sighting-own' %}">Mis avistamientos</a></li>
+          <li><a href="{% url 'sighting-map' %}">Avistamientos en mi localidad</a></li>
+          {% endif %}
         </ul>
       </div>
-      <div class="col-sm-4 col-md-3 col-lg-4 text-center text-lg-start d-flex flex-column">
+      <div class="col-sm-4 col-md-3 col-lg-3 text-center text-lg-start d-flex flex-column">
         <div class="fw-bold d-flex align-items-center mb-2"><span>Wiki</span></div>
         <ul class="list-unstyled;" style="color:black ;">
           <li><a href="{% url 'article_detail' 'que-son-las-abejas' %}">¿Qué son las abejas?</a></li>
           <li><a href="{% url 'article_detail' 'abejas-nativas-de-mexico'%}">Abejas nativas de México</a></li>
           <li><a href="{% url 'article_detail' 'apicultura-en-mexico'%}">Apicultura en México</a></li>
-          <li><a href="{% url 'article_detail' 'sobre-el-proyecto'%}">Sobre el proyecto</a></li>
+          <li><a href="{% url 'about'%}">Sobre el proyecto</a></li>
         </ul>
       </div>
 
       <div
-        class="col-lg-6 col-xl-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last">
+        class="col-lg-4 col-xl-3 text-center text-lg-start d-flex flex-column align-items-center order-first align-items-lg-start order-lg-last">
         <div class="fw-bold d-flex align-items-center mb-2"><span>Contactanos</span></div>
         <p class="text-muted">Para contactar a los desarrolladores u obtener más información,
           mandar correo a <a href="mailto:contacto@glassesfriends.com">contacto@glassesfriends.com</a>
