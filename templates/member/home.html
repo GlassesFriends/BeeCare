@@ -2,7 +2,7 @@
 {% load static %}
 {% block content %}
 <section class="text-center text-white d-sm-none d-md-block d-none d-sm-block"
-    style="background: url(&quot;/static/img/Bees/cover0.jpg&quot;) no-repeat center center;background-size: cover;height: 707px;padding-top: 55px;margin-bottom: 2px;padding-bottom: 84px;margin-top: 92px;">
+    style="background: url(&quot;/static/img/Bees/cover0.jpg&quot;) no-repeat center center;background-size: cover;height: 600px;padding-top: 55px;margin-bottom: 2px;padding-bottom: 84px;margin-top: 92px;">
     <div class="overlay"></div>
     <div class="container">
         <div class="row">
@@ -29,7 +29,7 @@
                     <h4 style="font-size: 44px;font-weight: bold;text-align: center;">¿Qué es Bee Care?</h4>
                     <p style="font-size: 18px;text-align: center;">
                         Es un proyecto enfocado al cuidado de las abejas y su importancia en el ecosistema y el planeta.
-                        Si deseas conocer más detalles, presione el botón que se muestra a continuación.<br/>
+                        <br/>
                     </p>
                     <div class="row align-items-center" style="text-align: center;">
                         <div class="col-xxl-12 align-items-center">
@@ -79,8 +79,8 @@
                 <div>
                     <h4 style="font-size: 44px;font-weight: bold;text-align: center;">Avistamientos en tu ciudad</h4>
                     <p style="font-size: 18px;text-align: center;">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s.<br />
+                        ¿Estás interesado en conocer sobre los tipos de abejas que hay en tu localidad?, ¿Eres un entusiasta de las abejas y además miraste una?<br />
+                        ¡No lo dudes más!, ven y comparte con nosotros tu avistamiento. <br>
                     </p>
                     <div class="row align-items-center" style="text-align: center;">
                         <div class="row align-items-center" style="text-align: center;">
@@ -124,14 +124,13 @@
                     <h4 style="font-size: 44px;font-weight: bold;text-align: center;">Conoce más sobre las abejas
                         nativas</h4>
                     <p style="font-size: 18px;text-align: center;">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s.<br />
+                        Conoce que familias de abejas son las más abundantes en México, sus especies, características y sus métodos de defensa.
+                        <br />
                     </p>
                     <div class="row align-items-center" style="text-align: center;">
                         <div class="col-xxl-12 align-items-center">
-                            <button class="btn btn-primary" type="button"
-                                style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">Saber
-                                más</button>
+                            <a class="btn btn-primary" type="button" href="{% url 'article_detail' 'abejas-nativas-de-mexico' %}"
+                                style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">Quiero saber más</a>
                         </div>
                     </div>
                 </div>
