@@ -4,6 +4,8 @@ static/img/*
 !static/img/illustrations
 !static/img/logos
 !static/img/icons
+!static/img/favicon
+!static/img/profile
 
 # migrations
 apps/**/**/migrations/*
