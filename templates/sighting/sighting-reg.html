@@ -2,17 +2,18 @@
 {% load static %}
 {% block content %}
 
-    <header class="header">
-        <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background:url(&quot;/static/img/Bees/bee2.png&quot;)no-repeat center center;background-size: cover ;padding-top:100px;padding-bottom:175px;">
-            <div class="container">
-                <div class="col-md-6 offset-md-3 header-title">
-                    <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;margin-top: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;"><strong>
-                        {% block title %}Registro de avistamientos{% endblock title %}
-                    </strong></h1>
-                </div>
-            </div>
-        </div>
-    </header>
+
+<header class="header">
+    <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/bee2.png&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
+      <div class="container">
+        <div class="col-md-6 offset-md-3 header-title">
+            <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;">
+                <strong>{% block title %}Registro de avistamientos{% endblock title %}</strong>
+            </h1>      
+          </div>
+    </div>
+</header>
+
     <div class="container py-4 py-xl-5" style="padding-left: 0px;padding-right: 0px;margin-top: 0px;padding-top: 8px;margin-bottom: -64px;padding-bottom: 66px;">
         <div class="row">
             <div class="col">

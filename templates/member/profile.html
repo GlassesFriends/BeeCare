@@ -1,14 +1,17 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
+  
 <header class="header">
-    <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/bee2.png&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
-        <div class="container">
-            <div class="col-md-6 offset-md-3 header-title">
-                <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;"><strong>Mi perfil</strong></h1>
-            </div>
+  <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/bee4.png&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
+    <div class="container">
+      <div class="col-md-6 offset-md-3 header-title">
+          <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;">
+              <strong>{% block title %}Mi perfil{% endblock title %}</strong>
+          </h1>      
         </div>
-    </div>
+  </div>
+</header>
     <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
     <div style="display:none"hidden> 
@@ -17,7 +20,7 @@
         <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200); display: none;" placeholder="bienvenido@beecare.com" inputmode="email" name="username" id="username" required="" minlength="5" maxlength="64" value="{{user.member.membEmail}}" readonly >
     </div> 
     <div class="container py-4 py-xl-5" style="padding-left: 0px;padding-right: 0px;margin-top: 0px;padding-top: 8px;margin-bottom: -64px;padding-bottom: 66px;">
-        <h4 class="fw-bold" style="font-size: 41px;text-align: center;color: rgb(73,64,56);">{% block title %}Mi perfil de usuario{% endblock title %}</h4>
+        <h4 class="fw-bold" style="font-size: 41px;text-align: center;color: rgb(73,64,56);">Mi perfil de usuario</h4>
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3" style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
             <div class="col-sm-12 col-md-4 col-lg-4 col-xl-3 col-xxl-4" style="box-shadow: 0px 0px;text-shadow: 0px 0px;">
                 <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
@@ -92,6 +95,5 @@
         </div>
     </div>
     <script src={%static '/js/scriptsImg.js' %}> </script>
-</header>
 
 {% endblock %}
