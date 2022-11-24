@@ -82,7 +82,9 @@ LOCAL_APPS = [
     # 'apps.post',
     # 'apps.reaction',
     'apps.sighting',
+    'apps.wiki',
 ]
+
 # |=========================================|
 # |=====|   APLICACIONES DE TERCEROS  |=====|
 # |=========================================|
