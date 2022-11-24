@@ -109,35 +109,6 @@ $(function () {
                 });
 
 
-                const infowindow1 = new google.maps.InfoWindow({
-                    content: "Esta es tu posición actual...",
-                    ariaLabel: "Uluru",
-                });
-
-                var marker1 = new google.maps.Marker({
-                    position: new google.maps.LatLng(center),
-                    map: map,
-                    icon: "/static/img/icons/BeePin.png",
-                    draggable: false,
-                    animation: google.maps.Animation.DROP,
-                    title: '¿Ves alguna abeja?',
-                });
-
-
-                marker1.addListener("click", () => {
-
-                    if (marker1.getAnimation() !== null) {
-                        marker1.setAnimation(null);
-                    } else {
-                        marker1.setAnimation(google.maps.Animation.BOUNCE);
-                    }
-
-                    infowindow1.open({
-                        anchor: marker1,
-                        map,
-                    });
-                })
-
                 var infowindow2 = new google.maps.InfoWindow();
                 var marker2, i;
                 for (i = 0; i < coordsArray.length; i++) {

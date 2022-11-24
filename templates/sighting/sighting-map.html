@@ -13,6 +13,7 @@
     </div>
   </div>
 </header>
+
 <div class="container py-4 py-xl-5"
   style="margin-bottom: -50px;padding-left: 0px;padding-right: 0px;margin-top: -48px;">
   <div class="row">
@@ -20,6 +21,39 @@
       <h1 style="font-size: 42px;margin-top: 42px;">Mapa de avistamientos</h1>
     </div>
   </div>
+  <div class="container py-4 py-xl-5"
+  style="padding-right: 0px;padding-left: 0px;margin-bottom: -24px;padding-bottom: 36px;padding-top: 16px;margin-top: -6px;">
+  <div class="row row-cols-1 row-cols-md-2" style="background: var(--bs-white);border-radius: 20px;">
+      <div class="col"
+          style="padding: 0px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;display: flex;">
+          <picture style="display: flex;">
+              <img class="img-fluid d-none d-sm-block" src={%static '/img/Bees/bee3.png' %}
+                  style="border-top-left-radius: 20px;border-bottom-left-radius: 20px;height: auto;max-height: 100%;display: flex;"
+                  width="660" height="359" />
+          </picture>
+      </div>
+      <div class="col-xxl-6 d-flex flex-column justify-content-center p-4">
+          <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
+              <div>
+                  <h4 style="font-size: 44px;font-weight: bold;text-align: center;"> ¿Haz visto una beja?</h4>
+                  <p style="font-size: 18px;text-align: center;">
+                      Presiona el siguiente botón para registrar tu avistamiento y que otros
+                      más puedan conocer acerca de la existencia de abejas.<br />
+                  </p>
+                  <div class="row align-items-center" style="text-align: center;">
+                      <div class="col-xxl-12 align-items-center">
+                        <a href="{% url 'sighting-reg'%}">
+                          <button class="btn btn-primary" type="button"
+                              style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">Saber
+                              más</button>
+                        </a>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
   <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3"
     style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;background: var(--bs-white);border-radius: 20px;">
     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="border-style: none;">
@@ -31,7 +65,7 @@
 <div class="container py-4 py-xl-5" style="margin-top: -26px;">
   <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
     <!-- Tarjetas de avistamientos -->
-    {% if sightings.exist %}
+ 
     {% for sighting in sightings %}
     <div class="col-xxl-4">
       <div class="card"
@@ -62,13 +96,6 @@
       </div>
     </div>
     {% endfor %}
-    {% else %}
-
-    {% comment %} ALTERNATIVA A 0 AVISTAMIENTOS {% endcomment %}
-
-    {% comment %} ALTERNATIVA A 0 AVISTAMIENTOS {% endcomment %}
-
-    {% endif %}
 
     <!-- Tarjetas de avistamientos -->
   </div>
