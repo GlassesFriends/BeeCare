@@ -51,7 +51,7 @@
             <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
                 <div class="row" style="text-align: center;">
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="text-align: center;">
-                        
+                        {% if user.is_authenticated %}
                         <form method="post" action="." class="space-y-4">
                             {% csrf_token %}
                             <div class="row">
@@ -75,7 +75,9 @@
                                 </div>
                             </div>
                         </form>
-
+                        {% else %}
+                            <p class="text-gray-500">¿Estás intentando dejar un comentario? No te preocupes, sólo tienes que <a href="{% url 'signin'%}">iniciar sesión</a></p>
+                        {% endif %}
                     </div>
                 </div>
             </div>
