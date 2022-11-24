@@ -51,18 +51,10 @@ ALLOWED_HOSTS = [
     '192.168.32.99',    # IP de desarrollo
     '192.168.100.120',  # IP de desarrollo
     'beecare.glassesfriends.com',  # PRODUCCIÓN
-    'https://beecare.glassesfriends.com',  # PRODUCCIÓN
-    'http://beecare.glassesfriends.com',  # PRODUCCIÓN
-    'https://beecare.glassesfriends.com/memb/signup',  # PRODUCCIÓN
     'beecaretest.herokuapp.com',  # Heroku
     'gf-beecare.herokuapp.com',  # Heroku
     'gf-beecare.azurewebsites.net',  # Azure
-    'https://gf-beecare.azurewebsites.net',  # Azure
-    'http://gf-beecare.azurewebsites.net',  # Azure
-    'https://gf-beecare.azurewebsites.net/memb/signup',  # Azure
     ]
-
-CSRF_TRUSTED_ORIGINS = ALLOWED_HOSTS
 
 # |=============================================================|
 # |===============|  APLICACIONES DEL PROYECTO  |===============|
@@ -142,6 +134,21 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'beecare.wsgi.application'
+
+# |=============================================================|
+# |===============| CONJUNTO DE DOMINIOS CSRF   |===============|
+# |=============================================================|
+# |=| Solo se debe mantener una base de datos activa.         |=|
+# |=============================================================|
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.glassesfriends.com',  # PRODUCCIÓN
+    'http://*.glassesfriends.com',  # PRODUCCIÓN
+    # 'https://beecare.glassesfriends.com/memb/signup',  # PRODUCCIÓN
+    'https://*.azurewebsites.net',  # Azure
+    'http://*.azurewebsites.net',  # Azure
+    # 'https://gf-beecare.azurewebsites.net/memb/signup',  # Azure
+    ]
 
 # |=============================================================|
 # |===============| BASES DE DATOS DEL PROYECTO |===============|
