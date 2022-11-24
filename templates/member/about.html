@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<body style="font-family: 'League Spartan', sans-serif;--bs-body-bg: #d6d6d6;--bs-light: #EBEBEB;--bs-light-rgb: 235,235,235;--bs-primary: #F09C10;--bs-primary-rgb: 240,156,16;--bs-secondary: #FECA51;--bs-secondary-rgb: 254,202,81;--bs-success: #B1DFC4;--bs-success-rgb: 177,223,196;--bs-info: #B1DFC4;--bs-info-rgb: 177,223,196;--bs-warning: #FECA51;--bs-warning-rgb: 254,202,81;--bs-danger: #E03600;--bs-danger-rgb: 224,54,0;--bs-dark: #494038;--bs-dark-rgb: 73,64,56;--bs-body-color: #2d2d2d;background: #EBEBEB;">
+    <header class="header">
+        <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/cover1.jpg&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
+            <div class="container">
+                <div class="col-md-6 offset-md-3 header-title">
+                    <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;"><strong>¿Qué es BeeCare?</strong></h1>
+                </div>
+            </div>
+        </div>
+        <div class="container py-4 py-xl-5" style="padding-left: 0px;padding-right: 0px;margin-top: 0px;padding-top: 8px;margin-bottom: -64px;padding-bottom: 66px;">
+            <h4 class="fw-bold" style="font-size: 41px;text-align: center;color: rgb(73,64,56);">Sobre nosotros</h4>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3" style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
+                <div class="col-sm-12 col-md-4 col-lg-4 col-xl-3 col-xxl-4 text-center d-md-flex d-lg-flex align-items-md-center align-items-lg-center" style="box-shadow: 0px 0px;text-shadow: 0px 0px;"><img class="img-fluid" src="{%static '/img/logos/Bee%20Care%20Horizontal%20Logo.svg' %}" width="350"></div>
+                <div class="col-sm-12 col-md-8 col-lg-8 col-xl-9 col-xxl-8" style="box-shadow: 0px 0px;text-shadow: 0px 0px;">
+                    <h1 class="fs-2 text-start"><strong>¿Quiénes somos?</strong><br></h1>
+                    <p class="lead text-start">Nuestro enfoque principal es apoyar a los jóvenes a que conozcan sobre la variedad de abejas nativas que existen en nuestra localidad, además de hacer conciencia e informar a la comunidad sobre la importancia de las abejas en nuestro planeta y porqué debemos de cuidarlas.<br></p>
+                </div>
+            </div>
+            <div class="row gy-0 row-cols-1 row-cols-md-2 row-cols-lg-3" style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
+                <div class="col-lg-6 text-dark">
+                    <h1 class="fs-2 bg-light"><strong>Misión</strong></h1>
+                    <p class="lead">Informar a la comunidad sobre la importancia de las abejas en nuestro planeta y el por qué debemos cuidarlas.<br></p>
+                </div>
+                <div class="col-lg-6 text-primary">
+                    <h1 class="fs-2"><strong>Visión</strong></h1>
+                    <p class="lead">Asociarnos con otras entidades que tengan una misión de compromiso con la sociedad y su hábitat.<br></p>
+                </div>
+            </div>
+            <div class="row gy-0 row-cols-1 row-cols-md-2 row-cols-lg-3" style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
+                <div class="col-lg-6 text-primary">
+                    <h1 class="fs-2 bg-light"><strong>Valores</strong></h1>
+                    <p class="lead">Respeto, honestidad, trabajo en equipo, orientación al cliente.<br></p>
+                </div>
+                <div class="col-lg-6 text-dark">
+                    <h1 class="fs-2"><strong>Objetivos</strong></h1>
+                    <p class="lead">Conocer la importancia de las abejas, así como también, ayudar a la comunidad a informarse sobre las abejas y los beneficios que pueden brindarnos.<br></p>
+                </div>
+            </div>
+        </div>
+        <div class="container py-4 py-xl-5" style="padding-bottom: 95px;padding-top: 20px;">
+            <h2 class="fs-1 fw-bold text-center text-dark" style="padding-top: 0px;padding-bottom: 0px;margin-top: -54px;">Conoce al equipo</h2>
+            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3" style="padding-top: 0px;margin-top: -8px;">
+                <div class="col-lg-6">
+                    <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="/static/img/profile/profileAlvaro.jpg">
+                        <div class="card-body p-4">
+                            <h4 class="text-center card-title"><strong>González Martínez Álvaro Gabriel</strong></h4>
+                            <p class="text-center card-text">Líder, desarrollador y DBA</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="/static/img/profile/profileAbril.jpg">
+                        <div class="card-body p-4">
+                            <h4 class="text-center card-title"><strong>Ramirez Flores Abril</strong></h4>
+                            <p class="text-center card-text">Diseñadora y desarrolladora</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card"><img class="card-img-top w-100 d-block fit-cover" style="height: 200px;" src="/static/img/profile/profileDaniel.jpg">
+                        <div class="card-body p-4">
+                            <h4 class="text-center card-title"><strong>Corona Garcia Daniel Alejandro</strong></h4>
+                            <p class="text-center card-text">Desarrollador y DBA</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+</body>
+
+</html>
+{% endblock %}

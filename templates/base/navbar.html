@@ -29,7 +29,7 @@
                     <a class="nav-link {{sighting}}" href="{% url 'sighting-map' %}">Avistamientos</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link {{company}}" href="integrations.html">BeeCare</a>
+                    <a class="nav-link {{about}}" href="{% url 'about' %}">BeeCare</a>
                 </li>
                 {% if user.is_authenticated == False %}
                 <li class="nav-item">

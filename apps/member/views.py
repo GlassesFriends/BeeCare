@@ -52,6 +52,17 @@ def Dashboard(request):
     return render(request, 'member/home.html', context)
 
 # |=========================================|
+# |=====|        Sobre BeeCare        |=====|
+# |=========================================|
+# |=| Proceso de Ckech in de trabajador.  |=|
+# |=========================================|
+def About(request):
+    context = {
+        'home': 'active',
+        }
+    return render(request, 'member/about.html', context)
+
+# |=========================================|
 # |=====| Cierre de sesión de miembro |=====|
 # |=========================================|
 # |=| Solo se trata de la ruta a la que   |=|
