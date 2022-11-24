@@ -189,7 +189,7 @@ def sightingRegister(request):
 # |=| Método para ingresar avistamiento |=|
 
 def sightingMap(request):
-    mySightings = sighting.objects.all()
+    mySightings = sighting.objects.all().filter(sighApproved=True)
         
     context = { 
         'sightings': mySightings,
@@ -202,7 +202,7 @@ def sightingMap(request):
 def sightingMapOwn(request):
     mySightings = sighting.objects.all().filter(
         sighMember=request.user.member
-        )
+        ).order_by('sighApproved')[:6]
         
     context = { 
         'sightings': mySightings,
@@ -237,7 +237,7 @@ def get_Sighting_Personal(request):
 
 # |=| Método para Json de sightings |=|
 def get_Sighting_General(request):
-    sightings = list(sighting.objects.values())
+    sightings = list(sighting.objects.values().filter(sighApproved=True))
 
     if(len(sightings) > 0):
         data = {
