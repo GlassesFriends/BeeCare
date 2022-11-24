@@ -38,7 +38,7 @@ class BeePost(models.Model):
     bPostCreated_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ('-created_at', )
+        ordering = ('-bPostCreated_at', )
 
     def __str__(self):
         return self.bPostTitle
