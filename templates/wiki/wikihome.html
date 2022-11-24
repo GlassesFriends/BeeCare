@@ -2,7 +2,7 @@
 
 {% block content %}
 <header class="header">
-    <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/bee2.png&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
+    <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/cover6.png&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
       <div class="container">
         <div class="col-md-6 offset-md-3 header-title">
           <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;"><strong>Wiki</strong></h1>
@@ -11,9 +11,12 @@
     </div>
 </header>
 
+<div class="col-md-6 offset-md-3 header-title">
+  <h1 class="text-center"><strong>Artículos</strong></h1>
+</div>
+
   <div class="container py-4 py-xl-5" style="margin-top: -26px;">
     <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-
       <!-- Tarjetas de artículos -->
       {% for post in posts %}
       <div class="col-xxl-4">
