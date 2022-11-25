@@ -25,14 +25,16 @@
                 <div>
                     <h4 style="font-size: 44px;font-weight: bold;text-align: center;">¿Qué es {% block title %}Bee Care{% endblock title %}?</h4>
                     <p style="font-size: 18px;text-align: center;">
-                        Es un proyecto enfocado al cuidado de las abejas y su importancia en el ecosistema y el planeta.
+                        Se trata de un proyecto que busca cambiar la perspectiva de las personas sobre las abejas.
+                        Nuestro plan es registar los avistamientos y así poder mostrar la gran variedad de abejas cercanas a tu localidad.
                         <br/>
                     </p>
                     <div class="row align-items-center" style="text-align: center;">
                         <div class="col-xxl-12 align-items-center">
-                            <button class="btn btn-primary" type="button"
-                                style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">Quiero
-                                conocer más</button>
+                            <a class="btn btn-primary" type="button" href="{% url 'about' %}"
+                                style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">
+                                ¡Quiero saber más!
+                        </a>
                         </div>
                     </div>
                 </div>
