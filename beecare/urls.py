@@ -48,4 +48,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-handler404 = 'apps.member.views.error404'
+# handler404 = 'apps.member.views.error404'
