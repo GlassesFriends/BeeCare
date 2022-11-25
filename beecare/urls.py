@@ -15,7 +15,7 @@ from django.urls import path, include
 # |=| Biblioteca que permite redireccionar|=|
 from django.shortcuts import redirect
 # |=| Biblioteca que permite personalizar la página de error 404 |=|
-from django.conf.urls import handler404
+# from django.conf.urls import handler404
 
 # |=============================================================|
 # |===============|        Lista de URLs        |===============|
@@ -48,4 +48,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-handler404 = 'apps.member.views.error404'
+# handler404 = 'apps.member.views.error404'
