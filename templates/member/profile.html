@@ -79,6 +79,9 @@
                                                 <input class="form-control" name="password2" type="password" style="background: var(--bs-gray-200);border-style: none;border-radius: 20px;" placeholder="Confirma tu contraseña">                          
                                             </div>
                                         </div>
+                                        <div class="col-sm-6 col-md-4 col-lg-4 col-xl-6 col-xxl-6" style="text-align: left;">
+                                        <div id="ageMember" title="{{user.member.membDateBirth|date:'Y'}}"></div>
+                                        </div>
                                         </div>
                                     </div>
                                     <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
@@ -95,5 +98,6 @@
         </div>
     </div>
     <script src={%static '/js/scriptsImg.js' %}> </script>
+    <script src={%static '/js/ageMember.js' %}> </script>
 
 {% endblock %}

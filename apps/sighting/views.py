@@ -15,7 +15,7 @@ from django.http import JsonResponse
 # |=========================================|
 # |=====|     BIBLILIOTECAS EXTRAS    |=====|
 # |=========================================|
-
+from abc import abstractmethod
 
 # |=========================================|
 # |=====|     REFERENCIAS A MODELOS   |=====|
@@ -187,17 +187,62 @@ def sightingRegister(request):
         'avist':'active',
     }
     return render(request,'sighting/sighting-reg.html', context)
-# |=| Método para ingresar avistamiento |=|
 
+
+# |=========================================|
+# |===== Main patrón template method =======|
+# |=========================================|
+# |=| Método para ingresar avistamiento   |=|
 def sightingMap(request):
     mySightings = sighting.objects.all().filter(sighApproved=True)
-        
+
+    # |=|   Llamadas a instancias de la   |=|
+    # |=|       clase AbstractClass       |=|
+    r1 = ConcreteClass1.getRequest(AbstractClass())
+    r2 = ConcreteClass2.getRequest(AbstractClass())
+
     context = { 
         'sightings': mySightings,
         'avist':'active',
+        'Aproved':r1,
+        'NoAproved':r2,
     }
     
     return render(request,'sighting/sighting-map.html', context)
+
+
+# |=|    Clase con método abstracto    |=|
+# |=|        y método template         |=|
+class AbstractClass():
+    # |=| Método template    |=| 
+    def template_method(self):
+        self.getRequest()
+    # |=| Método abstracto   |=| 
+    @abstractmethod
+    def getRequest(self):
+        pass
+
+# |=|         Clase concreta 1         |=| 
+class ConcreteClass1(AbstractClass):
+    def getRequest(self):
+        retorno = []
+        for z in sighting.objects.all().filter(sighApproved=True):
+            elemento = [z.id]
+            retorno.append(elemento)
+        retorno =len(retorno)
+        return retorno
+
+# |=|         Clase concreta 2         |=| 
+class ConcreteClass2(AbstractClass):
+    def getRequest(self):
+        retorno = []
+        for z in sighting.objects.all().filter(sighApproved=False):
+            elemento = [z.id]
+            retorno.append(elemento)
+        retorno =len(retorno)
+        return retorno
+
+
 
 @user_auth
 def sightingMapOwn(request):

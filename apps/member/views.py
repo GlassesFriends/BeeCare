@@ -25,6 +25,7 @@ from django.contrib import messages
 from datetime import datetime, date, timedelta
 from .decorators import user_auth, allowed_users
 from apps.member.forms import CreateUserForm,UpdateMemberProfile,UpdateJustBasicFilesUser
+from abc import abstractmethod
 
 # |=========================================|
 # |=====|     REFERENCIAS A MODELOS   |=====|
@@ -189,6 +190,19 @@ def memberSignUp(request):
 # |=| han registrado y estan ACTIVOS ante |=|
 # |=| el sistema.                         |=|
 # |=========================================|
+
+
+# |=========================================|
+# |========== Main patrón proxy ============|
+# |=========================================|
+
+# |===Permite proporcionar un sustituto o===|
+# |==marcador de posición para otro objeto.=|
+# |==Un proxy controla el acceso al objeto==|
+# |===original, permitiéndote hacer algo====|
+# |===antes o después de que la solicitud===|
+# |========llegue al objeto original========|
+
 def memberSignIn(request):
     # |=| Validamos el formulario actual  |=|
     # |=| respecto al métpdp POST.        |=|
@@ -198,9 +212,36 @@ def memberSignIn(request):
         username = request.POST.get('username')
         password = request.POST.get('password')
         
-        # |=| Se activa la sesión.        |=|
+        real_login_access = RealLoginAccess()
+        proxy = Proxy(real_login_access)
+        if (proxy.Access(request,username,password) == True): 
+            return redirect('home')
+        else:
+            messages.info(request, 'Tu usuario o contraseña es incorrecto, si necesitas ayuda comunicate al departamento de sistemas.')
+            
+    context = {}
+    return render(request, 'member/signin.html', context)
+
+# |============== Servicio ===============|
+class LoginAccess():
+    @abstractmethod
+    def Access(self, request, username, password):
+        pass
+
+# |============== Operación ==============|
+class RealLoginAccess(LoginAccess):
+    def Access(self, request, username, password):
+        print('Usuario con correo ' + username + ' logeado correctamente')
+
+# |================ Proxy ================|
+class Proxy(LoginAccess):
+    def __init__(self, realLoginAccess:RealLoginAccess):  
+        self._real_Login_Access = realLoginAccess
+    # |========= Access patrón proxy ==========|
+    def Access(self,request,username,password):
+    # |=| Se activa la sesión.        |=|
         user = authenticate(request, username=username, password=password)
-        
+        self._real_Login_Access.Access(request,username,password)
         # |=| Si el trabajador si existe   =|
         # |=| envia directamente a 'home', =|
         if user is not None:
@@ -209,15 +250,15 @@ def memberSignIn(request):
             login(request, user)
             text = 'Bienvenido ' + request.user.member.membFirstName
             messages.success(request, text)
-            return redirect('home')
+            
+            return True
         
         # |=| en caso contrario enviará un =|
         # |=| mensaje de usuario no valido =|
         else:
-            messages.info(request, 'Tu usuario o contraseña es incorrecto, si necesitas ayuda comunicate al departamento de sistemas.')
-            
-    context = {}
-    return render(request, 'member/signin.html', context)
+            False
+
+        
 
 # |=========================================|
 # |=====|   ACTUALIZACIÓN DE DATOS    |=====|
