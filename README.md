@@ -1,5 +1,5 @@
 # BeeCare :bee:
-## Proyecto desarrollado como participación para concurso Innovatec 2022
+## Proyecto desarrollado como participación para el concurso Innovatec 2022
 
 <p align=center>
 <img src="https://beecare.glassesfriends.com/static/img/logos/Bee%2520Care%2520Horizontal%2520Logo.svg"; style="width: 20rem"/>
@@ -25,6 +25,9 @@ Proyecto enfocado al cuidado de las abejas y su importancia en el ecosistema y e
 
 ### **|-----| Algunos de nuestros apartados |-----|**
 #### Principal
+<p align="center">
+  <img src="https://github.com/GlassesFriends/BeeCare/blob/main/repo/Inicio.jpeg?raw=true"/>
+</p>
 
 #### Wiki
 #### Avistamientos
