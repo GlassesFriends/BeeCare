@@ -57,7 +57,7 @@ En esta sección los usuarios podrán visualizar un mapa con todos los avistamie
 </tr>
   
 <tr>
-   <td align="center"><strong>Project Manager, Backend/Frontend Developer <br> and DBA</strong></td>
+   <td align="center"><strong>Project Manager, Backend/Frontend Developer and DBA</strong></td>
    <td align="center"><strong>UI/UX Designer and Frontend Developer</strong></td>
    <td align="center"><strong>Backend developer and DBA</strong></td>
 </tr>
