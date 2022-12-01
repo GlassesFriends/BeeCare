@@ -175,8 +175,7 @@ def sightingRegister(request):
                                 messages.success(request,"Avistamiento registrado exitosamente.")
                             else:
                                 print("No jalo el avistamiento")
-                                messages.error(request,error)
-            messages.error(request,error)
+                                messages.error(request,error)           
             return redirect ('sighting-reg')
         else:
             print('jajaja no fununcie')
