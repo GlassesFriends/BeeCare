@@ -9,6 +9,7 @@
 Proyecto enfocado al cuidado de las abejas y su importancia en el ecosistema y el planeta. Nuestro enfoque principal es apoyar a los jóvenes a que conozcan sobre la variedad de abejas nativas que existen en nuestra localidad, además de hacer conciencia e informar a la comunidad sobre la importancia de las abejas en nuestro planeta y porqué debemos de cuidarlas.
 
 ### **|-----| Misión y visión |-----|**
+<p align=center>
 <table>
 <tr>
   <td><strong>Misión</strong></td>
@@ -19,9 +20,11 @@ Proyecto enfocado al cuidado de las abejas y su importancia en el ecosistema y e
   <td>Informar a la comunidad sobre la importancia de las abejas en nuestro planeta y el por qué debemos cuidarlas.</td>
   <td>Asociarnos con otras entidades que tengan una misión de compromiso con la sociedad y su hábitat.</td>
 </tr>
-
 </table>
+</p>
 
-Principal
-Wiki
-Avistamiento
+### **|-----| Algunos de nuestros apartados |-----|**
+#### Principal
+
+#### Wiki
+#### Avistamientos
