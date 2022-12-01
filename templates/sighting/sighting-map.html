@@ -63,9 +63,38 @@
   </div>
   <div class="col">
     <h1 style="font-size: 42px;margin-top: 42px;">Avistamientos registrados</h1>
-    <h3 style="font-size: 20px;margin-top: 10px;">Avistamientos aprovados:{{Aproved}}</h3>
-    <h3 style="font-size: 20px;margin-top: 10px;">Avistamientos en espera:{{NoAproved}} </h3>
   </div>
+<!-- Aprobados y no aprobados -->
+<div class="container py-4 py-xl-5"
+    style="margin-bottom: -50px;padding-left: 0px;padding-right: 0px;margin-top: -48px;">
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3"
+        style="margin-left: -22px;padding-top: 18px;margin-bottom: 23px;">
+        <div class="col-lg-6 col-xl-6">
+            <div class="card border-light border-1 d-flex justify-content-center p-4"
+                style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
+                <div class="card-body">
+                    <div>
+                        <h4 class="fw-bold" style="font-size: 32px;text-align: center;">Avistamientos aprobados</h4>
+                        <p class="text-muted" style="font-size: 24px;text-align: center;">{{Aproved}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-6">
+            <div class="card border-light border-1 d-flex justify-content-center p-4"
+                style="margin-right: -14px;border-radius: 20px;">
+                <div class="card-body">
+                    <div>
+                      <h4 class="fw-bold" style="font-size: 32px;text-align: center;">Avistamientos no aprobados</h4>
+                      <p class="text-muted" style="font-size: 24px;text-align: center;">{{NoAproved}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Aprobados y no aprobados -->
+
 </div>
 
 <div class="container py-4 py-xl-5" style="margin-top: -26px;">
