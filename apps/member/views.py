@@ -173,8 +173,10 @@ def memberSignUp(request):
             # |=| registro, se redirije al|=|
             # |=| usuario a nuestra pag.  |=|
             # |=| de inicio de sesión.    |=|
-            text = 'Please, sign in'
+            text = 'Usuario registrado exitosamente, regresa e inicia sesión.'
             messages.success(request, text)
+        else:
+            messages.error(request,"Error al guardar los datos.")
             
     context = {
         'signUp': 'active',
@@ -283,34 +285,32 @@ def memberUpdate(request):
         form_nopass = UpdateJustBasicFilesUser(request.POST,instance=user_update_nopass)
         print("Si soy válido en POST")
 
-
-        if form_user.is_valid():
-            print("Si soy válido en formulario")
-            password1 = form_user.cleaned_data.get('password1')
-            password2 = form_user.cleaned_data.get('password2')
-
-            if password1 == password2:
-
-                usernameIn = request.user
-                passwordIn = password1
-
-                user_update.set_password(password1)
-
-                form_user.save()
-                login(request, usernameIn, passwordIn)
-                print("Si guarde datos 1")
-
         if form_profile.is_valid():
             print("Si soy válido x2")
             form_profile.save()
             text = "Datos actualizados correctamente."
-            messages.warning(request,text)
-
             if form_nopass.is_valid():
                 print("Si soy válido en sin pass")
                 form_nopass.save()
 
-                return redirect('profile')
+                if form_user.is_valid():
+                    print("Si soy válido en formulario")
+                    password1 = form_user.cleaned_data.get('password1')
+                    password2 = form_user.cleaned_data.get('password2')
+
+                    if password1 == password2:
+
+                        usernameIn = request.user
+                        passwordIn = password1
+
+                        user_update.set_password(password1)
+
+                        form_user.save()
+                        login(request, usernameIn, passwordIn)
+                        print("Si guarde datos 1")   
+
+            messages.success(request,text)
+            return redirect('profile')
     
         else:
             print("No fununcie")

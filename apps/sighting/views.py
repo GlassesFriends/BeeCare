@@ -10,7 +10,7 @@ from django.http import JsonResponse
 # |=========================================|
 # |=====|       BIBLIOTECAS BASE      |=====|
 # |=========================================|
-
+from django.contrib import messages
 
 # |=========================================|
 # |=====|     BIBLILIOTECAS EXTRAS    |=====|
@@ -67,6 +67,7 @@ def sightingRegister(request):
         form5_bee = BeeForm(request.POST)
         form6_sighting = SightingForm(request.POST,request.FILES)
 
+        error = "Hubo un error al guardar la información."
         print('Aquí entro a post')
 
         # |========================================|
@@ -171,12 +172,15 @@ def sightingRegister(request):
                                 print('Si cargo chido 6')
                                 # |=|     Guardado de datos para sighting  |=|
                                 sigh.save()
+                                messages.success(request,"Avistamiento registrado exitosamente.")
                             else:
                                 print("No jalo el avistamiento")
-
+                                messages.error(request,error)
+            messages.error(request,error)
             return redirect ('sighting-reg')
         else:
             print('jajaja no fununcie')
+            messages.error(request,error)
     context = { 
 
         'familys':field_family,

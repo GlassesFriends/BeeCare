@@ -56,6 +56,8 @@ ALLOWED_HOSTS = [
     'gf-beecare.azurewebsites.net',  # Azure
     ]
 
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
+
 # |=============================================================|
 # |===============|  APLICACIONES DEL PROYECTO  |===============|
 # |=============================================================|

@@ -35,14 +35,51 @@
     style="font-family: 'League Spartan', sans-serif;--bs-body-bg: #d6d6d6;--bs-light: #EBEBEB;--bs-light-rgb: 235,235,235;--bs-primary: #F09C10;--bs-primary-rgb: 240,156,16;--bs-secondary: #FECA51;--bs-secondary-rgb: 254,202,81;--bs-success: #B1DFC4;--bs-success-rgb: 177,223,196;--bs-info: #B1DFC4;--bs-info-rgb: 177,223,196;--bs-warning: #FECA51;--bs-warning-rgb: 254,202,81;--bs-danger: #E03600;--bs-danger-rgb: 224,54,0;--bs-dark: #494038;--bs-dark-rgb: 73,64,56;--bs-body-color: #2d2d2d;background: #EBEBEB;">
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
-            {% if messages %}
-            {% for m in messages %}
-            <script>
-                MessageConfirm('Barf barf..', '{{m}}')
-            </script>
-            {% endfor %}
-            {% endif %}
             {% include 'base/navbar.html' %}
+
+            {% if messages %}
+                {% for m in messages %}
+                    <script>
+                        MessageConfirm('Barf barf..', '{{m}}')
+                    </script>
+                    {% if m.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <script>
+                          Swal.fire({
+                            "title": "Bien hecho!",
+                            "text": "{{ m }}",
+                            "icon": "success",
+                            "confirmButtonText": "OK"
+                          })
+                        </script>
+                    {% endif %}
+
+                    {% if m.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                    <script>
+                      Swal.fire({
+                        "title": "Atención!",
+                        "text": "{{ m }}",
+                        "icon": "warning",
+                        "confirmButtonText": "OK"
+                      })
+                    </script>                
+                    {% endif %}
+
+                    {% if m.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <script>
+                      Swal.fire({
+                        "title": "Error!",
+                        "text": "{{ message }}",
+                        "icon": "error",
+                        "confirmButtonText": "OK"
+                      })
+                    </script>
+                    {% endif %}
+        
+        
+                {% endfor %}
+            {% endif %}
+
+
             {% block content %}
 
             {% endblock %}
@@ -50,6 +87,8 @@
         {% include 'base/footer.html' %}
     </div>
     <script src={%static '/bootstrap/js/bootstrap.min.js' %}></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
 
     <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 
