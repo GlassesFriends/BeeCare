@@ -8,7 +8,7 @@
 ### **|-----| Descripción |-----|**
 Proyecto enfocado al cuidado de las abejas y su importancia en el ecosistema y el planeta. Nuestro enfoque principal es apoyar a los jóvenes a que conozcan sobre la variedad de abejas nativas que existen en nuestra localidad, además de hacer conciencia e informar a la comunidad sobre la importancia de las abejas en nuestro planeta y porqué debemos de cuidarlas.
 
-### **|-----| Misión y visión |-----|**
+### **|------------| Misión y visión |-------------|**
 <p align=center>
 <table>
 <tr>
@@ -42,7 +42,7 @@ Se tiene una sección donde se muestra una lista de los artículos publicados. P
 </p>
 En esta sección los usuarios podrán visualizar un mapa con todos los avistamientos aprobados que ha realizado la comunidad.
 
-### **|-----| Desarrolladores |-----|**
+### **|----------| Desarrolladores |----------|**
 <table align="center" style="margin: 0px auto;">
 <tr>
   <td align="center"><img src="https://github.com/GlassesFriends/BeeCare/blob/main/static/img/profile/profileAlvaro.png?raw=true?raw=true" width=200/></td>
