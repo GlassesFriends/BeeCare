@@ -1,5 +1,5 @@
 # BeeCare :bee:
-## Proyecto desarrollado como mejora para BeeCare
+## Proyecto desarrollado como mejora para BeeCare aplicando Inteligencia Artificial
 
 <p align=center>
   <a href="https://beecare.glassesfriends.com/memb/"><img src="https://beecare.glassesfriends.com/static/img/logos/Bee%2520Care%2520Horizontal%2520Logo.svg"; style="width: 20rem"/>
