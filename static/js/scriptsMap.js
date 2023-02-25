@@ -10,21 +10,25 @@ $(function () {
     var dataSightingBees = [];
     var dataBees = [];
 
-
+    //AL MOMENTO DE LA CARGA DE LA PAGINA SE INICIALIZA LA CARGA DEL MAPA
     window.addEventListener("load", async () => {
         await initialLoad();
     });
 
+    //DURANTE LA CARGA SE MANDA LLAMAR EL METODO ENCARGADO 
+    //DE MOSTRAR LA LISTA DE AVISTAMIENTOS
     const initialLoad = async () => {
         await listSightings(); 
 
     }
 
+    //METODO QUE SE ENCRAGA DE OBTENER LOS AVISTAMIENTOS
     const listSightings = async () => {
         try {
             const response = await fetch("../coord/");
             const data = await response.json();
-
+            
+            //CONDICION QUE COMPRUEBA SI HAY DATOS
             if (data.message == "Success") {
                 for (j = 0; j < data.sighting.length; j++) {
 
@@ -43,27 +47,21 @@ $(function () {
                     dataSightingBees.push([listSightingBee]);
                     contentImage.push("https://res.cloudinary.com/dwxkhmtb3/" + listImage);
                 }
-
-                console.log(coordsArray);
-
-                console.log(contentInfo);
-
-                console.log(dataSightingBees);
-
-                console.log(contentImage);
             }
 
 
             const response1 = await fetch("../bee/");
             const data1 = await response1.json();
 
+            //CONDICION ENCARGADA DE COMPROBAR SI EXISTEN REGISTADAS ABEJAS
             if (data1.message == "Success") {
+
+                //CICLO FOR ENCARGADO DE OBTENER LOS DATOS DE LAS ABEJAS
                 for (k = 0; k < data1.bee.length; k++) {
                     listIdbees = (data1.bee[k]['id']);
                     listNamebees = (data1.bee[k]['beeName']);
                     dataBees.push([listIdbees, listNamebees])
                 }
-                console.log(dataBees);
                 for (n = 0; n < dataBees.length; n++) {
                     for (m = 0; m < dataSightingBees.length; m++) {
                         if (dataSightingBees[m]['0'] == dataBees[n]['0']) {
@@ -71,30 +69,36 @@ $(function () {
                         }
                     }
                 }
-                console.log(dataSightingBees);
             }
 
 
 
-
+            
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(getCoords, getError);
-            } else {
-
             }
 
+            /*FUNCION ENCARGADA DE OBTENER LA UBICACION DEL
+            USUARIO*/
             function getCoords(position) {
                 var lat = position.coords.latitude;
                 var lng = position.coords.longitude;
-                console.log(lat, lng);
                 $('#sighLat').val(lat);
                 $('#sighLng').val(lng);
+
+                /*LLAMADA DE LA FUNCION initialize ENVIANDO COMO PARAMETROS 
+                LAS COORDENADAS RECIEN OBTENIDAS*/
                 initialize(lat, lng);
             }
 
+            /*FUNCION ENCARGADA DE MANDAR COORDENADAS POR DEFAULT EN CASO DE NO
+            ACTIVAR O CEDER PERMISOS */
             function getError(err) {
                 initialize(32.4951447, -116.9407001);
             }
+
+            /*FUNCION ENCARGADA DE INICIALIZAR EL MAPA, RECIBE LAS COORDENADAS COMO 
+            PARAMETROS */
             function initialize(lat, lng) {
 
                 var center = { lat: lat, lng: lng }
@@ -105,12 +109,13 @@ $(function () {
                     mapTypeId: 'hybrid',
                 });
 
-
+                /*INFORMACION QUE SE MUESTRA EN EL MARCADOR DEL MAPA */
                 const infowindow1 = new google.maps.InfoWindow({
                     content: "Esta es tu posición actual...",
                     ariaLabel: "Uluru",
                 });
 
+                /*CREACION DEL MARCADOR EL CUAL TE MUESTRA EL PIN*/
                 var marker1 = new google.maps.Marker({
                     position: new google.maps.LatLng(center),
                     map: map,
@@ -120,7 +125,7 @@ $(function () {
                     title: 'Colocame donde hay abejas!',
                 });
 
-
+                //EVENTO QUE DESENCADENA UNA ANIMACION Y MANDA LLAMAR LA VENTANA infowindow1
                 marker1.addListener("click", () => {
 
                     if (marker1.getAnimation() !== null) {
@@ -172,9 +177,11 @@ $(function () {
                 });
 
             }
+
+            /*FUNCION ENCARGADA DE OBTENER LAS CORDENAS MEDIANTE MUEVES EL PIN O EL MARCADOR 
+            EN EL MAPA */
             function getMarkerCoords(marker) {
                 var markerCoords = marker.getPosition();
-                console.log(markerCoords.lat() + ' ' + markerCoords.lng());
                 $('#sighLat').val(markerCoords.lat());
                 $('#sighLng').val(markerCoords.lng());
             }
@@ -186,14 +193,16 @@ $(function () {
             const response2 = await fetch("../family/");
             const data2 = await response2.json();
 
+            /*CONDICION ENCARGADA DE COMPROBAR QUE EXISTEN DATOS */
             if (data2.message == "Success") {
+
+                /*CICLO FOR ENCARGADO DE OBTENER LA INFORMACION Y CARGADA EN EL ARREGLO
+                dataFamilys*/
                 for (l = 0; l < data2.family.length; l++) {
                     listIdfamily = (data2.family[l]['id']);
                     listNamefamily = (data2.family[l]['familyName']);
                     dataFamilys.push([listIdfamily, listNamefamily]);
                 }
-
-                console.log(dataFamilys[0][1]);
 
                 let options1 = ``;
 
@@ -208,14 +217,17 @@ $(function () {
             const response3 = await fetch("../subfamily/");
             const data3 = await response3.json();
 
+            //CONDICION ENCARGADA DE COMPROBAR SI EXISTEN DATOS
             if (data3.message == "Success") {
+
+                /*CICLO FOR ENCARGADO DE OBTENER LA INFORMACION Y CARGADA EN EL ARREGLO
+                dataSubFamilys*/
                 for (q = 0; q < data3.subfamily.length; q++) {
                     listIdsubfamily = (data3.subfamily[q]['id']);
                     listNamesubfamily = (data3.subfamily[q]['subfamilyName']);
                     listFamilysubfamily = (data3.subfamily[q]['subfamilyFamily_id']);
                     dataSubfamilys.push([listIdsubfamily, listNamesubfamily, listFamilysubfamily]);
                 }
-                console.log(dataSubfamilys);
             }
 
         } catch (error) {
