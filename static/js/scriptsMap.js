@@ -22,9 +22,10 @@ $(function () {
 
     }
 
-    //METODO QUE SE ENCRAGA DE OBTENER LOS AVISTAMIENTOS
+    //METODO QUE SE ENCARGA DE RECUPERAR LOS DATOS DE LOS AVISTAMIENTOS
     const listSightings = async () => {
         try {
+            //SOLICITUD DE DATOS
             const response = await fetch("../coord/");
             const data = await response.json();
             
