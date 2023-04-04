@@ -223,7 +223,6 @@ function autoFieldSubfamily() {
                 options2 += `<option value='${famcommun[t][0]}'></option>`;
             }
         }
-        console.log(options2);
         list3subfamilyName.innerHTML = options2;
     }
 }
