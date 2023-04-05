@@ -126,57 +126,69 @@ def memberSignUp(request):
     form = CreateUserForm()
     
     # |=| Validamos el método de nuestro  |=|
-    # |=| formulario.                     |=|
+    # |=| método POST.                    |=|
     if request.method == 'POST':
         userForm = CreateUserForm(request.POST,request.FILES)
-        if userForm.is_valid():
-            # |=| Capturamos los datos del|=|
-            # |=| formulario.             |=|
-            user = userForm.save()
-            username = userForm.cleaned_data.get('username')
-            email = userForm.cleaned_data.get('username')
-            first_name = userForm.cleaned_data.get('first_name')
-            last_name = userForm.cleaned_data.get('last_name')
-            print(request.POST.get('membDateBirth'))
-            print(request.POST.get('membPhone'))
-            print(request.FILES.get('membProfilePicture'))
-            
-            # |=| Asignamos el grupo      |=|
-            # |=| 'member' al nuevo user. |=|
-            group, created  = Group.objects.get_or_create(name ='member')
-            user.groups.add(group)
-            
-            # |=| Creamos nuestro objeto  |=|
-            # |=| de nuestra tabla de     |=|
-            # |=| relación OneToOne con la|=|
-            # |=| tabla de users de       |=|
-            # |=| django.                 |=|
-            member.objects.create(
-                membFirstName =         user.first_name,
-                membLastName =          user.last_name,
-                
-                # |=| Se obtiene la data  |=|
-                # |=| del formulario por  |=|
-                # |=| medio del método    |=|
-                # |=| request.            |=|
-                membDateBirth =         request.POST.get('membDateBirth'),
-                membPhone =             request.POST.get('membPhone'),
-                # |=| Usar FILES en lugar |=|
-                # |=| de POST para imagen |=|
-                membProfilePicture =    request.FILES.get('membProfilePicture'),
-                
-                membEmail =             user.username,
-                membUser =              user,
-            )
-            
-            # |=| Cuando finaliza el      |=|
-            # |=| registro, se redirije al|=|
-            # |=| usuario a nuestra pag.  |=|
-            # |=| de inicio de sesión.    |=|
-            text = 'Usuario registrado exitosamente, regresa e inicia sesión.'
-            messages.success(request, text)
+        # |=| Validamos el correo  si es      |=|
+        # |=| que este existe.                |=|
+        emailtest = request.POST['username']
+        # |=| si que este existe.             |=|
+        # |=| Retorna una advertencia.        |=|
+        if member.objects.filter(membEmail=emailtest).exists():
+            messages.warning(request,"El correo que desea registrar ya existe.")
+        # |=| si no existe este.             |=|
+        # |=| Continua con el formulario.    |=|
         else:
-            messages.error(request,"Error al guardar los datos.")
+            # |=| Validamos el método de nuestro  |=|
+            # |=| formulario.                     |=|    
+            if userForm.is_valid():
+                # |=| Capturamos los datos del|=|
+                # |=| formulario.             |=|
+                user = userForm.save()
+                username = userForm.cleaned_data.get('username')
+                email = userForm.cleaned_data.get('username')
+                first_name = userForm.cleaned_data.get('first_name')
+                last_name = userForm.cleaned_data.get('last_name')
+                print(request.POST.get('membDateBirth'))
+                print(request.POST.get('membPhone'))
+                print(request.FILES.get('membProfilePicture'))
+                
+                # |=| Asignamos el grupo      |=|
+                # |=| 'member' al nuevo user. |=|
+                group, created  = Group.objects.get_or_create(name ='member')
+                user.groups.add(group)
+                
+                # |=| Creamos nuestro objeto  |=|
+                # |=| de nuestra tabla de     |=|
+                # |=| relación OneToOne con la|=|
+                # |=| tabla de users de       |=|
+                # |=| django.                 |=|
+                member.objects.create(
+                    membFirstName =         user.first_name,
+                    membLastName =          user.last_name,
+                    
+                    # |=| Se obtiene la data  |=|
+                    # |=| del formulario por  |=|
+                    # |=| medio del método    |=|
+                    # |=| request.            |=|
+                    membDateBirth =         request.POST.get('membDateBirth'),
+                    membPhone =             request.POST.get('membPhone'),
+                    # |=| Usar FILES en lugar |=|
+                    # |=| de POST para imagen |=|
+                    membProfilePicture =    request.FILES.get('membProfilePicture'),
+                    
+                    membEmail =             user.username,
+                    membUser =              user,
+                )
+                
+                # |=| Cuando finaliza el      |=|
+                # |=| registro, se redirije al|=|
+                # |=| usuario a nuestra pag.  |=|
+                # |=| de inicio de sesión.    |=|
+                text = 'Usuario registrado exitosamente, regresa e inicia sesión.'
+                messages.success(request, text)
+            else:
+                messages.error(request,"Error al guardar los datos.")
             
     context = {
         'signUp': 'active',
