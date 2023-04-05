@@ -68,8 +68,19 @@
                     <script>
                       Swal.fire({
                         "title": "Error!",
-                        "text": "{{ message }}",
+                        "text": "{{ m }}",
                         "icon": "error",
+                        "confirmButtonText": "OK"
+                      })
+                    </script>
+                    {% endif %}
+
+                    {% if m.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                    <script>
+                      Swal.fire({
+                        "title": "Advertencia!",
+                        "text": "{{ m }}",
+                        "icon": "info",
                         "confirmButtonText": "OK"
                       })
                     </script>
