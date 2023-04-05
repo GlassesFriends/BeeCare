@@ -277,11 +277,13 @@ class Proxy(LoginAccess):
 # |=========================================|
 # |=====|   ACTUALIZACIÓN DE DATOS    |=====|
 # |=========================================|
-# |=| Se muestran los trabajadores que se |=|
+# |=| Se muestran los avistadores  que se |=|
 # |=| han logeado en la página.           |=|
 # |=========================================|
 @user_auth
 def memberUpdate(request):
+    # |=| Modelos de actualización de     |=|
+    # |=| datos.                          |=|
     profile = member.objects.get(id=request.user.member.pk)
     user_update = User.objects.get(id=request.user.pk)
     user_update_nopass = User.objects.get(id=request.user.pk)
@@ -297,41 +299,65 @@ def memberUpdate(request):
         form_nopass = UpdateJustBasicFilesUser(request.POST,instance=user_update_nopass)
         print("Si soy válido en POST")
 
-        if form_profile.is_valid():
-            print("Si soy válido x2")
-            form_profile.save()
-            text = "Datos actualizados correctamente."
-            if form_nopass.is_valid():
-                print("Si soy válido en sin pass")
-                form_nopass.save()
-
-                if form_user.is_valid():
-                    print("Si soy válido en formulario")
-                    password1 = form_user.cleaned_data.get('password1')
-                    password2 = form_user.cleaned_data.get('password2')
-
-                    if password1 == password2:
-
-                        usernameIn = request.user
-                        passwordIn = password1
-
-                        user_update.set_password(password1)
-
-                        form_user.save()
-                        login(request, usernameIn, passwordIn)
-                        print("Si guarde datos 1")   
-
-            messages.success(request,text)
-            return redirect('profile')
-    
+        # |=| Validamos el correo  si es      |=|
+        # |=| que este existe.                |=|
+        emailtest = request.POST['membEmail']
+        # |=| si este que existe pregunta.        |=|
+        if member.objects.filter(membEmail=emailtest).exists():
+            # |=| Pregunta si el correo actual          |=|
+            # |=| es igual al correo a actualizar       |=|
+            if request.user.member.membEmail == emailtest:
+                # |=| Si es igual los actualiza       |=|
+                memberUpdateMethod(request,form_profile,form_nopass,form_user,user_update)
+                print('Si jalo')
+            else:
+                # |=| Si no es igual no los actualiza |=|
+                messages.warning(request,"El correo que desea actualizar ya existe.")     
         else:
-            print("No fununcie")
-
+            # |=| Si que este no existe, lo actualiza    |=|
+            memberUpdateMethod(request,form_profile,form_nopass,form_user,user_update)
+        return redirect('profile')
     context = {
         'form_profile': form_profile,
         'form_user':form_user
     }
     return render(request,'member/profile.html',context)
+
+# |=========================================|
+# |=====|   ACTUALIZACIÓN DE DATOS    |=====|
+# |=========================================|
+# |=| Se muestran los avistadores  que se |=|
+# |=| han logeado en la página.           |=|
+# |=========================================|
+def memberUpdateMethod(request,form_profile,form_nopass,form_user,user_update):
+    # |=| Validación de formulario 1      |=|
+    if form_profile.is_valid():
+        print("Si soy válido x2")
+        form_profile.save()
+        text = "Datos actualizados correctamente."
+        # |=| Validación de formulario 2      |=|
+        if form_nopass.is_valid():
+            print("Si soy válido en sin pass")
+            form_nopass.save()
+            # |=| Validación de formulario 3      |=|
+            if form_user.is_valid():
+                print("Si soy válido en formulario")
+                password1 = form_user.cleaned_data.get('password1')
+                password2 = form_user.cleaned_data.get('password2')
+
+                if password1 == password2:
+                    usernameIn = request.user
+                    passwordIn = password1
+                    user_update.set_password(password1)
+
+                    form_user.save()
+                    # |=| Logeo automático            |=|
+                    login(request, usernameIn, passwordIn)
+                    print("Si guarde datos 1")   
+        messages.success(request,text)
+    else:
+        print("No fununcie")
+
 
 # |==========================================|
 # |=====|      Error 404 Not Found     |=====|
