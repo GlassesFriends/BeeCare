@@ -20,13 +20,13 @@ from abc import abstractmethod
 # |=========================================|
 # |=====|     REFERENCIAS A MODELOS   |=====|
 # |=========================================|
-from .models import subfamily,family,gender,species,bee,sighting
+from .models import subfamily,family,gender,species,bee,sighting,field,beefield
 from apps.member.decorators import user_auth
 
 # |=========================================|
 # |=====|  REFERENCIAS A FORMULARIOS  |=====|
 # |=========================================|
-from .forms import SubfamilyForm,FamilyForm,GenderForm,SpeciesForm,BeeForm,SightingForm
+from .forms import SubfamilyForm,FamilyForm,GenderForm,SpeciesForm,BeeForm,SightingForm,FieldForm
 
 # |=============================================================|
 # |===============|      COMIENZAN VISTAS       |===============|
@@ -43,6 +43,7 @@ def sightingRegister(request):
     field_gender = gender.objects.all().order_by('genderName')
     field_species = species.objects.all().order_by('speciesName')
     field_bee = bee.objects.all().order_by('beeName')
+    field_field = field.objects.all().order_by('fieldsting')
 
     # |=| Formularios a utilizar             |=|
     form1_family = FamilyForm()
@@ -51,6 +52,7 @@ def sightingRegister(request):
     form4_species = SpeciesForm()
     form5_bee = BeeForm()
     form6_sighting = SightingForm()
+    form7_field = FieldForm()
 
     # |=| Condicional de igualdad del método |=|
     # |=| POST, asignación de request para   |=|
@@ -66,6 +68,7 @@ def sightingRegister(request):
         form4_species = SpeciesForm(request.POST)
         form5_bee = BeeForm(request.POST)
         form6_sighting = SightingForm(request.POST,request.FILES)
+        form7_field = FieldForm(request.POST)
 
         error = "Hubo un error al guardar la información."
         print('Aquí entro a post')
@@ -156,13 +159,6 @@ def sightingRegister(request):
                             print('REgistró abeja')
 
                             # |==========================================|
-                            # |=|          Validación de field         |=|
-                            # |==========================================|
-
-
-
-
-                            # |==========================================|
                             # |=| Válidación de formulario de sighting |=|
                             # |==========================================|
                             if form6_sighting.is_valid():
@@ -185,6 +181,30 @@ def sightingRegister(request):
                                 print('Si cargo chido 6')
                                 # |=|     Guardado de datos para sighting  |=|
                                 sigh.save()
+
+                                # |==========================================|
+                                # |=|          Validación de field         |=|
+                                # |==========================================|
+                                if form7_field.is_valid():
+                                    fieldsting = form7_field.cleaned_data.get('fieldsting')
+                                    fieldnative = form7_field.cleaned_data.get('fieldnative')
+                                    # |==========================================| 
+                                    # |=|      get_or_created para sighting    |=|
+                                    # |==========================================|
+                                    fieldd,created7 = field.objects.get_or_create(
+                                    fieldsting = fieldsting,
+                                    fieldnative = fieldnative,
+                                    )           
+                                    print('Si cargo chido 7')
+                                    fieldd.save()
+
+                                    beefieldd = beefield.objects.create(
+                                        beefieldBee = beee,
+                                        beefieldField = fieldd,
+                                    )
+                                    beefieldd.save()
+                                    print('Si cargo chido 8')
+
                                 messages.success(request,"Avistamiento registrado exitosamente.")
                             else:
                                 print("No jalo el avistamiento")

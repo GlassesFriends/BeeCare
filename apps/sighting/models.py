@@ -83,14 +83,14 @@ class field(models.Model):
         ('Tiene aguijón','Tiene aguijón'),
         ('No tiene aguíjón','No tiene aguíjón'),
     ]
-    fieldnative = [
+    fieldnative_choices = [
         ('Es nativa','Es nativa'),
         ('No es nativa','No es nativa'),
     ]
     fieldsting = models.CharField(max_length=120, choices= fieldsting_choices)
-    fieldnative = models.CharField(max_length=120, choices= fieldnative)
+    fieldnative = models.CharField(max_length=120, choices= fieldnative_choices)
     def __str__(self):
-        return  self.field + " y " + self.fieldnative
+        return  self.fieldsting + " y " + self.fieldnative
 # |=========================================|
 # |========|    MODELO BEEFIELD     |=======|
 # |=========================================|
@@ -98,7 +98,7 @@ class beefield(models.Model):
     beefieldBee = models.ForeignKey(bee,on_delete=models.CASCADE)
     beefieldField = models.ForeignKey(field,on_delete=models.CASCADE)
     def __str__(self):
-        return self.beefieldBee
+        return str(self.beefieldBee) + " " + str(self.beefieldField) 
 
 # |=| Método para guardar imagenes de los |=|
 # |=| avistamientos realizados por los    |=|

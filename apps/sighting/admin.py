@@ -6,7 +6,7 @@
 # |=====|       BIBLIOTECAS BASE      |=====|
 # |=========================================|
 from django.contrib import admin
-from apps.sighting.models import family,subfamily,gender,species,bee,sighting
+from apps.sighting.models import family,subfamily,gender,species,bee,sighting,field,beefield
 # Register your models here.
 
 # |-----|    Visualización de los campos de la tabla family    |-----| 
@@ -37,4 +37,14 @@ class BeeAdmin(admin.ModelAdmin):
 # |-----|   Visualización de los campos de la tabla sighting   |-----| 
 @admin.register(sighting)
 class SightingAdmin(admin.ModelAdmin):
+    list_display = ["id"]
+
+# |-----|   Visualización de los campos de la tabla field      |-----| 
+@admin.register(field)
+class FieldAdmin(admin.ModelAdmin):
+    list_display = ["id","fieldsting","fieldnative"]
+
+# |-----|   Visualización de los campos de la tabla field      |-----| 
+@admin.register(beefield)
+class BeeFieldAdmin(admin.ModelAdmin):
     list_display = ["id"]
