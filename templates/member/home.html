@@ -7,7 +7,12 @@
     <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/cover0.jpg&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px; height: 360px;">
       <div class="container">
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src={%static '/bootstrap/js/bootstrap1.min.js' %}></script>
+    <script src={%static '/bootstrap/js/jquery1.min.js' %}></script> 
   </header>
+
+
 
 <div class="container py-4 py-xl-5"
     style="padding-right: 0px;padding-left: 0px;margin-bottom: -24px;padding-bottom: 36px;padding-top: 14px;margin-top: 82px;">
@@ -137,4 +142,69 @@
         </div>
     </div>
 </div>
+
+
+{% if user.is_authenticated %}
+{% if answerdone == 0 %}
+
+<script type="text/javascript">
+    $(window).on('load',function(){
+    if ( document.getElementById("valueAnswer").value == 0){
+        $('#exampleModal').modal('show');
+    }           
+    });
+</script>
+
+    <input type="text" id="valueAnswer" value="{{answerdone}}" hidden>
+    <!-- Modal -->
+    <div class="modal fade show modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="display: block;">
+        <!-- Contenido de la ventana modal -->
+        <div class="modal-content" style="border-radius: 10px;background-repeat:repeat-x;background-size:auto;background-image: url('{%static 'img/quiz/background1.png' %}');   ">
+                <div class="modal-header" style="border-radius: 10px;">
+                    <h4 class="modal-title" id="exampleModalLabel">!Bzz bzzz, bienvenido!  {{formtest}}</h4>
+                    <h5 class="modal-title">Nos gustaria saber qué tanto sabes sobre las abejas, ¡animate a responder esta encuesta!</h5>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Formulario -->
+                    <br><br><br><br><br><br><br><br>
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                        {% csrf_token %}
+                            <p align="left">
+                            <input type="radio" id="answerusrToquestion" name="answerusrToquestion" value="1" checked readonly hidden required>
+                    
+                            {% for question in  questiontest %}
+                            {{forloop.counter}}      
+                            {{question}} 
+                                <br>
+                                <input type="text" style="visibility:hidden"  id="answerusrQuestion{{question.id}}" name="answerusrQuestion{{forloop.counter}}" value="{{question.id}}" readonly hidden required>                 
+                                {% for answer in  anwsertest %}
+                                        {% if answer.answerQuestion.id == question.id  %}
+                                            <input type="radio" id="answerusrToquestion{{question.id}}" name="answerusrToquestion{{forloop.parentloop.counter}}" value="{{answer.id}}" required>   
+                                            {{answer}} 
+                                            <br>
+                                        
+                                        {% endif %}
+                                {% endfor %}           
+                                <br>
+                            {% endfor %}
+                        </div>
+                        <center>
+                            <button type="submit"class="btn btn-info" style="border-style: none;border-radius: 15px;" >Enviar respuesta</button>
+                        </center>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger"style="border-style: none;border-radius: 15px;" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}  
+{% endif %}  
+
+
 {% endblock %}

@@ -1,3 +1,10 @@
+# |=============================================================|
+# |===============|         BIBLIOTECAS         |===============|
+# |=============================================================|
+
+# |=========================================|
+# |=====|       BIBLIOTECAS BASE      |=====|
+# |=========================================|
 from django.contrib import admin
 from apps.sighting.models import family,subfamily,gender,species,bee,sighting
 # Register your models here.

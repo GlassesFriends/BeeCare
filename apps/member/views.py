@@ -6,6 +6,7 @@
 # |=====|       BIBLIOTECAS BASE      |=====|
 # |=========================================|
 from django.shortcuts import render
+from django.urls import reverse
 from django.http import HttpResponse
 from django.forms import inlineformset_factory
 
@@ -25,6 +26,7 @@ from django.contrib import messages
 from datetime import datetime, date, timedelta
 from .decorators import user_auth, allowed_users
 from apps.member.forms import CreateUserForm,UpdateMemberProfile,UpdateJustBasicFilesUser
+from apps.formtest.forms import answerusr
 from abc import abstractmethod
 
 # |=========================================|
@@ -229,7 +231,15 @@ def memberSignIn(request):
         real_login_access = RealLoginAccess()
         proxy = Proxy(real_login_access)
         if (proxy.Access(request,username,password) == True): 
-            return redirect('home')
+            # |=| formulario preguntas.            |=|
+
+            iAnswerthetest = answerusr.objects.filter(answerusrMember=request.user.member).count()
+            if iAnswerthetest == 0:
+                url = reverse('formnum', kwargs={'pk':1})
+                return redirect(f'{url}')
+            else:
+                return redirect(reverse('home'))
+            
         else:
             messages.info(request, 'Tu usuario o contraseña es incorrecto, si necesitas ayuda comunicate al departamento de sistemas.')
             
