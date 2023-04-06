@@ -76,8 +76,9 @@ def sightingRegister(request):
         if form1_family.is_valid():
             # |===========================================|
             familyName = form1_family.cleaned_data.get('familyName')
-
-            # |=|   get_or_created para family          |=|
+            # |===========================================| 
+            # |=|     get_or_created para family        |=|
+            # |===========================================| 
             fam,created1 = family.objects.get_or_create(
             familyName = familyName
             )
@@ -92,8 +93,9 @@ def sightingRegister(request):
             if form2_subfamily.is_valid():
                 # |========================================|
                 subfamilyName = form2_subfamily.cleaned_data.get('subfamilyName')
-
-                # |=|   get_or_created para subfamily    |=|
+                # |==========================================| 
+                # |=|    get_or_created para subfamily     |=|
+                # |==========================================| 
                 subfam,created2 = subfamily.objects.get_or_create(
                 subfamilyName = subfamilyName,
                 subfamilyFamily = fam
@@ -109,7 +111,8 @@ def sightingRegister(request):
                 if form3_gender.is_valid():
                     genderName = form3_gender.cleaned_data.get('genderName')
                     # |==========================================|
-                    # |=|     get_or_created para gender       |=|             
+                    # |=|     get_or_created para gender       |=|
+                    # |==========================================|              
                     gen,created3 = gender.objects.get_or_create(
                     genderName = genderName,
                     )
@@ -124,7 +127,8 @@ def sightingRegister(request):
                     if form4_species.is_valid():
                         speciesName = form4_species.cleaned_data.get('speciesName')
                         # |==========================================|        
-                        # |=|      get_or_created para species     |=|     
+                        # |=|      get_or_created para species     |=|
+                        # |==========================================|      
                         specie,created4 = species.objects.get_or_create(
                         speciesName = speciesName,
                         )
@@ -137,8 +141,9 @@ def sightingRegister(request):
                         # |==========================================|
                         if form5_bee.is_valid():
                             beeName = form5_bee.cleaned_data.get('beeName')
-
-                            # |=|   get_or_created para bee             |=|
+                            # |===========================================| 
+                            # |=|       get_or_created para bee         |=|
+                            # |===========================================| 
                             beee,created5 = bee.objects.get_or_create(
                                 beeName = beeName,
                                 beeSpecies = specie,
@@ -151,6 +156,13 @@ def sightingRegister(request):
                             print('REgistró abeja')
 
                             # |==========================================|
+                            # |=|          Validación de field         |=|
+                            # |==========================================|
+
+
+
+
+                            # |==========================================|
                             # |=| Válidación de formulario de sighting |=|
                             # |==========================================|
                             if form6_sighting.is_valid():
@@ -158,8 +170,9 @@ def sightingRegister(request):
                                 sighLng = form6_sighting.cleaned_data.get('sighLng')
                                 sighPicture = form6_sighting.cleaned_data.get('sighPicture')
                                 sighComment = form6_sighting.cleaned_data.get('sighComment')
-
+                                # |==========================================| 
                                 # |=|      get_or_created para sighting    |=|
+                                # |==========================================| 
                                 sigh = sighting.objects.create(
                                 sighLat = sighLat,
                                 sighLng = sighLng,
