@@ -61,7 +61,7 @@
                       <div class="col-md-12" style="text-align: left;">
                         <label class="form-label" style="text-align: left;margin-left: 8px;">Sube una imagen que te describa.</label>
                         <div class="input-group" style="border-radius: 8px;border-style: none;">
-                          <input class="form-control" type="file" style="border-style: none;border-radius: 20px;background: var(--bs-light);text-align: left;" name="membProfilePicture" onchange="load_Profile(event)" accept="image/*" />
+                          <input class="form-control" type="file" style="border-style: none;border-radius: 20px;background: var(--bs-light);text-align: left;" name="membProfilePicture" onchange="load_Profile(event)" accept="image/*" /> 
                         </div>
                       </div>
                     </div>
@@ -71,19 +71,19 @@
                       <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4" style="text-align: left;">
                         <label class="form-label" style="text-align: left;margin-left: 8px;">Nombre(s)</label>
                         <div class="input-group" style="border-radius: 8px;border-style: none;">
-                          <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Bee" inputmode="latin-name" name="first_name" required="" minlength="3" />
+                          <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Bee" inputmode="latin-name" name="first_name" required="" minlength="3" value="{{error.2}}" />
                         </div>
                       </div>
                       <div class="col-sm-6 col-md-4 col-lg-4 col-xl-4 col-xxl-4" style="text-align: left;">
                         <label class="form-label" style="text-align: left;margin-left: 8px;">Apellido(s)</label>
                         <div class="input-group" style="border-radius: 8px;border-style: none;">
-                          <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Care" inputmode="latin-name" name="last_name" required="" minlength="3" />
+                          <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="Care" inputmode="latin-name" name="last_name" required="" minlength="3" value="{{error.3}}" />
                         </div>
                       </div>
                       <div class="col-md-4 col-lg-4 col-xl-4 col-xxl-4" style="text-align: left;">
                         <label class="form-label" style="text-align: left;margin-left: 8px;">Fecha de nacimiento</label>
                         <div class="input-group" style="border-radius: 8px;border-style: none;">
-                          <input class="form-control" type="date" style="border-style: none;border-radius: 20px;background: var(--bs-gray-200);" name="membDateBirth" required="" />
+                          <input class="form-control" type="date" style="border-style: none;border-radius: 20px;background: var(--bs-gray-200);" value="{{error.4}}"  name="membDateBirth" required="" />
                         </div>
                       </div>
                     </div>
@@ -93,7 +93,7 @@
                       <div class="col-md-12" style="text-align: left;">
                         <label class="form-label" style="text-align: left;margin-left: 8px;">Correo electrónico</label>
                         <div class="input-group" style="border-radius: 8px;border-style: none;">
-                          <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="bienvenido@beecare.com" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" inputmode="email" name="username" required="" minlength="5" maxlength="64" />
+                          <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" placeholder="bienvenido@beecare.com" value="{{error.5}}"  pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" inputmode="email" name="username" required="" minlength="5" maxlength="64" />
                         </div>
                       </div>
                     </div>
@@ -103,7 +103,7 @@
                       <div class="col-md-12" style="text-align: left;">
                         <label class="form-label" style="text-align: left;margin-left: 8px;">Número de teléfono</label>
                         <div class="input-group" style="border-radius: 8px;border-style: none;">
-                          <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" inputmode="tel" placeholder="(###) ### ## ##" pattern="^[0-9]+$" maxlength="10" minlength="10" name="membPhone" required="" />
+                          <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" inputmode="tel" placeholder="(###) ### ## ##" value="{{error.6}}"  pattern="^[0-9]+$" maxlength="10" minlength="10" name="membPhone" required="" />
                         </div>
                       </div>
                     </div>

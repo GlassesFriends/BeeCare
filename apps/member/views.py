@@ -122,6 +122,9 @@ def memberSignOut(request):
 # @allowed_users(allowed_roles=['admin'])
 def memberSignUp(request):
     
+    # |=| Arreglo datos en caso de error  |=| 
+    data_error = ["","","","",""]
+    print(data_error[0])
     # |=| Inicializamos una instancia del |=|
     # |=| formulario para registrar un    |=|
     # |=| usuario.                        |=|
@@ -135,9 +138,23 @@ def memberSignUp(request):
         # |=| que este existe.                |=|
         emailtest = request.POST['username']
         # |=| si que este existe.             |=|
+        # |=| Evitamos que se borren datos    |=|
+        # |=| importantes del usuario         |=|
+        # |=| imagenes y contraseña deben de  |=|
+        # |=| reingresarse por seguridad de   |=|
+        # |=| los equipos.                    |=|
         # |=| Retorna una advertencia.        |=|
-        if member.objects.filter(membEmail=emailtest).exists():
-            messages.warning(request,"El correo que desea registrar ya existe.")
+        if member.objects.filter(membEmail=emailtest).exists():         
+            data_error.insert(2,request.POST['first_name'])
+            data_error.insert(3,request.POST['last_name'])
+            data_error.insert(4,request.POST['membDateBirth'])
+            data_error.insert(5,request.POST['username'])
+            data_error.insert(6,request.POST['membPhone'])
+            messages.warning(request,"El correo que desea registrar ya existe.") 
+            context = {
+                'error': data_error,        
+            }
+            return render(request, 'member/signup.html',context )          
         # |=| si no existe este.             |=|
         # |=| Continua con el formulario.    |=|
         else:
@@ -149,7 +166,7 @@ def memberSignUp(request):
                 user = userForm.save()
                 username = userForm.cleaned_data.get('username')
                 email = userForm.cleaned_data.get('username')
-                first_name = userForm.cleaned_data.get('first_name')
+                first_name = userForm.cleaned_data.get('first_name')    
                 last_name = userForm.cleaned_data.get('last_name')
                 print(request.POST.get('membDateBirth'))
                 print(request.POST.get('membPhone'))
@@ -191,12 +208,10 @@ def memberSignUp(request):
                 messages.success(request, text)
                 return redirect(reverse('signin'))
             else:
-                messages.error(request,"Error al guardar los datos.")
-                return
-        
-            
+                messages.error(request,"Error al guardar los datos.")              
     context = {
         'signUp': 'active',
+        'error': data_error    
         }
     return render(request, 'member/signup.html', context)
 
