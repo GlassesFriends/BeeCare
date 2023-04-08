@@ -189,8 +189,11 @@ def memberSignUp(request):
                 # |=| de inicio de sesión.    |=|
                 text = 'Usuario registrado exitosamente, regresa e inicia sesión.'
                 messages.success(request, text)
+                return redirect(reverse('signin'))
             else:
                 messages.error(request,"Error al guardar los datos.")
+                return
+        
             
     context = {
         'signUp': 'active',
