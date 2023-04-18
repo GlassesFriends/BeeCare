@@ -215,7 +215,6 @@ function autoFieldSubfamily() {
                 }
             }
         }
-        console.log(famcommun);
 
         let options2 = ``;
         for (t = 0; t < famcommun.length; t++) {
@@ -223,7 +222,6 @@ function autoFieldSubfamily() {
                 options2 += `<option value='${famcommun[t][0]}'></option>`;
             }
         }
-        console.log(options2);
         list3subfamilyName.innerHTML = options2;
     }
 }

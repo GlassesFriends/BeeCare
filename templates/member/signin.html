@@ -33,7 +33,7 @@
                                         <div class="row">
                                             <div class="col-md-12 col-xxl-12" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Correo electrónico</label>
                                                 <div class="input-group" style="border-radius: 8px;border-style: none;">
-                                                    <input class="form-control" name="username" type="text" style="background: var(--bs-light);border-style: none;border-radius: 20px;" inputmode="email" autofocus="" required="" placeholder="Tu@correo.com"></div>
+                                                <input class="form-control" name="username" type="text" style="background: var(--bs-light);border-style: none;border-radius: 20px;" inputmode="email" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" autofocus="" required="" placeholder="Tu@correo.com"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -41,7 +41,9 @@
                                         <div class="row">
                                             <div class="col-md-12" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Contraseña</label>
                                                 <div class="input-group" style="border-radius: 8px;border-style: none;">
-                                                    <input class="form-control" name="password" type="password" style="background: var(--bs-light);border-style: none;border-radius: 20px;" required="" placeholder="Tu_c0ntr453ñ4"></div>
+                                                    <input class="form-control" name="password" type="password" style="background: var(--bs-light);border-style: none;border-radius: 20px;border-bottom-right-radius: 0;border-top-right-radius: 0;" required="" placeholder="Tu_c0ntr453ñ4">
+                                                    <button id="show_password" class="btn btn-info" style="background: var(--bs-primary);border-style: none;border-radius: 20px;border-bottom-left-radius: 0;border-top-left-radius: 0;" type="button" onclick="ShowMePassword()"><span class="fa fa-eye-slash icon"></span></button>                                          
+                                                </div> 
                                             </div>
                                         </div>
                                     </div>

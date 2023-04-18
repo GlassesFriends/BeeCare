@@ -85,6 +85,7 @@ LOCAL_APPS = [
     # 'apps.reaction',
     'apps.sighting',
     'apps.wiki',
+    'apps.formtest',
 ]
 
 # |=========================================|

@@ -50,7 +50,6 @@ $(function () {
                 }
             }
 
-
             const response1 = await fetch("../bee/");
             const data1 = await response1.json();
 
@@ -71,10 +70,7 @@ $(function () {
                     }
                 }
             }
-
-
-
-            
+  
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(getCoords, getError);
             }
@@ -187,10 +183,6 @@ $(function () {
                 $('#sighLng').val(markerCoords.lng());
             }
 
-
-
-
-
             const response2 = await fetch("../family/");
             const data2 = await response2.json();
 
@@ -230,7 +222,6 @@ $(function () {
                     dataSubfamilys.push([listIdsubfamily, listNamesubfamily, listFamilysubfamily]);
                 }
             }
-
         } catch (error) {
             console.log(error)
         }
@@ -250,7 +241,6 @@ function autoFieldSubfamily() {
                 }
             }
         }
-        console.log(famcommun);
 
         let options2 = ``;
         for (t = 0; t < famcommun.length; t++) {
@@ -258,7 +248,6 @@ function autoFieldSubfamily() {
                 options2 += `<option value='${famcommun[t][0]}'></option>`;
             }
         }
-        console.log(options2);
         list3subfamilyName.innerHTML = options2;
     }
 }

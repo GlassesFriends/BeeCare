@@ -20,13 +20,13 @@ from abc import abstractmethod
 # |=========================================|
 # |=====|     REFERENCIAS A MODELOS   |=====|
 # |=========================================|
-from .models import subfamily,family,gender,species,bee,sighting
+from .models import subfamily,family,gender,species,bee,sighting,field,beefield
 from apps.member.decorators import user_auth
 
 # |=========================================|
 # |=====|  REFERENCIAS A FORMULARIOS  |=====|
 # |=========================================|
-from .forms import SubfamilyForm,FamilyForm,GenderForm,SpeciesForm,BeeForm,SightingForm
+from .forms import SubfamilyForm,FamilyForm,GenderForm,SpeciesForm,BeeForm,SightingForm,FieldForm
 
 # |=============================================================|
 # |===============|      COMIENZAN VISTAS       |===============|
@@ -43,6 +43,7 @@ def sightingRegister(request):
     field_gender = gender.objects.all().order_by('genderName')
     field_species = species.objects.all().order_by('speciesName')
     field_bee = bee.objects.all().order_by('beeName')
+    field_field = field.objects.all().order_by('fieldsting')
 
     # |=| Formularios a utilizar             |=|
     form1_family = FamilyForm()
@@ -51,6 +52,7 @@ def sightingRegister(request):
     form4_species = SpeciesForm()
     form5_bee = BeeForm()
     form6_sighting = SightingForm()
+    form7_field = FieldForm()
 
     # |=| Condicional de igualdad del método |=|
     # |=| POST, asignación de request para   |=|
@@ -66,6 +68,7 @@ def sightingRegister(request):
         form4_species = SpeciesForm(request.POST)
         form5_bee = BeeForm(request.POST)
         form6_sighting = SightingForm(request.POST,request.FILES)
+        form7_field = FieldForm(request.POST)
 
         error = "Hubo un error al guardar la información."
         print('Aquí entro a post')
@@ -76,8 +79,9 @@ def sightingRegister(request):
         if form1_family.is_valid():
             # |===========================================|
             familyName = form1_family.cleaned_data.get('familyName')
-
-            # |=|   get_or_created para family          |=|
+            # |===========================================| 
+            # |=|     get_or_created para family        |=|
+            # |===========================================| 
             fam,created1 = family.objects.get_or_create(
             familyName = familyName
             )
@@ -92,8 +96,9 @@ def sightingRegister(request):
             if form2_subfamily.is_valid():
                 # |========================================|
                 subfamilyName = form2_subfamily.cleaned_data.get('subfamilyName')
-
-                # |=|   get_or_created para subfamily    |=|
+                # |==========================================| 
+                # |=|    get_or_created para subfamily     |=|
+                # |==========================================| 
                 subfam,created2 = subfamily.objects.get_or_create(
                 subfamilyName = subfamilyName,
                 subfamilyFamily = fam
@@ -109,7 +114,8 @@ def sightingRegister(request):
                 if form3_gender.is_valid():
                     genderName = form3_gender.cleaned_data.get('genderName')
                     # |==========================================|
-                    # |=|     get_or_created para gender       |=|             
+                    # |=|     get_or_created para gender       |=|
+                    # |==========================================|              
                     gen,created3 = gender.objects.get_or_create(
                     genderName = genderName,
                     )
@@ -124,7 +130,8 @@ def sightingRegister(request):
                     if form4_species.is_valid():
                         speciesName = form4_species.cleaned_data.get('speciesName')
                         # |==========================================|        
-                        # |=|      get_or_created para species     |=|     
+                        # |=|      get_or_created para species     |=|
+                        # |==========================================|      
                         specie,created4 = species.objects.get_or_create(
                         speciesName = speciesName,
                         )
@@ -137,8 +144,9 @@ def sightingRegister(request):
                         # |==========================================|
                         if form5_bee.is_valid():
                             beeName = form5_bee.cleaned_data.get('beeName')
-
-                            # |=|   get_or_created para bee             |=|
+                            # |===========================================| 
+                            # |=|       get_or_created para bee         |=|
+                            # |===========================================| 
                             beee,created5 = bee.objects.get_or_create(
                                 beeName = beeName,
                                 beeSpecies = specie,
@@ -158,8 +166,9 @@ def sightingRegister(request):
                                 sighLng = form6_sighting.cleaned_data.get('sighLng')
                                 sighPicture = form6_sighting.cleaned_data.get('sighPicture')
                                 sighComment = form6_sighting.cleaned_data.get('sighComment')
-
+                                # |==========================================| 
                                 # |=|      get_or_created para sighting    |=|
+                                # |==========================================| 
                                 sigh = sighting.objects.create(
                                 sighLat = sighLat,
                                 sighLng = sighLng,
@@ -172,6 +181,30 @@ def sightingRegister(request):
                                 print('Si cargo chido 6')
                                 # |=|     Guardado de datos para sighting  |=|
                                 sigh.save()
+
+                                # |==========================================|
+                                # |=|          Validación de field         |=|
+                                # |==========================================|
+                                if form7_field.is_valid():
+                                    fieldsting = form7_field.cleaned_data.get('fieldsting')
+                                    fieldnative = form7_field.cleaned_data.get('fieldnative')
+                                    # |==========================================| 
+                                    # |=|      get_or_created para sighting    |=|
+                                    # |==========================================|
+                                    fieldd,created7 = field.objects.get_or_create(
+                                    fieldsting = fieldsting,
+                                    fieldnative = fieldnative,
+                                    )           
+                                    print('Si cargo chido 7')
+                                    fieldd.save()
+
+                                    beefieldd = beefield.objects.create(
+                                        beefieldBee = beee,
+                                        beefieldField = fieldd,
+                                    )
+                                    beefieldd.save()
+                                    print('Si cargo chido 8')
+
                                 messages.success(request,"Avistamiento registrado exitosamente.")
                             else:
                                 print("No jalo el avistamiento")
