@@ -6,6 +6,7 @@ static/img/*
 !static/img/icons
 !static/img/favicon
 !static/img/profile
+!static/img/quiz
 
 # migrations
 apps/**/**/migrations/*
