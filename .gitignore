@@ -1,3 +1,5 @@
+#IDE folders
+.idea/
 # Pictures 
 static/img/*
 !static/img/Bees

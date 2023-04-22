@@ -26,4 +26,4 @@ class answerList(admin.ModelAdmin):
 # |-----|    Visualización de los campos de la tabla answerusr   |-----| 
 @admin.register(answerusr)
 class answerusrList(admin.ModelAdmin):
-    list_display = ["id","answerusrToquestion","answerusrMember"]
+    list_display = ["id","answerusrDate","answerusrToquestion","answerusrMember"]

@@ -42,7 +42,8 @@ def formQuestion(request,pk):
 
     data1_questiontest =  question.objects.all().filter(questionTestform=pk)
     data2_anwsertest = answer.objects.all().filter()
-
+    total_forms= testform.objects.all().filter(isEnabled=True).count()
+    total_responses= formtest.responseOrder - 1
     get_countQuestion = []
     get_countQuestion = len(question.objects.all().filter(questionTestform=pk))
 
@@ -78,6 +79,10 @@ def formQuestion(request,pk):
     else:
         print('Válio madres')
         print('valio quezo')
+        print('valio cheto')
+    print('Primary key: '+ str(pk))
+    print(formtest.testName)
+
     context = {
     'formtest': formtest,
     'questiontest':data1_questiontest,
@@ -85,6 +90,8 @@ def formQuestion(request,pk):
     'count_question': get_countQuestion,
     'answerdone': iAnswerthetest,
     'form': form1_answerToquestion,
-        }
+    'totalforms':total_forms,
+    'totalresponses': total_responses
+    }
     return render(request, 'member/home.html', context)
 
