@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="col-lg-6 col-xl-6">
-            <div class="card border-light border-1 d-flex justify-content-center p-4"
+            <div class="card border-light G. K. Chestertonborder-1 d-flex justify-content-center p-4"
                 style="margin-right: -14px;border-radius: 20px;">
                 <div class="card-body">
                     <div>
@@ -145,12 +145,11 @@
 
 
 {% if user.is_authenticated %}
-{% if answerdone > -100 %}
+{% if totalresponses < totalforms %}
 
 <script type="text/javascript">
     $(window).on('load',function(){
     if ( document.getElementById("totalresponses").value < document.getElementById("totalforms").value){
-        console.log('caramelo de chocolate')
         $('#exampleModal').modal('show');
     }           
     });
