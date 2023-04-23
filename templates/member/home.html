@@ -145,8 +145,7 @@
 
 
 {% if user.is_authenticated %}
-{% if totalresponses < totalforms %}
-
+{% if totalresponses < totalforms  and formanswered == 0 %}
 <script type="text/javascript">
     $(window).on('load',function(){
     if ( document.getElementById("totalresponses").value < document.getElementById("totalforms").value){

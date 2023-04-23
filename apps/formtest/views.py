@@ -37,7 +37,6 @@ def formQuestion(request,pk):
     questiontest = []
 
     iAnswerthetest = answerusr.objects.filter(answerusrMember=request.user.member).count()
-
     formtest = testform.objects.get(pk=pk)
 
     data1_questiontest =  question.objects.all().filter(questionTestform=pk)
@@ -46,6 +45,10 @@ def formQuestion(request,pk):
     total_responses= formtest.responseOrder - 1
     get_countQuestion = []
     get_countQuestion = len(question.objects.all().filter(questionTestform=pk))
+
+    formAnswered= answerusr.objects.filter(answerusrMember = request.user.member,answerusrQuestion__in=data1_questiontest).count()
+
+
 
     print(get_countQuestion)
 
@@ -91,7 +94,8 @@ def formQuestion(request,pk):
     'answerdone': iAnswerthetest,
     'form': form1_answerToquestion,
     'totalforms':total_forms,
-    'totalresponses': total_responses
+    'totalresponses': total_responses,
+    'formanswered':formAnswered
     }
     return render(request, 'member/home.html', context)
 
