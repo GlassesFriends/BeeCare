@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="col-lg-6 col-xl-6">
-            <div class="card border-light border-1 d-flex justify-content-center p-4"
+            <div class="card border-light G. K. Chestertonborder-1 d-flex justify-content-center p-4"
                 style="margin-right: -14px;border-radius: 20px;">
                 <div class="card-body">
                     <div>
@@ -145,17 +145,17 @@
 
 
 {% if user.is_authenticated %}
-{% if answerdone == 0 %}
-
+{% if totalresponses < totalforms  and formanswered == 0 %}
 <script type="text/javascript">
     $(window).on('load',function(){
-    if ( document.getElementById("valueAnswer").value == 0){
+    if ( document.getElementById("totalresponses").value < document.getElementById("totalforms").value){
         $('#exampleModal').modal('show');
     }           
     });
 </script>
 
-    <input type="text" id="valueAnswer" value="{{answerdone}}" hidden>
+    <input type="text" id="totalresponses" value="{{totalresponses}}" hidden>
+    <input type="text" id="totalforms" value="{{totalforms}}" hidden>
     <!-- Modal -->
     <div class="modal fade show modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="display: block;">

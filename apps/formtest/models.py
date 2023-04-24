@@ -21,6 +21,10 @@ from apps.member.models import member
 
 class testform(models.Model):
     testName = models.CharField(max_length=250)
+    responseTime = models.IntegerField(default=30)
+    responseOrder = models.IntegerField(default=-1)
+    isEnabled = models.BooleanField(default=True)
+
     def __str__(self):
         return self.testName
     

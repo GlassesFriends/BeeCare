@@ -23,16 +23,19 @@ from django.contrib import messages
 # |=========================================|
 # |=====|     BIBLILIOTECAS EXTRAS    |=====|
 # |=========================================|
-from datetime import datetime, date, timedelta
+from datetime import datetime, date, timedelta, timezone
 from .decorators import user_auth, allowed_users
 from apps.member.forms import CreateUserForm,UpdateMemberProfile,UpdateJustBasicFilesUser
 from apps.formtest.forms import answerusr
 from abc import abstractmethod
+from decouple import config
+import pytz
 
 # |=========================================|
 # |=====|     REFERENCIAS A MODELOS   |=====|
 # |=========================================|
 from apps.member.models import member
+from ..formtest.models import testform, question
 
 # |=============================================================|
 # |===============|    COMIENZAN VARIABLES      |===============|
@@ -251,9 +254,49 @@ def memberSignIn(request):
         if (proxy.Access(request,username,password) == True): 
             # |=| formulario preguntas.            |=|
 
-            iAnswerthetest = answerusr.objects.filter(answerusrMember=request.user.member).count()
-            if iAnswerthetest == 0:
-                url = reverse('formnum', kwargs={'pk':1})
+            qtyTests = testform.objects.filter(isEnabled=True).count()
+            testToAnswer = None
+            readyToAnswer=False
+            #Valida que exista al menos un test en base de datos.
+            if qtyTests > 0:
+                iAnswerthetest = answerusr.objects.filter(answerusrMember=request.user.member).count()
+
+                ###############################################################################################
+                # Si el usuario ya ha respondido por lo menos un test se procede a buscar el test que sigue.  #
+                # Después valida el tiempo transcurrido desde la última respuesta.                            #
+                ###############################################################################################
+                if iAnswerthetest > 0:
+                    userAnswers = answerusr.objects.filter(answerusrMember=request.user.member)
+                    lastAnswer = userAnswers.order_by('-answerusrDate').first()
+                    lastTestCompleted = lastAnswer.answerusrQuestion.questionTestform
+                    nextTestId=lastTestCompleted.responseOrder + 1
+                    testToAnswer = testform.objects.filter(responseOrder=nextTestId, isEnabled=True).first()
+
+                    lastResTime = datetime.now().replace(tzinfo=timezone.utc) - lastAnswer.answerusrDate
+
+                    environment = config('DEBUG', cast=bool)
+                    if(testToAnswer is not None):
+                        if (lastResTime.total_seconds() >= testToAnswer.responseTime and environment):#En debug se toma por segundos
+                            readyToAnswer = True
+                        elif(lastResTime.total_seconds() / 3600 >= testToAnswer.responseTime and not environment):#En prod se toma por horas
+                            readyToAnswer = True
+                        else:
+                            readyToAnswer = False
+
+                ############################################################################################
+                # Si el usuario no ha respondido ningún test, se asigna el primero.                        #
+                ############################################################################################
+                else:
+                    testToAnswer = testform.objects.filter(responseOrder=1, isEnabled=True).first()
+                    readyToAnswer = True
+
+
+            else:
+                readyToAnswer = False
+
+
+            if readyToAnswer is True and testToAnswer is not None:
+                url = reverse('formnum', kwargs={'pk':testToAnswer.id})
                 return redirect(f'{url}')
             else:
                 return redirect(reverse('home'))
