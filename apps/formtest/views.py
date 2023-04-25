@@ -48,8 +48,6 @@ def formQuestion(request,pk):
 
     formAnswered= answerusr.objects.filter(answerusrMember = request.user.member,answerusrQuestion__in=data1_questiontest).count()
 
-
-
     print(get_countQuestion)
 
     form1_answerToquestion = AnswerusrForm() 

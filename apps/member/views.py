@@ -268,7 +268,6 @@ def memberSignIn(request):
                 if iAnswerthetest > 0:
                     userAnswers = answerusr.objects.filter(answerusrMember=request.user.member)
                     lastAnswer = userAnswers.order_by('-answerusrDate').first()
-
                     lastTestCompleted = lastAnswer.answerusrQuestion.questionTestform
                     nextTestId=lastTestCompleted.responseOrder + 1
                     testToAnswer = testform.objects.filter(responseOrder=nextTestId, isEnabled=True).first()
