@@ -162,7 +162,7 @@
         <!-- Contenido de la ventana modal -->
         <div class="modal-content" style="border-radius: 10px;background-repeat:repeat-x;background-size:auto;background-image: url('{%static 'img/quiz/background1.png' %}');   ">
                 <div class="modal-header" style="border-radius: 10px;">
-                    <h4 class="modal-title" id="exampleModalLabel">!Bzz bzzz, bienvenido!  {{formtest}}</h4>
+                    <h4 class="modal-title" id="exampleModalLabel">!Bzz bzzz, bienvenido! <br> {{formtest}}</h4>
                     <h5 class="modal-title">Nos gustaria saber qué tanto sabes sobre las abejas, ¡animate a responder esta encuesta!</h5>
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -177,7 +177,7 @@
                             <input type="radio" id="answerusrToquestion" name="answerusrToquestion" value="1" checked readonly hidden required>
                     
                             {% for question in  questiontest %}
-                            {{forloop.counter}}      
+                            {{forloop.counter}}.      
                             {{question}} 
                                 <br>
                                 <input type="text" style="visibility:hidden"  id="answerusrQuestion{{question.id}}" name="answerusrQuestion{{forloop.counter}}" value="{{question.id}}" readonly hidden required>                 
@@ -185,8 +185,7 @@
                                         {% if answer.answerQuestion.id == question.id  %}
                                             <input type="radio" id="answerusrToquestion{{question.id}}" name="answerusrToquestion{{forloop.parentloop.counter}}" value="{{answer.id}}" required>   
                                             {{answer}} 
-                                            <br>
-                                        
+                                            <br>                    
                                         {% endif %}
                                 {% endfor %}           
                                 <br>

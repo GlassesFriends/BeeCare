@@ -77,6 +77,8 @@ def formQuestion(request,pk):
                     answerusrMember = request.user.member
                 )
                 print('Ya leí datos1')
+                text = "Tus respuestas han sido enviadas correctamente, gracias por tu tiempo."
+                messages.success(request, text)
                 answerusrx.save()
             return redirect(reverse('home'))
     else:
