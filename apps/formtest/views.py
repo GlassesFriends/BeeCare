@@ -48,8 +48,6 @@ def formQuestion(request,pk):
 
     formAnswered= answerusr.objects.filter(answerusrMember = request.user.member,answerusrQuestion__in=data1_questiontest).count()
 
-
-
     print(get_countQuestion)
 
     form1_answerToquestion = AnswerusrForm() 
@@ -77,6 +75,8 @@ def formQuestion(request,pk):
                     answerusrMember = request.user.member
                 )
                 print('Ya leí datos1')
+                text = "Tus respuestas han sido enviadas correctamente, gracias por tu tiempo."
+                messages.success(request, text)
                 answerusrx.save()
             return redirect(reverse('home'))
     else:

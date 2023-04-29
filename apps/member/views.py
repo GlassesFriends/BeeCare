@@ -240,7 +240,7 @@ def memberSignUp(request):
 # |===antes o después de que la solicitud===|
 # |========llegue al objeto original========|
 
-def memberSignIn(request):
+def memberSignIn(request):   
     # |=| Validamos el formulario actual  |=|
     # |=| respecto al métpdp POST.        |=|
     if request.method == 'POST':
@@ -272,29 +272,24 @@ def memberSignIn(request):
                     nextTestId=lastTestCompleted.responseOrder + 1
                     testToAnswer = testform.objects.filter(responseOrder=nextTestId, isEnabled=True).first()
 
-                    lastResTime = datetime.now().replace(tzinfo=timezone.utc) - lastAnswer.answerusrDate
+                    lastResTime = datetime.now(pytz.timezone('America/Tijuana')) - lastAnswer.answerusrDate
 
                     environment = config('DEBUG', cast=bool)
                     if(testToAnswer is not None):
                         if (lastResTime.total_seconds() >= testToAnswer.responseTime and environment):#En debug se toma por segundos
-                            readyToAnswer = True
+                            readyToAnswer = True                       
                         elif(lastResTime.total_seconds() / 3600 >= testToAnswer.responseTime and not environment):#En prod se toma por horas
                             readyToAnswer = True
                         else:
                             readyToAnswer = False
-
                 ############################################################################################
                 # Si el usuario no ha respondido ningún test, se asigna el primero.                        #
                 ############################################################################################
                 else:
                     testToAnswer = testform.objects.filter(responseOrder=1, isEnabled=True).first()
                     readyToAnswer = True
-
-
             else:
                 readyToAnswer = False
-
-
             if readyToAnswer is True and testToAnswer is not None:
                 url = reverse('formnum', kwargs={'pk':testToAnswer.id})
                 return redirect(f'{url}')
