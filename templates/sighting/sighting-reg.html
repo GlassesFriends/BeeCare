@@ -203,17 +203,21 @@
             let classifier4;
             // Classifier Variable - clasificar si es nativa o no nativa.
             let classifier5;
+            // Classifier Variable - clasificar si es el insecto identificado es polinizador.
+            let classifier6;
             // --------------------Modelos URL-------------------
             // URL de modelo - es un insecto o no lo es.
             let imageModelURL1 = 'https://teachablemachine.withgoogle.com/models/N8zgnFDvY/';
             // URL de modelo - si es una abeja o otro insecto.
-            let imageModelURL2 = 'https://teachablemachine.withgoogle.com/models/9swdw_D-6/';
+            let imageModelURL2 = 'https://teachablemachine.withgoogle.com/models/9MYSBpuaV/';
             // URL de modelo - si tiene aguijón o no.
             let imageModelURL3 = 'https://teachablemachine.withgoogle.com/models/0zwfXaUho/';
             // URL de modelo - que especie de abeja.
             let imageModelURL4 = 'https://teachablemachine.withgoogle.com/models/ipqyNOghn/';
             // URL de modelo - si es nativa o no nativa.
             let imageModelURL5 = 'https://teachablemachine.withgoogle.com/models/KTJ6bhGEu/';
+            // URL de modelo - si es el insecto identificado es polinizador.
+            let imageModelURL6 = 'https://teachablemachine.withgoogle.com/models/A8psd_oYj/';
       
             // Imagen a cargada
             let imagebee;
@@ -223,6 +227,7 @@
             let label3 = "";
             let label4 = "";
             let label5 = "";
+            let label6 = "";
             // Carga de modelos
             function preload() {
       
@@ -236,6 +241,8 @@
               classifier4 = ml5.imageClassifier(imageModelURL4 + 'model.json',{cors:true});
               // Clasificador de: si es nativa o no nativa. - modelo
               classifier5 = ml5.imageClassifier(imageModelURL5 + 'model.json',{cors:true});
+              // Clasificador de: si es el insecto identificado es polinizador. - modelo
+              classifier6 = ml5.imageClassifier(imageModelURL6 + 'model.json',{cors:true});
               // Creación de variable en base al elemento con id img1
               imagebee = document.getElementById("previewSightingReg") ;
               console.log(imagebee);
@@ -298,13 +305,14 @@
                 // Comienza a clasificar si la abeja tiene aguijón o no lo tiene
                 classifyImage3();
               } else if (label2 == "Es otro insecto"){
+
                 document.getElementById("beeName").value = label2
                 document.getElementById("fieldsting").value = "";
                 document.getElementById("speciesName").value = "";
                 document.getElementById("fieldnative").value = "";
                 console.log("2-2-"+label2);
+                classifyImage6();
               }
-       
           }
       
             // Se obtiene una predicción de la imagen
@@ -366,6 +374,38 @@
       
               document.getElementById("fieldnative").value = label5
               console.log(label5);    
+          }
+
+            // Se obtiene una predicción de la imagen
+            function classifyImage6() {
+              classifier6.classify(imagebee, gotResult6);
+              }
+            
+            // Se obtienen los resultados de la imagen
+            function gotResult6(error, results) {
+              // En caso de error
+              if (error) {
+                console.error(error);
+                return;
+              }
+              // Resultados, asignación de valor a label
+              label6 = results[0].label;
+      
+              if(label6 == "Es polinizador"){
+                document.getElementById("beeName").value = label2+" - " + label6;
+                document.getElementById("fieldsting").value = "";
+                document.getElementById("speciesName").value = "";
+                document.getElementById("fieldnative").value = "";
+                console.log("6-2-"+label6);
+                // Comienza a clasificar si el insecto es on no polinizador
+              } else if (label6 == "No es polinizador"){
+
+                document.getElementById("beeName").value = label2+" - " + label6;
+                document.getElementById("fieldsting").value = "";
+                document.getElementById("speciesName").value = "";
+                document.getElementById("fieldnative").value = "";
+                console.log("6-2-"+label6);
+              }
           }
     </script>
 
