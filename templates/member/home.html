@@ -161,8 +161,7 @@
         <div class="modal-content" style="border-radius: 10px;">
             <center><b><h3 style="padding-top: 20px;">{{formtest}}</h3></b></center><br>
                 <div class="modal-header" style="border-radius: 10px;margin-top: -40px;">
-                    
-                    <h4 class="modal-title" id="exampleModalLabel" style=" padding-left: 30px;">!Bzz&nbspbzzz! </h4><br>
+                                      
                     <h5 class="modal-title" style="padding-left: 30px;">Nos gustaria saber qué tanto sabes sobre las abejas, ¡animate a responder esta encuesta!</h5>
 
                     
@@ -181,8 +180,9 @@
                                 <input type="text" style="visibility:hidden"  id="answerusrQuestion{{question.id}}" name="answerusrQuestion{{forloop.counter}}" value="{{question.id}}" readonly hidden required>                 
                                 {% for answer in  anwsertest %}
                                         {% if answer.answerQuestion.id == question.id  %}
-                                        <p style="text-indent: -20px; padding-left: 20px; line-height: 20px;">
+                                        <p style="text-indent: -30px; padding-left: 30px; line-height: 20px;">
                                             <input class="form-check-input" type="radio" id="answerusrToquestion{{question.id}}" name="answerusrToquestion{{forloop.parentloop.counter}}" value="{{answer.id}}" required>   
+                                            &nbsp
                                             {{answer}} 
                                         </p>                                                               
                                         {% endif %}
