@@ -10,6 +10,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src={%static '/bootstrap/js/bootstrap1.min.js' %}></script>
     <script src={%static '/bootstrap/js/jquery1.min.js' %}></script> 
+    <link rel="stylesheet" href={%static '/css/elements.css' %} />
+    <style>
+
+    </style>
   </header>
 
 
@@ -159,16 +163,16 @@
     <div class="modal fade show modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" style="display: block;">
         <!-- Contenido de la ventana modal -->
-        <div class="modal-content" style="border-radius: 10px;background-repeat:repeat-x;background-size:auto;background-image: url('{%static 'img/quiz/background1.png' %}');   ">
+        <div class="modal-content" style="border-radius: 10px;">
                 <div class="modal-header" style="border-radius: 10px;">
                     <h4 class="modal-title" id="exampleModalLabel">!Bzz bzzz, bienvenido! <br> {{formtest}}</h4>
                     <h5 class="modal-title">Nos gustaria saber qué tanto sabes sobre las abejas, ¡animate a responder esta encuesta!</h5>
 
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="background-repeat:repeat-x;background-size:auto;background-image: url('{%static 'img/quiz/background1.png' %}');   ">
                     <!-- Formulario -->
-                    <br><br><br><br><br><br><br><br>
+                    <br><br><br><br><br><br><br><br><br><br><br><br>
                     <form method="POST" enctype="multipart/form-data">
                         <div class="form-group">
                         {% csrf_token %}
@@ -176,15 +180,16 @@
                             <input type="radio" id="answerusrToquestion" name="answerusrToquestion" value="1" checked readonly hidden required>
                     
                             {% for question in  questiontest %}
-                            {{forloop.counter}}.      
-                            {{question}} 
-                                <br>
+                            <p><b>{{forloop.counter}}. {{question}} </b></p>
+                                
                                 <input type="text" style="visibility:hidden"  id="answerusrQuestion{{question.id}}" name="answerusrQuestion{{forloop.counter}}" value="{{question.id}}" readonly hidden required>                 
                                 {% for answer in  anwsertest %}
                                         {% if answer.answerQuestion.id == question.id  %}
-                                            <input type="radio" id="answerusrToquestion{{question.id}}" name="answerusrToquestion{{forloop.parentloop.counter}}" value="{{answer.id}}" required>   
+                                        <p style="text-indent: -20px; padding-left: 20px; line-height: 20px;">
+                                            <input class="form-check-input" type="radio" id="answerusrToquestion{{question.id}}" name="answerusrToquestion{{forloop.parentloop.counter}}" value="{{answer.id}}" required>   
                                             {{answer}} 
-                                            <br>                    
+                                        </p>
+                                                               
                                         {% endif %}
                                 {% endfor %}           
                                 <br>
