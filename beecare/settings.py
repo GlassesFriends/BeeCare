@@ -193,12 +193,8 @@ CSRF_TRUSTED_ORIGINS = [
 # |=================================================|
 DATABASES = {
     'default': {
-        'ENGINE': config('DB_ENGINE'),
-        'NAME': BASE_DIR / config('DB_NAME'),
-        'USER': config('DB_USER'),
-        'PASSWORD': config('DB_PASSWORD'),
-        'HOST': config('DB_HOST'),
-        'PORT': config('DB_PORT'),
+        'ENGINE': 'django.fb.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
@@ -207,18 +203,23 @@ DATABASES = {
 # |=| de que el SGBD sea diferente a      |=|
 # |=| sqlite3.                            |=|
 # |=========================================|
-if config('DB_ENGINE') != 'django.db.backends.sqlite3':
-    DATABASES['default']['NAME'] = 'DB_NAME'
+if config('DB_ENGINE',default='db.sqlite3') != 'db.sqlite3':
+    DATABASES['default']['NAME'] = config('DB_NAME')
+    DATABASES['default']['ENGINE'] = config('DB_ENGINE')
+    DATABASES['default']['USER'] = config('DB_USER')
+    DATABASES['default']['PASSWORD'] = config('DB_PASSWORD') 
+    DATABASES['default']['HOST'] = config('DB_HOST')
+    DATABASES['default']['PORT'] = config('DB_PORT', default='')
 
 # |=========================================|
 # |=| Está condicional es solo en el caso |=|
 # |=| de uso de mssql, ya que, este       |=|
 # |=| requiere de un driver para la conex.|=|
 # |=========================================|
-if config('DB_ENGINE') == 'mssql':
-    DATABASES['default']['OPTIONS'] = {
-        'driver': 'ODBC Driver 17 for SQL Server',
-    }
+    if config('DB_ENGINE',default='') == 'mssql':
+        DATABASES['default']['OPTIONS'] = {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        }
 
 # |=========================================|
 # |=====| BASE DE DATOS DE PRODUCCIÓN |=====|
