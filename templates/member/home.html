@@ -11,12 +11,7 @@
     <script src={%static '/bootstrap/js/bootstrap1.min.js' %}></script>
     <script src={%static '/bootstrap/js/jquery1.min.js' %}></script> 
     <link rel="stylesheet" href={%static '/css/elements.css' %} />
-    <style>
-
-    </style>
   </header>
-
-
 
 <div class="container py-4 py-xl-5"
     style="padding-right: 0px;padding-left: 0px;margin-bottom: -24px;padding-bottom: 36px;padding-top: 14px;margin-top: 82px;">
@@ -177,8 +172,7 @@
                         <div class="form-group">
                         {% csrf_token %}
                             <p align="left">
-                            <input type="radio" id="answerusrToquestion" name="answerusrToquestion" value="1" checked readonly hidden required>
-                    
+                            <input type="radio" id="answerusrToquestion" name="answerusrToquestion" value="1" checked readonly hidden required>                    
                             {% for question in  questiontest %}
                             <p><b>{{forloop.counter}}. {{question}} </b></p>
                                 
@@ -188,8 +182,7 @@
                                         <p style="text-indent: -20px; padding-left: 20px; line-height: 20px;">
                                             <input class="form-check-input" type="radio" id="answerusrToquestion{{question.id}}" name="answerusrToquestion{{forloop.parentloop.counter}}" value="{{answer.id}}" required>   
                                             {{answer}} 
-                                        </p>
-                                                               
+                                        </p>                                                               
                                         {% endif %}
                                 {% endfor %}           
                                 <br>
