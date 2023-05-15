@@ -81,7 +81,7 @@ class bee (models.Model):
 class field(models.Model):
     fieldsting_choices =[
         ('Tiene aguijón','Tiene aguijón'),
-        ('No tiene aguíjón','No tiene aguíjón'),
+        ('No tiene aguijón','No tiene aguijón'),
     ]
     fieldnative_choices = [
         ('Es nativa','Es nativa'),

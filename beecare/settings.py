@@ -173,13 +173,53 @@ CSRF_TRUSTED_ORIGINS = [
 # |=| jamás se deberá utilizar en         |=|
 # |=| producción.                         |=|
 # |=========================================|
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / config('SQL_DB_D'),
+#     }
+# }
+
+# |=================================================|
+# |=========|     BASE DE DATOS GLOBAL    |=========|
+# |=================================================|
+# |=|        Esta conexión de base de datos       |=|
+# |=|       sirve para realizar la conexion a     |=|
+# |=|       distintos SGBD, en el caso de que     |=|
+# |=|       la cadena de conexión que se este     |=|
+# |=|       configurando no posea alguno de los   |=|
+# |=|       atributos, deberá de dejarse en       |=|
+# |=|       blanco.                               |=|
+# |=================================================|
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / config('SQL_DB_D'),
+        'ENGINE': config('DB_ENGINE'),
+        'NAME': BASE_DIR / config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),
+        'PORT': config('DB_PORT'),
     }
 }
- 
+
+# |=========================================|
+# |=| Está condicional se usa en el caso  |=|
+# |=| de que el SGBD sea diferente a      |=|
+# |=| sqlite3.                            |=|
+# |=========================================|
+if config('DB_ENGINE') != 'django.db.backends.sqlite3':
+    DATABASES['default']['NAME'] = 'DB_NAME'
+
+# |=========================================|
+# |=| Está condicional es solo en el caso |=|
+# |=| de uso de mssql, ya que, este       |=|
+# |=| requiere de un driver para la conex.|=|
+# |=========================================|
+if config('DB_ENGINE') == 'mssql':
+    DATABASES['default']['OPTIONS'] = {
+        'driver': 'ODBC Driver 17 for SQL Server',
+    }
+
 # |=========================================|
 # |=====| BASE DE DATOS DE PRODUCCIÓN |=====|
 # |=========================================|
