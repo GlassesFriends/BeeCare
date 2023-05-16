@@ -193,7 +193,7 @@ CSRF_TRUSTED_ORIGINS = [
 # |=================================================|
 DATABASES = {
     'default': {
-        'ENGINE': 'django.fb.backends.sqlite3',
+        'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
