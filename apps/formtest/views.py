@@ -28,74 +28,70 @@ from .models import testform,question,answer,answerusr
 # |=====|  REFERENCIAS A FORMULARIOS  |=====|
 # |=========================================|
 from .forms import AnswerusrForm
-
 # |=============================================================|
 # |===============|      COMIENZAN VISTAS       |===============|
 # |=============================================================|
-
 def formQuestion(request,pk):
     questiontest = []
+    if request.user.is_authenticated:
+        iAnswerthetest = answerusr.objects.filter(answerusrMember=request.user.member.pk).count()
+        formtest = testform.objects.get(pk=pk)
 
-    iAnswerthetest = answerusr.objects.filter(answerusrMember=request.user.member).count()
-    formtest = testform.objects.get(pk=pk)
+        data1_questiontest =  question.objects.all().filter(questionTestform=pk)
+        data2_anwsertest = answer.objects.all().filter()
+        total_forms= testform.objects.all().filter(isEnabled=True).count()
+        total_responses= formtest.responseOrder - 1
+        get_countQuestion = []
+        get_countQuestion = len(question.objects.all().filter(questionTestform=pk))
 
-    data1_questiontest =  question.objects.all().filter(questionTestform=pk)
-    data2_anwsertest = answer.objects.all().filter()
-    total_forms= testform.objects.all().filter(isEnabled=True).count()
-    total_responses= formtest.responseOrder - 1
-    get_countQuestion = []
-    get_countQuestion = len(question.objects.all().filter(questionTestform=pk))
+        formAnswered= answerusr.objects.filter(answerusrMember = request.user.member,answerusrQuestion__in=data1_questiontest).count()
 
-    formAnswered= answerusr.objects.filter(answerusrMember = request.user.member,answerusrQuestion__in=data1_questiontest).count()
+        print(get_countQuestion)
 
-    print(get_countQuestion)
+        form1_answerToquestion = AnswerusrForm() 
+        # |======== Validación de método POST ==================|
+        if request.method == 'POST':
+            form1_answerToquestion = AnswerusrForm(request.POST)
+            # |============ Validación de primer formulario ==============|
+            if form1_answerToquestion.is_valid():
+                # |= Ciclo for de 1 hasta la cantidad de respuestas registradas =|
+                for nQuestion in range(1,get_countQuestion+1):
+                    # |========== Asignación de pregunta más el contador=========|
+                    answerusrToquestionx = "answerusrToquestion" + str(nQuestion)
+                    answerusrQuestionx = "answerusrQuestion" + str(nQuestion)
+                    answerusrx = "answerusrx" + str(nQuestion)
+                    
+                    answerusrToquestion = request.POST[answerusrToquestionx]
+                    answerusrQuestion = question.objects.get(id = request.POST[answerusrQuestionx])  
 
-    form1_answerToquestion = AnswerusrForm() 
-    # |======== Validación de método POST ==================|
-    if request.method == 'POST':
-        form1_answerToquestion = AnswerusrForm(request.POST)
-        print('Aquí entro a post')
-        # |============ Validación de primer formulario ==============|
-        if form1_answerToquestion.is_valid():
-            print('Sí soy válido1')
-            # |= Ciclo for de 1 hasta la cantidad de respuestas registradas =|
-            for nQuestion in range(1,get_countQuestion+1):
-                # |========== Asignación de pregunta más el contador=========|
-                answerusrToquestionx = "answerusrToquestion" + str(nQuestion)
-                answerusrQuestionx = "answerusrQuestion" + str(nQuestion)
-                answerusrx = "answerusrx" + str(nQuestion)
-                
-                answerusrToquestion = request.POST[answerusrToquestionx]
-                answerusrQuestion = question.objects.get(id = request.POST[answerusrQuestionx])  
+                    # |===== Creación de inserción de respuesta del usuario =====|
+                    answerusrx = answerusr.objects.create(
+                        answerusrToquestion = answerusrToquestion,
+                        answerusrQuestion = answerusrQuestion,
+                        answerusrMember = request.user.member
+                    )
 
-                # |===== Creación de inserción de respuesta del usuario =====|
-                answerusrx = answerusr.objects.create(
-                    answerusrToquestion = answerusrToquestion,
-                    answerusrQuestion = answerusrQuestion,
-                    answerusrMember = request.user.member
-                )
-                print('Ya leí datos1')
-                text = "Tus respuestas han sido enviadas correctamente, gracias por tu tiempo."
-                messages.success(request, text)
-                answerusrx.save()
-            return redirect(reverse('home'))
+                    text = "Tus respuestas han sido enviadas correctamente, gracias por tu tiempo."
+                    messages.success(request, text)
+                    answerusrx.save()
+                return redirect(reverse('home'))
+        else:
+            print('Error al entrar a POST')
+        print('Primary key: '+ str(pk))
+        print(formtest.testName)
+
+        context = {
+        'formtest': formtest,
+        'questiontest':data1_questiontest,
+        'anwsertest': data2_anwsertest,
+        'count_question': get_countQuestion,
+        'answerdone': iAnswerthetest,
+        'form': form1_answerToquestion,
+        'totalforms':total_forms,
+        'totalresponses': total_responses,
+        'formanswered':formAnswered
+        }
+        return render(request, 'member/home.html', context)
     else:
-        print('Válio madres')
-        print('valio quezo')
-        print('valio cheto')
-    print('Primary key: '+ str(pk))
-    print(formtest.testName)
-
-    context = {
-    'formtest': formtest,
-    'questiontest':data1_questiontest,
-    'anwsertest': data2_anwsertest,
-    'count_question': get_countQuestion,
-    'answerdone': iAnswerthetest,
-    'form': form1_answerToquestion,
-    'totalforms':total_forms,
-    'totalresponses': total_responses,
-    'formanswered':formAnswered
-    }
-    return render(request, 'member/home.html', context)
+        return redirect(reverse('home'))
 
