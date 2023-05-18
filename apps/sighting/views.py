@@ -85,8 +85,6 @@ def sightingRegister(request):
             fam,created1 = family.objects.get_or_create(
             familyName = familyName
             )
-
-            print('Si cargo 1')
             # |=|   Guardado de datos para family       |=|
             fam.save()
 
@@ -103,8 +101,6 @@ def sightingRegister(request):
                 subfamilyName = subfamilyName,
                 subfamilyFamily = fam
                 )
-
-                print('Si cargo 2')
                 # |=|  Guardado de datos para subfamily  |=|
                 subfam.save()
 
@@ -119,8 +115,6 @@ def sightingRegister(request):
                     gen,created3 = gender.objects.get_or_create(
                     genderName = genderName,
                     )
-
-                    print('Si cargo 3')
                     # |=|  Guardado de datos para gender       |=|
                     gen.save()
 
@@ -135,7 +129,6 @@ def sightingRegister(request):
                         specie,created4 = species.objects.get_or_create(
                         speciesName = speciesName,
                         )
-                        print('Si cargo 4')
                         # |=|    Guardado de datos para species    |=|
                         specie.save()
 
@@ -153,10 +146,8 @@ def sightingRegister(request):
                                 beeSubfamily = subfam,
                                 beeGender = gen
                             )
-                            print('Si cargo 5')
                             # |=|      Guardado de datos para bee      |=|
                             beee.save()
-                            print('Registro abeja')
 
                             # |==========================================|
                             # |=| Válidación de formulario de sighting |=|
@@ -178,7 +169,6 @@ def sightingRegister(request):
                                 sighBee = beee,
                                 sighMember = request.user.member,  
                                 ) 
-                                print('Si cargo 6')
                                 # |=|     Guardado de datos para sighting  |=|
                                 sigh.save()
 
@@ -195,7 +185,6 @@ def sightingRegister(request):
                                     fieldsting = fieldsting,
                                     fieldnative = fieldnative,
                                     )           
-                                    print('Si cargo 7')
                                     fieldd.save()
 
                                     beefieldd = beefield.objects.create(
@@ -203,7 +192,6 @@ def sightingRegister(request):
                                         beefieldField = fieldd,
                                     )
                                     beefieldd.save()
-                                    print('Si cargo 8')
 
                                 messages.success(request,"Avistamiento registrado exitosamente.")
                             else:
