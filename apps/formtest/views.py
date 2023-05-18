@@ -98,5 +98,5 @@ def formQuestion(request,pk):
         }
         return render(request, 'member/home.html', context)
     else:
-        return render(request, 'member/home.html') 
+        return redirect(reverse('home'))
 
