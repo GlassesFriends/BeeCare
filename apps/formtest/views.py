@@ -52,10 +52,8 @@ def formQuestion(request,pk):
         # |======== Validación de método POST ==================|
         if request.method == 'POST':
             form1_answerToquestion = AnswerusrForm(request.POST)
-            print('Aquí entro a post')
             # |============ Validación de primer formulario ==============|
             if form1_answerToquestion.is_valid():
-                print('Sí soy válido1')
                 # |= Ciclo for de 1 hasta la cantidad de respuestas registradas =|
                 for nQuestion in range(1,get_countQuestion+1):
                     # |========== Asignación de pregunta más el contador=========|
@@ -72,15 +70,13 @@ def formQuestion(request,pk):
                         answerusrQuestion = answerusrQuestion,
                         answerusrMember = request.user.member
                     )
-                    print('Ya leí datos1')
+
                     text = "Tus respuestas han sido enviadas correctamente, gracias por tu tiempo."
                     messages.success(request, text)
                     answerusrx.save()
                 return redirect(reverse('home'))
         else:
-            print('Válio madres')
-            print('valio quezo')
-            print('valio cheto')
+            print('Error al entrar a POST')
         print('Primary key: '+ str(pk))
         print(formtest.testName)
 
