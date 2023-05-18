@@ -28,7 +28,6 @@ from .models import testform,question,answer,answerusr
 # |=====|  REFERENCIAS A FORMULARIOS  |=====|
 # |=========================================|
 from .forms import AnswerusrForm
-from apps.member.decorators import user_auth
 # |=============================================================|
 # |===============|      COMIENZAN VISTAS       |===============|
 # |=============================================================|
