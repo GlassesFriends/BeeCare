@@ -153,7 +153,7 @@ def sightingRegister(request):
                                 beeSubfamily = subfam,
                                 beeGender = gen
                             )
-                            print('Si cargo chido 5')
+                            print('Si cargo 5')
                             # |=|      Guardado de datos para bee      |=|
                             beee.save()
                             print('Registro abeja')
