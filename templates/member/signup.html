@@ -61,7 +61,7 @@
                       <div class="col-md-12" style="text-align: left;">
                         <label class="form-label" style="text-align: left;margin-left: 8px;">Sube una imagen que te describa.</label>
                         <div class="input-group" style="border-radius: 8px;border-style: none;">
-                          <input class="form-control" type="file" style="border-style: none;border-radius: 20px;background: var(--bs-light);text-align: left;" name="membProfilePicture" onchange="load_Profile(event)" accept="image/*" /> 
+                          <input class="form-control" type="file" style="border-style: none;border-radius: 20px;background: var(--bs-light);text-align: left;" name="membProfilePicture" onchange="load_Profile(event)" accept="image/*" required="" /> 
                         </div>
                       </div>
                     </div>
@@ -103,7 +103,8 @@
                       <div class="col-md-12" style="text-align: left;">
                         <label class="form-label" style="text-align: left;margin-left: 8px;">Número de teléfono</label>
                         <div class="input-group" style="border-radius: 8px;border-style: none;">
-                          <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" inputmode="tel" placeholder="(###) ### ## ##" value="{{error.6}}"  pattern="^[0-9]+$" maxlength="10" minlength="10" name="membPhone" required="" />
+                          <input class="form-control" type="text" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);" inputmode="tel" placeholder="(###) ### ## ##" value="{{error.6}}"  pattern="^[0-9]+$" maxlength="10" minlength="10" name="membPhone" required=""
+                          data-bs-toggle="tooltip" data-bs-placement="right" title="Teléfono 10 dígitos." />
                         </div>
                       </div>
                     </div>
@@ -113,7 +114,8 @@
                       <div class="col-md-12" style="text-align: left;">
                         <label class="form-label" style="text-align: left;margin-left: 8px;">Contraseña</label>
                         <div class="input-group" style="border-radius: 8px;border-style: none;">
-                          <input class="form-control" type="password" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);border-bottom-right-radius: 0;border-top-right-radius: 0;" placeholder="Tu_C0ntr453ñ4" inputmode="email" name="password1" required="" minlength="5" maxlength="64" />
+                          <input class="form-control" type="password" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);border-bottom-right-radius: 0;border-top-right-radius: 0;" placeholder="Tu_C0ntr453ñ4" inputmode="email" name="password1" required="" minlength="8" maxlength="64" 
+                          data-bs-toggle="tooltip" data-bs-placement="bottom" title="* Se requiere de 8 a 64 caracteres. Letras, dígitos y @/./+/-/_ solo." />
                           <button id="show_password1" class="btn btn-info" style="background: var(--bs-primary);border-style: none;border-radius: 20px;border-bottom-left-radius: 0;border-top-left-radius: 0;" type="button" onclick="ShowMePassword1()"><span class="fa fa-eye-slash icon"></span></button>                                          
                         </div>
                       </div>
@@ -124,7 +126,8 @@
                       <div class="col-md-12" style="text-align: left;">
                         <label class="form-label" style="text-align: left;margin-left: 8px;">Confirmar contraseña</label>
                         <div class="input-group" style="border-radius: 8px;border-style: none;">
-                            <input class="form-control" type="password" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);border-bottom-right-radius: 0;border-top-right-radius: 0;" placeholder="Tu_C0ntr453ñ4_d3_Nu3v0" inputmode="email" name="password2" required="" minlength="5" maxlength="64" />
+                            <input class="form-control" type="password" style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);border-bottom-right-radius: 0;border-top-right-radius: 0;" placeholder="Tu_C0ntr453ñ4_d3_Nu3v0" inputmode="email" name="password2" required="" minlength="8" maxlength="64"
+                            data-bs-toggle="tooltip" data-bs-placement="bottom" title="* Se requiere de 8 a 64 caracteres. Letras, dígitos y @/./+/-/_ solo." />
                             <button id="show_password2" class="btn btn-info" style="background: var(--bs-primary);border-style: none;border-radius: 20px;border-bottom-left-radius: 0;border-top-left-radius: 0;" type="button" onclick="ShowMePassword2()"><span class="fa fa-eye-slash icon"></span></button>                                          
                         </div>
                       </div>
@@ -146,4 +149,13 @@
     </div>
   </div>
   <script src={%static '/js/scriptsImg.js' %}> </script>
+  <script src={%static '/bootstrap/js/bootstrap.bundle.min.js' %}></script>
+  <script src={%static '/bootstrap/js/bootstrap.bundle.js' %}></script>
+  <script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+    return new bootstrap.Tooltip(tooltipTriggerEl)
+  })
+  </script>
+  
 {% endblock %}
