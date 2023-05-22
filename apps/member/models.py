@@ -92,7 +92,7 @@ class member(models.Model):
     # |=| de usuario (username).                |=|
     # |=| Este se tomará del model de django.   |=|
     membEmail = models.EmailField(
-        max_length=32, verbose_name=u"Correo electrónico", unique=True)
+        max_length=60, verbose_name=u"Correo electrónico", unique=True)
     
     # |=| Relación uno a uno con el modelo user |=|
     membUser = models.OneToOneField(User, null=False, on_delete=models.CASCADE)
