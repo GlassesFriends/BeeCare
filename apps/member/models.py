@@ -49,11 +49,11 @@ def get_default_memb_image():
 class member(models.Model):
     # |=| Se trata del nombre del miembro.      |=|
     membFirstName = models.CharField(
-        max_length=20, verbose_name=u"Nombres", null=False)
+        max_length=35, verbose_name=u"Nombres", null=False)
     
     # |=| Se trata del apellido del miembro.    |=|
     membLastName = models.CharField(
-        max_length=20, verbose_name=u"Apellidos", null=False)
+        max_length=35, verbose_name=u"Apellidos", null=False)
     
     # |=| Fecha de nacimiento del trabajador.   |=|
     membDateBirth = models.DateField(
@@ -92,7 +92,7 @@ class member(models.Model):
     # |=| de usuario (username).                |=|
     # |=| Este se tomará del model de django.   |=|
     membEmail = models.EmailField(
-        max_length=32, verbose_name=u"Correo electrónico", unique=True)
+        max_length=64, verbose_name=u"Correo electrónico", unique=True)
     
     # |=| Relación uno a uno con el modelo user |=|
     membUser = models.OneToOneField(User, null=False, on_delete=models.CASCADE)
