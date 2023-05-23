@@ -95,3 +95,74 @@ def formQuestion(request,pk):
     else:
         return redirect(reverse('home'))
 
+# |=========================================|
+# |=====| get_Average de formularios  |=====|
+# |=========================================|
+# |=| Llamadas de métodos.                |=|
+# |=========================================|
+def get_Average(request):
+    CalProm(1)
+    CalProm(2)
+    CalProm(3)
+
+    context = {
+        }
+    return render(request, 'form/average.html', context)
+
+# |=========================================|
+# |=====|  Calculo de promedio forms  |=====|
+# |=========================================|
+# |=| Es parte de home, se utiliza para   |=|
+# |=| obtener de forma automática las     |=|
+# |=| respuestas del formulario.          |=|
+# |=========================================|
+def CalProm(num):
+    # |=========================================|
+    # |=|Sub-resultados de obtención de datos |=|
+    # |=========================================|
+    result1 = []
+
+    result1_1 = []
+    result2_2 = []
+
+    result1_1_1 = []
+
+    result1_1_1_1 = []
+
+    quest1 = question.objects.filter(questionTestform=num)
+    # |=========================================|
+    # |===| Obtencion de pk de preguntas    |===|
+    # |===| correspondientes al formulario. |===|
+    # |=========================================|
+    for data1 in quest1:
+        result1.append(data1.pk)
+    # |=========================================|
+    # |===| Obtención de respuestas         |===|
+    # |===| correspondientes al formulario. |===|
+    # |=========================================|
+    for answerData1 in result1:
+        answer1 = answer.objects.filter(answerQuestion = answerData1).filter(answerRight=True)
+        for answerForData1 in answer1:
+            result1_1.append(answerForData1.pk)
+            answerUsrData1 = answerusr.objects.filter(answerusrToquestion = answerForData1.pk) 
+            for answerForData2 in answerUsrData1:
+                result1_1_1.append(answerForData2.pk)
+    # |=========================================|
+    # |===| Obtención de respuestas T and F |===|
+    # |===| correspondientes al formulario. |===|
+    # |=========================================|
+    for answerData2_2 in result1:
+        answer2 = answer.objects.filter(answerQuestion = answerData2_2).filter(answerRight=False) 
+        for answerForData2_2 in answer2:
+            result2_2.append(answerForData2_2.pk)
+            answerUsrData2_2 = answerusr.objects.filter(answerusrToquestion = answerForData2_2.pk)
+            for answerForData2_2_2 in answerUsrData2_2:
+                result1_1_1_1.append(answerForData2_2_2.pk)
+            print(" ")
+    # |=========================================|
+    # |==| Operaciones para obtener promedio |==|
+    # |==| de cada formulario en automático. |==|
+    # |=========================================|
+    Fres = ((len(result1_1_1))/(len(result1_1_1_1) + (len(result1_1_1))) * 100)
+    print("Promedio form " + str(num) + ":")
+    print(Fres)
