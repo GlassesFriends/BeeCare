@@ -52,8 +52,10 @@ current_week = date.today().isocalendar()[1]
 # |=| Proceso de Ckech in de trabajador.  |=|
 # |=========================================|
 def Dashboard(request):
+    graphicQuest = 0
     context = {
         'home': 'active',
+        'graphicQuest':graphicQuest,
         }
     return render(request, 'member/home.html', context)
 

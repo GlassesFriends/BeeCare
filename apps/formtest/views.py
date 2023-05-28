@@ -32,6 +32,7 @@ from .forms import AnswerusrForm
 # |===============|      COMIENZAN VISTAS       |===============|
 # |=============================================================|
 def formQuestion(request,pk):
+    graphicQuest = 1
     questiontest = []
     if request.user.is_authenticated:
         iAnswerthetest = answerusr.objects.filter(answerusrMember=request.user.member.pk).count()
@@ -89,25 +90,36 @@ def formQuestion(request,pk):
         'form': form1_answerToquestion,
         'totalforms':total_forms,
         'totalresponses': total_responses,
-        'formanswered':formAnswered
+        'formanswered':formAnswered,
+        'graphicQuest':graphicQuest,
         }
         return render(request, 'member/home.html', context)
     else:
         return redirect(reverse('home'))
 
-# |=========================================|
-# |=====| get_Average de formularios  |=====|
-# |=========================================|
-# |=| Llamadas de métodos.                |=|
-# |=========================================|
-def get_Average(request):
-    CalProm(1)
-    CalProm(2)
-    CalProm(3)
 
-    context = {
-        }
-    return render(request, 'form/average.html', context)
+
+# |=========================================|
+# |=====|  Calculo de promedio forms  |=====|
+# |=====|  jsonAverage                |=====|
+# |=========================================|
+# |=| Es parte de home, se utiliza para   |=|
+# |=| obtener de forma automática las     |=|
+# |=| respuestas del formulario.          |=|
+# |=========================================|
+def jsonAverage(request):
+    result1 = [0,0,0]
+
+    result1[0] = CalProm(1)
+    result1[1] = CalProm(2)
+    result1[2] = CalProm(3)
+    
+    if (result1[0] > 0 or result1[1] > 0 or result1[2] > 0 ):
+        data1 = {'message': "Success","result":result1}
+    else:
+        data1 = {'message': "No se encontro"}
+
+    return JsonResponse(data1)
 
 # |=========================================|
 # |=====|  Calculo de promedio forms  |=====|
@@ -158,11 +170,12 @@ def CalProm(num):
             answerUsrData2_2 = answerusr.objects.filter(answerusrToquestion = answerForData2_2.pk)
             for answerForData2_2_2 in answerUsrData2_2:
                 result1_1_1_1.append(answerForData2_2_2.pk)
-            print(" ")
     # |=========================================|
     # |==| Operaciones para obtener promedio |==|
     # |==| de cada formulario en automático. |==|
     # |=========================================|
     Fres = ((len(result1_1_1))/(len(result1_1_1_1) + (len(result1_1_1))) * 100)
-    print("Promedio form " + str(num) + ":")
-    print(Fres)
+
+    return Fres
+
+

@@ -21,5 +21,5 @@ from django.shortcuts import redirect
 
 urlpatterns=[
     path('<int:pk>/',views.formQuestion, name='formnum'),
-    path('averageForm/',views.get_Average, name='average')
+    path('formAverageForm/',views.jsonAverage, name='formAverageForm'),
 ]
