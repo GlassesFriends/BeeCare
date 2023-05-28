@@ -50,8 +50,13 @@ ALLOWED_HOSTS = [
     '192.168.17.75',    # IP de desarrollo 
     '192.168.32.99',    # IP de desarrollo
     '192.168.100.120',  # IP de desarrollo
+    'beecare.glassesfriends.com',  # PRODUCCIÓN
     'beecaretest.herokuapp.com',  # Heroku
+    'gf-beecare.herokuapp.com',  # Heroku
+    'gf-beecare.azurewebsites.net',  # Azure
     ]
+
+MESSAGE_STORAGE = "django.contrib.messages.storage.cookie.CookieStorage"
 
 # |=============================================================|
 # |===============|  APLICACIONES DEL PROYECTO  |===============|
@@ -79,7 +84,10 @@ LOCAL_APPS = [
     # 'apps.post',
     # 'apps.reaction',
     'apps.sighting',
+    'apps.wiki',
+    'apps.formtest',
 ]
+
 # |=========================================|
 # |=====|   APLICACIONES DE TERCEROS  |=====|
 # |=========================================|
@@ -126,11 +134,30 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+        
+            'libraries':{
+            'blog_extras': 'apps.templatetags.blog_extras',
+            }
         },
     },
 ]
 
 WSGI_APPLICATION = 'beecare.wsgi.application'
+
+# |=============================================================|
+# |===============| CONJUNTO DE DOMINIOS CSRF   |===============|
+# |=============================================================|
+# |=| Solo se debe mantener una base de datos activa.         |=|
+# |=============================================================|
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://*.glassesfriends.com',  # PRODUCCIÓN
+    'http://*.glassesfriends.com',  # PRODUCCIÓN
+    # 'https://beecare.glassesfriends.com/memb/signup',  # PRODUCCIÓN
+    'https://*.azurewebsites.net',  # Azure
+    'http://*.azurewebsites.net',  # Azure
+    # 'https://gf-beecare.azurewebsites.net/memb/signup',  # Azure
+    ]
 
 # |=============================================================|
 # |===============| BASES DE DATOS DEL PROYECTO |===============|
@@ -146,13 +173,54 @@ WSGI_APPLICATION = 'beecare.wsgi.application'
 # |=| jamás se deberá utilizar en         |=|
 # |=| producción.                         |=|
 # |=========================================|
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / config('SQL_DB_D'),
+#     }
+# }
+
+# |=================================================|
+# |=========|     BASE DE DATOS GLOBAL    |=========|
+# |=================================================|
+# |=|        Esta conexión de base de datos       |=|
+# |=|       sirve para realizar la conexion a     |=|
+# |=|       distintos SGBD, en el caso de que     |=|
+# |=|       la cadena de conexión que se este     |=|
+# |=|       configurando no posea alguno de los   |=|
+# |=|       atributos, deberá de dejarse en       |=|
+# |=|       blanco.                               |=|
+# |=================================================|
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / config('SQL_DB_D'),
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
- 
+
+# |=========================================|
+# |=| Está condicional se usa en el caso  |=|
+# |=| de que el SGBD sea diferente a      |=|
+# |=| sqlite3.                            |=|
+# |=========================================|
+if config('DB_ENGINE',default='db.sqlite3') != 'db.sqlite3':
+    DATABASES['default']['NAME'] = config('DB_NAME')
+    DATABASES['default']['ENGINE'] = config('DB_ENGINE')
+    DATABASES['default']['USER'] = config('DB_USER')
+    DATABASES['default']['PASSWORD'] = config('DB_PASSWORD') 
+    DATABASES['default']['HOST'] = config('DB_HOST')
+    DATABASES['default']['PORT'] = config('DB_PORT', default='')
+
+# |=========================================|
+# |=| Está condicional es solo en el caso |=|
+# |=| de uso de mssql, ya que, este       |=|
+# |=| requiere de un driver para la conex.|=|
+# |=========================================|
+    if config('DB_ENGINE',default='') == 'mssql':
+        DATABASES['default']['OPTIONS'] = {
+            'driver': 'ODBC Driver 17 for SQL Server',
+        }
+
 # |=========================================|
 # |=====| BASE DE DATOS DE PRODUCCIÓN |=====|
 # |=========================================|
@@ -173,8 +241,10 @@ DATABASES = {
 #         'NAME': config('SQL_DB_T'),
 #         'USER': config('SQL_USER'),
 #         'PASSWORD': config('SQL_PASSWORD'),
-#         'HOST': 'testing.usmex.solutions' + config('SQL_INSTANCE'),
-#         'OPTIONS': {'driver': 'ODBC Driver 17 for SQL Server', },
+#         'HOST': 'beecare.database.windows.net',
+#         'OPTIONS': {
+#             'driver': 'ODBC Driver 17 for SQL Server',
+#             },
 #     }
 # }
 
@@ -203,7 +273,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'America/Tijuana'
 
 USE_I18N = True
 

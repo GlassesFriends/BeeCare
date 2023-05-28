@@ -1,63 +1,142 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-  <header class="header">
-    <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image:url(&quot;/static/img/Bees/bee2.png&quot;);padding-top:100px;padding-bottom:175px;">
+
+<header class="header">
+    <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/cover9.png&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
       <div class="container">
         <div class="col-md-6 offset-md-3 header-title">
-          <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;margin-top: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;"><strong>MAPA DE AVISTAMIENTOS</strong></h1>
-        </div>
-      </div>
+            <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;">
+                <strong>Mapa de avistamientos</strong>
+            </h1>      
+          </div>
     </div>
-  </header>
-  <div class="container py-4 py-xl-5" style="margin-bottom: -50px;padding-left: 0px;padding-right: 0px;margin-top: -48px;">
-    <div class="row">
-      <div class="col">
-        <h1 style="font-size: 42px;margin-top: 42px;">Mapa de avistamientos</h1>
+</header>
+
+<div class="container py-4 py-xl-5"
+  style="margin-bottom: -50px;padding-left: 0px;padding-right: 0px;margin-top: -48px;">
+  <div class="container py-4 py-xl-5"
+    style="padding-right: 0px;padding-left: 0px;margin-bottom: -24px;padding-bottom: 36px;padding-top: 16px;margin-top: -6px;">
+    <div class="row row-cols-1 row-cols-md-2" style="background: var(--bs-white);border-radius: 20px;">
+      <div class="col" style="padding: 0px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;display: flex;">
+        <picture style="display: flex;">
+          <img class="img-fluid d-none d-sm-block" src={%static '/img/Bees/bee6.png' %}
+            style="border-top-left-radius: 20px;border-bottom-left-radius: 20px;height: auto;max-height: 100%;display: flex;"
+            width="660" height="359" />
+        </picture>
       </div>
-    </div>
-    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3" style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;background: var(--bs-white);border-radius: 20px;">
-      <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="border-style: none;">
-        <div id="mapa" allowfullscreen="" frameborder="0" loading="lazy" width="100%" height="100%" style="padding-bottom: 0px;height: 400px;border-radius: 20px;"></div>
-      </div>
-    </div>
-  </div>
-  <div class="container py-4 py-xl-5" style="margin-top: -26px;">
-    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-      <!-- Tarjetas de avistamientos -->
-      {% for sighting in sightings %}
-      <div class="col-xxl-4">
-        <div class="card" style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
-          <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;" src="https://res.cloudinary.com/dwxkhmtb3/{{sighting.sighPicture}}" />
-          <div class="card-body p-4" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
-            <p class="text-{% if sighting.sighApproved %}primary{% else %}danger{% endif %} card-text mb-0">Avistamiento 
-              {% if sighting.sighApproved %}
-              aprobado
+      <div class="col-xxl-6 d-flex flex-column justify-content-center p-4">
+        <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
+          <div>
+            <h4 style="font-size: 44px;font-weight: bold;text-align: center;"> ¿Haz visto una abeja?</h4>
+            <p style="font-size: 18px;text-align: center;">
+              {% if user.is_authenticated %}
+              ¡Excelente!, recuerda que puedes compartirnos tu avistamiento.<br />
               {% else %}
-              en espera de aprobación
+              ¡Excelente!, registrate para poder compartir tu avistamiento.<br />
               {% endif %}
             </p>
-            <h4 class="card-title">{{sighting.sighBee.beeName}}<br/></h4>
-            <p class="card-text"><strong>Fecha del avistamiento: </strong>{{sighting.sighDate}}</p>
-            <p class="card-text"><strong>Familia: </strong>{{sighting.sighBee.beeSubfamily.subfamilyFamily}}</p>
-            <p class="card-text"><strong>Sub-familia: </strong>{{sighting.sighBee.beeSubfamily}}</p>
-            <p class="card-text"><strong>Comentario: </strong>{{sighting.sighComment}}</p>
-            <p class="card-text"></p>
-            <div class="d-flex">
-              <div>
-                <p class="fw-bold mb-0"><strong>Registrado por: </strong>{{sighting.sighMember}}</p>
+            <div class="row align-items-center" style="text-align: center;">
+              <div class="col-xxl-12 align-items-center">
+                {% if user.is_authenticated %}
+                <a class="btn btn-primary" href="{% url 'sighting-reg' %}" type="button"
+                  style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">
+                  Registrar avistamiento</a>
+                {% else %}
+                <a class="btn btn-primary" href="{% url 'signup' %}" type="button"
+                  style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">
+                  ¡Quiero registrarme!</a>
+                {% endif %}
               </div>
             </div>
           </div>
         </div>
       </div>
-      {% endfor %}
-      
-      <!-- Tarjetas de avistamientos -->
     </div>
   </div>
+  <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3"
+    style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;background: var(--bs-white);border-radius: 20px;">
+    <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="border-style: none;">
+      <div id="mapa" allowfullscreen="" frameborder="0" loading="lazy" width="100%" height="100%"
+        style="padding-bottom: 0px;height: 500px;border-radius: 20px;"></div>
+    </div>
+  </div>
+  <div class="col">
+    <h1 style="font-size: 42px;margin-top: 42px;">Avistamientos registrados</h1>
+  </div>
+<!-- Aprobados y no aprobados -->
+<div class="container py-4 py-xl-5"
+    style="margin-bottom: -50px;padding-left: 0px;padding-right: 0px;margin-top: -48px;">
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3"
+        style="margin-left: -22px;padding-top: 18px;margin-bottom: 23px;">
+        <div class="col-lg-6 col-xl-6">
+            <div class="card border-light border-1 d-flex justify-content-center p-4"
+                style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
+                <div class="card-body">
+                    <div>
+                        <h4 class="fw-bold" style="font-size: 32px;text-align: center;">Avistamientos aprobados</h4>
+                        <p class="text-muted" style="font-size: 24px;text-align: center;">{{Aproved}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 col-xl-6">
+            <div class="card border-light border-1 d-flex justify-content-center p-4"
+                style="margin-right: -14px;border-radius: 20px;">
+                <div class="card-body">
+                    <div>
+                      <h4 class="fw-bold" style="font-size: 32px;text-align: center;">Avistamientos no aprobados</h4>
+                      <p class="text-muted" style="font-size: 24px;text-align: center;">{{NoAproved}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Aprobados y no aprobados -->
 
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-  <script src={%static '/js/sightingGeneral.js' %}></script>
-  <script src={%static '/js/scriptsImg.js' %}></script>
+</div>
+
+<div class="container py-4 py-xl-5" style="margin-top: -26px;">
+  <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+    <!-- Tarjetas de avistamientos -->
+
+    {% for sighting in sightings %}
+    <div class="col-xxl-4">
+      <div class="card"
+        style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
+        <img class="card-img-top w-100 d-block fit-cover"
+          style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;"
+          src="https://res.cloudinary.com/dwxkhmtb3/{{sighting.sighPicture}}" />
+        <div class="card-body p-4" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
+          <p class="text-{% if sighting.sighApproved %}primary{% else %}danger{% endif %} card-text mb-0">Avistamiento
+            {% if sighting.sighApproved %}
+            aprobado
+            {% else %}
+            en espera de aprobación
+            {% endif %}
+          </p>
+          <h4 class="card-title">{{sighting.sighBee.beeName}}<br /></h4>
+          <p class="card-text"><strong>Fecha del avistamiento: </strong>{{sighting.sighDate}}</p>
+          <p class="card-text"><strong>Familia: </strong>{{sighting.sighBee.beeSubfamily.subfamilyFamily}}</p>
+          <p class="card-text"><strong>Sub-familia: </strong>{{sighting.sighBee.beeSubfamily}}</p>
+          <p class="card-text"><strong>Comentario: </strong>{{sighting.sighComment}}</p>
+          <p class="card-text"></p>
+          <div class="d-flex">
+            <div>
+              <p class="fw-bold mb-0"><strong>Registrado por: </strong>{{sighting.sighMember}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+
+    <!-- Tarjetas de avistamientos -->
+  </div>
+</div>
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
+<script src={%static '/js/sightingGeneral.js' %}></script>
+<script src={%static '/js/scriptsImg.js' %}></script>
 {% endblock %}

@@ -19,6 +19,11 @@ from django.contrib import messages
 # |=|  Se trata de la validación para corroborár que el       |=|
 # |=|  usuario que esté intentando ingresar esté logueado.    |=|
 # |=============================================================|
+
+# |==Función auth a través del argumento de correo y contraseña==|
+# |==Verifica dentro del modelo de usuarios los datos ingresados=|
+# |=Del caso contrario este retorna al usuario al home y deniega=|
+# |=====================el acceso a este=========================|
 def user_auth(view_func):
     def wrapper_func(request, *args, **kwargs):
         if request.user.is_authenticated:

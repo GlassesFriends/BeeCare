@@ -1,0 +1,117 @@
+{% extends 'base/base.html' %}
+{% load static %}
+{% block content %}
+<header class="header">
+    <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/cover1.jpg&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
+      <div class="container">
+        <div class="col-md-6 offset-md-3 header-title">
+            <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;">
+                <strong>¿Quiénes somos?</strong>
+            </h1>      </div>
+    </div>
+</header>
+
+<div class="container py-4 py-xl-5" style="padding-left: 0px;padding-right: 0px;margin-top: 0px;padding-top: 8px;margin-bottom: -64px;padding-bottom: 66px;">
+
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3"
+        style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;background: var(--bs-white);border-radius: 20px;">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="border-style: none;">
+            <h4 class="fw-bold" style="font-size: 41px;text-align: center;color: rgb(73,64,56);">Sobre nosotros</h4>
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3"
+        style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
+        <div class="col-sm-12 col-md-4 col-lg-4 col-xl-3 col-xxl-4 text-center d-md-flex d-lg-flex align-items-md-center align-items-lg-center"
+            style="box-shadow: 0px 0px;text-shadow: 0px 0px;"><img class="img-fluid"
+                src="{%static '/img/logos/BeeCareHorizontalLogo.svg' %}" width="350"></div>
+        <div class="col-sm-12 col-md-8 col-lg-8 col-xl-9 col-xxl-8" style="box-shadow: 0px 0px;text-shadow: 0px 0px;">
+            <h1 class="fs-2 text-start"><strong>{% block title %}¿Quiénes somos?{% endblock title %}</strong><br></h1>
+            <p class="lead text-start">Nuestro enfoque principal es apoyar a los jóvenes a que conozcan sobre la
+                variedad de abejas nativas que existen en nuestra localidad, además de hacer conciencia e informar a la
+                comunidad sobre la importancia de las abejas en nuestro planeta y porqué debemos de cuidarlas.<br></p>
+        </div>
+    </div>
+    <div class="row gy-0 row-cols-1 row-cols-md-2 row-cols-lg-3"
+        style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
+        <div class="col-lg-6 text-dark">
+            <h1 class="fs-2"><strong>Misión</strong></h1>
+            <p class="lead">Informar a la comunidad sobre la importancia de las abejas en nuestro planeta y el por qué
+                debemos cuidarlas.<br></p>
+        </div>
+        <div class="col-lg-6 text-primary">
+            <h1 class="fs-2"><strong>Visión</strong></h1>
+            <p class="lead">Asociarnos con otras entidades que tengan una misión de compromiso con la sociedad y su
+                hábitat.<br></p>
+        </div>
+    </div>
+    <div class="row gy-0 row-cols-1 row-cols-md-2 row-cols-lg-3"
+        style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
+        <div class="col-lg-6 text-primary">
+            <h1 class="fs-2"><strong>Valores</strong></h1>
+            <p class="lead">Respeto, honestidad, trabajo en equipo, orientación al cliente.<br></p>
+        </div>
+        <div class="col-lg-6 text-dark">
+            <h1 class="fs-2"><strong>Objetivos</strong></h1>
+            <p class="lead">Dar a conocer la importancia de las abejas mientras ayudamos a nuestra comunidad a informarse
+                sobre las abejas y los beneficios que pueden brindarnos.<br></p>
+        </div>
+    </div>
+        </div>
+    </div>
+    
+</div>
+<div class="container py-4 py-xl-5" style="padding-bottom: 95px;padding-top: 20px;">
+    <h2 class="fs-1 fw-bold text-center text-dark" style="padding-top: 0px;padding-bottom: 0px;margin-top: -54px;">
+        Conoce al equipo</h2>
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3 center" style="padding-top: 0px;margin-top: -8px;">
+        <div class="col-lg-6 center align-items-center">
+            <div class="card bg-transparent align-items-center center border-0">
+                    <img class="rounded-circle border-6 shadow align-items-center bg-warning" alt="profileAlvaro" src="/static/img/profile/profileAlvaro.png" width="80%"/>
+                <div class="card-body p-4">
+                    <h4 class="text-center card-title"><strong>González Martínez Álvaro Gabriel</strong></h4>
+                    <p class="text-center card-text">Líder, desarrollador y DBA</p>
+                    <p class="text-center card-text"><strong>
+                        <svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        <a href="https://github.com/Alvaroggm123">
+                        github/Alvaroggm123</a></strong></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:a.gonzalez@glassesfriends.com">a.gonzalez@glassesfriends.com</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 center align-items-center">
+            <div class="card bg-transparent align-items-center center border-0">
+                    <img class="rounded-circle border-6 shadow align-items-center bg-warning" alt="profileAlvaro" src="/static/img/profile/profileAbril.png" width="80%"/>
+                <div class="card-body p-4">
+                    <h4 class="text-center card-title"><strong>Ramirez Flores Abril</strong></h4>
+                    <p class="text-center card-text">Diseñadora y desarrolladora</p>
+                    <p class="text-center card-text"><strong>
+                        <svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        <a href="https://github.com/iscRamirezAbril">
+                        github/iscRamirezAbril</a></strong></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:a.ramirez@glassesfriends.com">a.ramirez@glassesfriends.com</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-6 center align-items-center">
+            <div class="card bg-transparent align-items-center center border-0">
+                    <img class="rounded-circle border-6 shadow align-items-center bg-warning" alt="profileAlvaro" src="/static/img/profile/profileDaniel.png" width="80%"/>
+                <div class="card-body p-4">
+                    <h4 class="text-center card-title"><strong>Corona García Daniel Alejandro</strong></h4>
+                    <p class="text-center card-text">Desarrollador y DBA</p>
+                    <p class="text-center card-text"><strong>
+                        <svg height="16" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32" data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+                            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                        </svg>
+                        <a href="https://github.com/corona9955">
+                        github/corona9955</a></strong></p>
+                        <p><i class="fas fa-envelope"></i> <a href="mailto:d.corona@glassesfriends.com">d.corona@glassesfriends.com</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</header>
+</body>
+{% endblock %}

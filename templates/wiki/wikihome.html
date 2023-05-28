@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<header class="header">
+    <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/cover6.png&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
+      <div class="container">
+        <div class="col-md-6 offset-md-3 header-title">
+          <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;"><strong>{% block title %}Wiki{% endblock title %}</strong></h1>
+        </div>
+      </div>
+    </div>
+</header>
+
+<div class="col-md-6 offset-md-3 header-title">
+  <h1 class="text-center"><strong>Artículos</strong></h1>
+</div>
+
+  <div class="container py-4 py-xl-5" style="margin-top: -26px;">
+    <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+      <!-- Tarjetas de artículos -->
+      {% for post in posts %}
+      <div class="col-xxl-4">
+        <div class="card" style="border-top-left-radius: 20px;border-top-right-radius: 20px;border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
+          <img class="card-img-top w-100 d-block fit-cover" style="height: 200px;border-top-left-radius: 20px;border-top-right-radius: 20px;" src="{{post.bPostCoverImage.url}}" />
+          <div class="card-body p-4" style="border-bottom-right-radius: 20px;border-bottom-left-radius: 20px;">
+            <h4 class="card-title"><strong>{{post.bPostTitle}}</strong><br/></h4>
+            <p class="card-text">{{post.bPostCreated_at}}</p>
+            <p class="card-text">{{post.bPostIntro}}</p>
+            <p class="card-text"></p>
+            <div class="d-flex">
+              <div>
+                <a href="{% url 'article_detail' post.bPostSlug %}" class="btn btn-primary" type="button"
+                style="width: 190px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;margin: 0px;margin-right: 16px;border-style: none;margin-left: 16px;padding-right: 0px;padding-left: 0px;border-radius: 20px;">
+                Leer más </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      
+      <!-- Tarjetas de artículos -->
+    </div>
+  </div>
+{% endblock %}

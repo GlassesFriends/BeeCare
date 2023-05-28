@@ -1,20 +1,25 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
+
+  
 <header class="header">
     <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block" style="background-image: url(&quot;/static/img/Bees/bee2.png&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
-        <div class="container">
-            <div class="col-md-6 offset-md-3 header-title">
-                <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;"><strong>Inicio de sesión</strong></h1>
-            </div>
-        </div>
+      <div class="container">
+        <div class="col-md-6 offset-md-3 header-title">
+            <h1 class="text-center" style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;">
+                <strong>{% block title %}Inicio de sesión{% endblock title %}</strong>
+            </h1>      
+          </div>
     </div>
+  </header>
+
     <div class="container py-4 py-xl-5" style="padding-left: 0px;padding-right: 0px;margin-top: 0px;padding-top: 8px;margin-bottom: -64px;padding-bottom: 66px;">
         <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-lg-3" style="text-align: center;margin-left: 0px;padding-top: 0px;margin-top: -16px;padding-bottom: 45px;margin-bottom: 24px;">
             <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="box-shadow: 0px 0px;text-shadow: 0px 0px;">
                 <div class="card border-light border-1 d-flex justify-content-center p-4" style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
                     <div class="row" style="text-align: center;">
-                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12"><img style="max-width: 40%;min-height: 100%;margin-bottom: 16px;margin-top: 16px;max-height: 100%;" src={%static '/img/logos/Bee%20Care%20Horizontal%20Logo.svg' %}></div>
+                        <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12"><img style="max-width: 40%;min-height: 100%;margin-bottom: 16px;margin-top: 16px;max-height: 100%;" src={%static '/img/logos/BeeCareHorizontalLogo.svg' %}></div>
                         <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="text-align: center;">
                             <form method="POST">
                                 {% csrf_token %}
@@ -28,7 +33,7 @@
                                         <div class="row">
                                             <div class="col-md-12 col-xxl-12" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Correo electrónico</label>
                                                 <div class="input-group" style="border-radius: 8px;border-style: none;">
-                                                    <input class="form-control" name="username" type="text" style="background: var(--bs-light);border-style: none;border-radius: 20px;" inputmode="email" autofocus="" required="" placeholder="Tu@correo.com"></div>
+                                                <input class="form-control" name="username" type="text" style="background: var(--bs-light);border-style: none;border-radius: 20px;" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$" autofocus="" required="" placeholder="Tu@correo.com"></div>
                                             </div>
                                         </div>
                                     </div>
@@ -36,7 +41,9 @@
                                         <div class="row">
                                             <div class="col-md-12" style="text-align: left;"><label class="form-label" style="text-align: left;margin-left: 8px;">Contraseña</label>
                                                 <div class="input-group" style="border-radius: 8px;border-style: none;">
-                                                    <input class="form-control" name="password" type="password" style="background: var(--bs-light);border-style: none;border-radius: 20px;" required="" placeholder="Tu_c0ntr453ñ4"></div>
+                                                    <input class="form-control" name="password" type="password" style="background: var(--bs-light);border-style: none;border-radius: 20px;border-bottom-right-radius: 0;border-top-right-radius: 0;" required="" placeholder="Tu_c0ntr453ñ4">
+                                                    <button id="show_password" class="btn btn-info" style="background: var(--bs-primary);border-style: none;border-radius: 20px;border-bottom-left-radius: 0;border-top-left-radius: 0;" type="button" onclick="ShowMePassword()"><span class="fa fa-eye-slash icon"></span></button>                                          
+                                                </div> 
                                             </div>
                                         </div>
                                     </div>
@@ -66,5 +73,4 @@
             </div>
         </div>
     </div>
-</header>
 {% endblock %}

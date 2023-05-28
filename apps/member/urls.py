@@ -25,6 +25,8 @@ from django.shortcuts import redirect
 urlpatterns = [
     # |=| Dashboard de miembros.              |=|
     path('', views.Dashboard, name='home'),
+    # |=| Página sobre BeeCare.        |=|
+    path('about', views.About, name='about'),
     # |=| Registro de nuevos miembros.        |=|
     path('signup', views.memberSignUp, name='signup'),
     # |=| Cierre de sesión de miembros.       |=|

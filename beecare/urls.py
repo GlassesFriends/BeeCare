@@ -14,6 +14,8 @@ from django.urls import path, include
 
 # |=| Biblioteca que permite redireccionar|=|
 from django.shortcuts import redirect
+# |=| Biblioteca que permite personalizar la página de error 404 |=|
+# from django.conf.urls import handler404
 
 # |=============================================================|
 # |===============|        Lista de URLs        |===============|
@@ -26,9 +28,15 @@ urlpatterns = [
     path('', lambda req: redirect('/memb/')),
     
     # |===============================================|
-    # |========|     DIRS. DE TRABAJADORES   |========|
+    # |========|       DIRS. DE MIEMBROS     |========|
     # |===============================================|
     path('memb/', include('apps.member.urls')),
+
+    # |===============================================|
+    # |========|     DIRS. DE FORMULARIOS    |========|
+    # |===============================================|
+    path('memb/', include('apps.formtest.urls')),
+
 
     # |===============================================|
     # |=============| DIRS. DE SIGHTING |=============|
@@ -36,7 +44,14 @@ urlpatterns = [
     path('sighting/', include('apps.sighting.urls')),
 
     # |===============================================|
+    # |=============|   DIRS. DE WIKI   |=============|
+    # |===============================================|
+    path('wiki/', include('apps.wiki.urls')),
+    
+    # |===============================================|
     # |========|   DIRS. DE ADMINISTRACIÓN   |========|
     # |===============================================|
     path('admin/', admin.site.urls),
 ]
+
+# handler404 = 'apps.member.views.error404'

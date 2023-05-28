@@ -10,7 +10,7 @@ from django import forms
 # |=========================================|
 # |=====|     REFERENCIAS A MODELOS   |=====|
 # |=========================================|
-from .models import subfamily,family,gender,species,bee,sighting
+from .models import subfamily,family,gender,species,bee,sighting,field
 
 
 # |=============================================================|
@@ -102,4 +102,19 @@ class SightingForm(forms.ModelForm):
             "sighLng",
             "sighPicture",
             "sighComment",
+        ]
+
+# |=========================================|
+# |=====|  FORMULARIO DE FIELDFORM    |=====|
+# |=========================================|
+# |=| Se da formato a cada uno de los     |=|
+# |=| campos que se utilizarán.           |=|
+# |=========================================|
+
+class FieldForm(forms.ModelForm):
+    class Meta:
+        model = field
+        fields = [
+            "fieldsting",
+            "fieldnative",
         ]

@@ -1,17 +1,20 @@
 {% extends 'base/base.html' %}
 {% load static %}
 {% block content %}
-<section class="text-center text-white d-sm-none d-md-block d-none d-sm-block"
-    style="background: url(&quot;/static/img/Bees/cover0.jpg&quot;) no-repeat center center;background-size: cover;height: 707px;padding-top: 55px;margin-bottom: 2px;padding-bottom: 84px;margin-top: 92px;">
-    <div class="overlay"></div>
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-9 mx-auto position-relative">
-                <h2 class="mb-4"></h2>
-            </div>
+
+
+<header class="header">
+    <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block"
+        style="background-image: url(&quot;/static/img/Bees/cover0.jpg&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px; height: 360px;">
+        <div class="container">
         </div>
-    </div>
-</section>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src={%static '/bootstrap/js/bootstrap1.min.js' %}></script>
+        <script src={%static '/js/Chart.min.js' %}></script>
+        <script src={%static '/bootstrap/js/jquery1.min.js' %}></script>
+        <link rel="stylesheet" href={%static '/css/elements.css' %} />
+</header>
+
 <div class="container py-4 py-xl-5"
     style="padding-right: 0px;padding-left: 0px;margin-bottom: -24px;padding-bottom: 36px;padding-top: 14px;margin-top: 82px;">
     <div class="row row-cols-1 row-cols-md-2" style="background: var(--bs-white);border-radius: 20px;">
@@ -26,16 +29,20 @@
         <div class="col-xxl-6 d-flex flex-column justify-content-center p-4">
             <div class="text-center text-md-start d-flex flex-column align-items-center align-items-md-start mb-5">
                 <div>
-                    <h4 style="font-size: 44px;font-weight: bold;text-align: center;">¿Qué es Bee Care?</h4>
+                    <h4 style="font-size: 44px;font-weight: bold;text-align: center;">¿Qué es {% block title %}Bee
+                        Care{% endblock title %}?</h4>
                     <p style="font-size: 18px;text-align: center;">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s.<br />
+                        Se trata de un proyecto que busca cambiar la perspectiva de las personas sobre las abejas.
+                        Nuestro plan es registar los avistamientos y así poder mostrar la gran variedad de abejas
+                        cercanas a tu localidad.
+                        <br />
                     </p>
                     <div class="row align-items-center" style="text-align: center;">
                         <div class="col-xxl-12 align-items-center">
-                            <button class="btn btn-primary" type="button"
-                                style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">Quiero
-                                conocer más</button>
+                            <a class="btn btn-primary" type="button" href="{% url 'about' %}"
+                                style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">
+                                ¡Quiero saber más!
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -53,20 +60,20 @@
                 <div class="card-body">
                     <div>
                         <h4 class="fw-bold" style="font-size: 44px;text-align: center;">Misión</h4>
-                        <p class="text-muted" style="font-size: 18px;text-align: center;">Erat netus est hendrerit,
-                            nullam et quis ad cras porttitor iaculis. Bibendum vulputate cras aenean.</p>
+                        <p class="text-muted" style="font-size: 18px;text-align: center;">Informar a la comunidad sobre
+                            la importancia de las abejas en nuestro planeta y el por qué debemos cuidarlas.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-lg-6 col-xl-6">
-            <div class="card border-light border-1 d-flex justify-content-center p-4"
+            <div class="card border-light G. K. Chestertonborder-1 d-flex justify-content-center p-4"
                 style="margin-right: -14px;border-radius: 20px;">
                 <div class="card-body">
                     <div>
                         <h4 class="fw-bold" style="font-size: 44px;text-align: center;">Visión</h4>
-                        <p class="text-muted" style="font-size: 18px;text-align: center;">Erat netus est hendrerit,
-                            nullam et quis ad cras porttitor iaculis. Bibendum vulputate cras aenean.</p>
+                        <p class="text-muted" style="font-size: 18px;text-align: center;">Asociarnos con otras entidades
+                            que tengan una misión de compromiso con la sociedad y su hábitat.</p>
                     </div>
                 </div>
             </div>
@@ -81,17 +88,25 @@
                 <div>
                     <h4 style="font-size: 44px;font-weight: bold;text-align: center;">Avistamientos en tu ciudad</h4>
                     <p style="font-size: 18px;text-align: center;">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s.<br />
+                        ¿Estás interesado en conocer sobre los tipos de abejas que hay en tu localidad?, ¿Eres un
+                        entusiasta de las abejas y además miraste una?<br />
+                        ¡No lo dudes más!, ven y comparte con nosotros tu avistamiento. <br>
                     </p>
                     <div class="row align-items-center" style="text-align: center;">
-                        <div class="col-xxl-12 align-items-center">
-                            <button class="btn btn-primary" type="button"
-                                style="width: 190px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;margin: 0px;margin-right: 16px;border-style: none;margin-left: 16px;padding-right: 0px;padding-left: 0px;border-radius: 20px;">
-                                Quiero registrar un avistamiento</button>
-                            <button class="btn btn-primary" type="button"
-                                style="width: 190px;background: var(--bs-gray-700);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 16px;border-style: none;margin-left: 16px;border-radius: 20px;">
-                                Mapa de avistamientos de mi localidad</button>
+                        <div class="row align-items-center" style="text-align: center;">
+                            <div class="col-lg-6 col-xl-6 col-xxl-6 align-items-center"><a class="btn btn-primary" href="
+                                {% if user.is_authenticated %}
+                                {% url 'sighting-reg' %}
+                                {% else %}
+                                {% url 'signup' %}
+                                {% endif %}
+                                " type="button"
+                                    style="width: 190px;background: var(--bs-gray-700);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 16px;border-style: none;margin-left: 16px;border-radius: 20px;">¡Quiero
+                                    registrar un avistamiento!</a></div>
+                            <div class="col-lg-6 col-xl-6 col-xxl-6 align-items-center"><a class="btn btn-primary"
+                                    href="{% url 'sighting-map' %}" type="button"
+                                    style="width: 190px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;margin: 0px;margin-right: 16px;border-style: none;margin-left: 16px;padding-right: 0px;padding-left: 0px;border-radius: 20px;">¿Qué
+                                    avistamientos hay en mi localidad?</a></div>
                         </div>
                     </div>
                 </div>
@@ -100,7 +115,7 @@
         <div class="col"
             style="padding: 0px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;display: flex;">
             <picture style="display: flex;">
-                <img class="img-fluid d-sm-none d-md-block d-none d-sm-block" src={%static '/img/Bees/bee2.png' %}
+                <img class="img-fluid d-sm-none d-md-block d-none d-sm-block" src={%static '/img/illustrations/img0.jpg' %}
                     style="border-top-left-radius: 0px;border-bottom-left-radius: 0px;height: auto;max-height: 100%;display: flex;border-top-right-radius: 20px;border-bottom-right-radius: 20px;"
                     width="660" height="359" />
             </picture>
@@ -113,7 +128,7 @@
         <div class="col"
             style="padding: 0px;border-top-right-radius: 0px;border-bottom-right-radius: 0px;display: flex;">
             <picture style="display: flex;">
-                <img class="img-fluid d-none d-sm-block" src={%static '/img/Bees/bee3.png' %}
+                <img class="img-fluid d-none d-sm-block" src={%static '/img/illustrations/img1.jpg' %}
                     style="border-top-left-radius: 20px;border-bottom-left-radius: 20px;height: auto;max-height: 100%;display: flex;"
                     width="660" height="359" />
             </picture>
@@ -124,14 +139,16 @@
                     <h4 style="font-size: 44px;font-weight: bold;text-align: center;">Conoce más sobre las abejas
                         nativas</h4>
                     <p style="font-size: 18px;text-align: center;">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                        the industry's standard dummy text ever since the 1500s.<br />
+                        Conoce que familias de abejas son las más abundantes en México, sus especies, características y
+                        sus métodos de defensa.
+                        <br />
                     </p>
                     <div class="row align-items-center" style="text-align: center;">
                         <div class="col-xxl-12 align-items-center">
-                            <button class="btn btn-primary" type="button"
-                                style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">Saber
-                                más</button>
+                            <a class="btn btn-primary" type="button"
+                                href="{% url 'article_detail' 'abejas-nativas-de-mexico' %}"
+                                style="width: 164.338px;background: var(--bs-primary);--bs-primary: #f09c10;--bs-primary-rgb: 240,156,16;padding-right: 0px;padding-left: 0px;margin: 0px;margin-right: 1px;border-style: none;border-radius: 20px;">Quiero
+                                saber más</a>
                         </div>
                     </div>
                 </div>
@@ -139,4 +156,162 @@
         </div>
     </div>
 </div>
+
+{% if user.is_authenticated %}
+{% if totalresponses < totalforms  and formanswered == 0 %}
+<script type="text/javascript">
+    $(window).on('load',function(){
+    if ( document.getElementById("totalresponses").value < document.getElementById("totalforms").value){
+        $('#exampleModal').modal('show');
+    }           
+    });
+</script>
+
+    <input type="text" id="totalresponses" value="{{totalresponses}}" hidden>
+    <input type="text" id="totalforms" value="{{totalforms}}" hidden>
+    <!-- Modal -->
+    <div class="modal fade show modal-lg" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" style="display: block;">
+        <!-- Contenido de la ventana modal -->
+        <div class="modal-content" style="border-radius: 10px;">
+            <center><b><h3 style="padding-top: 20px;">{{formtest}}</h3></b></center><br>
+                <div class="modal-header" style="border-radius: 10px;margin-top: -40px;">
+                                      
+                    <h5 class="modal-title" style="padding-left: 30px;">Nos gustaria saber qué tanto sabes sobre las abejas, ¡animate a responder esta encuesta!</h5>
+
+                    
+                </div>
+                <div class="modal-body" style="background-repeat:repeat-x;background-size:auto;background-image: url('{%static 'img/quiz/background1.png' %}');   ">
+                    <!-- Formulario -->
+                    
+                    <form method="POST" enctype="multipart/form-data">
+                        <div class="form-group">
+                        {% csrf_token %}
+                            <p align="left">
+                            <input type="radio" id="answerusrToquestion" name="answerusrToquestion" value="1" checked readonly hidden required>                    
+                            {% for question in  questiontest %}
+                            <p><b>{{forloop.counter}}. {{question}} </b></p>
+                                
+                                <input type="text" style="visibility:hidden"  id="answerusrQuestion{{question.id}}" name="answerusrQuestion{{forloop.counter}}" value="{{question.id}}" readonly hidden required>                 
+                                {% for answer in  anwsertest %}
+                                        {% if answer.answerQuestion.id == question.id  %}
+                                        <p style="text-indent: -30px; padding-left: 30px; line-height: 20px;">
+                                            <label style="margin-left: 30px;">
+                                                <input class="form-check-input" type="radio" id="answerusrToquestion{{question.id}}" name="answerusrToquestion{{forloop.parentloop.counter}}" value="{{answer.id}}" required>   
+                                                &nbsp
+                                                {{answer}} 
+                                            </label>
+                                        </p>                                                               
+                                        {% endif %}
+                                {% endfor %}           
+                                <br>
+                            {% endfor %}
+                        </div>
+                        <center>
+                            <button type="submit"class="btn btn-info" style="border-style: none;border-radius: 15px;" >Enviar respuesta</button>
+                        </center>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger"style="border-style: none;border-radius: 15px;" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endif %}  
+{% endif %} 
+{% if graphicQuest == 0 %}
+<div class="container py-8 py-xl-4"
+style="padding-right: 0px;padding-left: 0px;margin-bottom: -24px;padding-bottom: 36px;padding-top: 16px;margin-top: -6px;">
+<div class=" row-cols-md-1"
+    style="background-image: url('{%static 'img/illustrations/img02.png' %}');border-radius: 20px;">
+    <center>
+        <div style="height: 550px;width: 800px; padding: 10px;">
+            
+            <h4
+                style="font-size: 44px;font-family:Arial, Helvetica, sans-serif;font-weight: bold;text-align: center;color: #777773;text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);">
+                Pruebas de conocimiento aplicadas a usuarios</h4>       
+            <canvas id="grafica"></canvas>
+        </div>
+    </center>
+</div>
+</div>
+
+<script>
+$(function () {
+
+    window.addEventListener("load", async () => {
+        await initialLoad();
+    });
+
+    const initialLoad = async () => {
+        await getAvgForm();
+
+    }
+    const getAvgForm = async () => {
+        try {
+
+            const response = await fetch("formAverageForm/");
+            const data = await response.json();
+            if (data.message == 'Success') {
+                setTimeout(function b(){
+                const $grafica = document.querySelector("#grafica");
+                // Las etiquetas son las que van en el eje X. 
+                const etiquetas = ["Pruebas sobre conocimiento de abejas"]
+                // Podemos tener varios conjuntos de datos. Comencemos con uno
+                const FirstTest = {
+                    label: "Prueba diágnostica",
+                    data: [data.result[0].toFixed(2)], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
+                    backgroundColor: 'rgba(58, 54, 54 , 0.5)', // Color de fondo
+                    borderColor: 'rgba(0, 0, 0, 1)', // Color del borde
+                    borderWidth: 1,// Ancho del borde
+                };
+                const SecondTest = {
+                    label: "Prueba 1",
+                    data: [data.result[1].toFixed(2)], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
+                    backgroundColor: 'rgba(250, 223, 51, 0.5)', // Color de fondo
+                    borderColor: 'rgba(232, 193, 0 , 1)', // Color del borde
+                    borderWidth: 1,// Ancho del borde
+                };
+                const ThirdTest = {
+                    label: "Prueba 2",
+                    data: [data.result[2].toFixed(2)], // La data es un arreglo que debe tener la misma cantidad de valores que la cantidad de etiquetas
+                    backgroundColor: 'rgba(232, 147, 25, 0.5)', // Color de fondo
+                    borderColor: 'rgba(254, 139, 0, 1)', // Color del borde
+                    borderWidth: 1,// Ancho del borde
+                };
+                new Chart($grafica, {
+                    type: 'bar',// Tipo de gráfica
+                    data: {
+                        labels: etiquetas,
+                        datasets: [
+                            FirstTest,
+                            SecondTest,
+                            ThirdTest,
+                            // Aquí más datos...
+                        ]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }],
+                        },
+                    }
+                }); 
+            },50)
+            b()
+            }
+
+        } catch (error) {
+
+        }
+    }
+})
+
+</script>
+{% endif %}
+
 {% endblock %}

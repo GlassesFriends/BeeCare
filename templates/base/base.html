@@ -15,9 +15,20 @@
     <link rel="stylesheet" href={%static '/fonts/fontawesome-all.min.css' %} />
     <link rel="stylesheet" href={%static '/css/styles.min.css' %} />
 
+    <!-- FAVICON -->
+    <link rel="apple-touch-icon" sizes="180x180" href={%static '/img/favicon/apple-touch-icon.png' %}>
+    <link rel="icon" type="image/png" sizes="32x32" href={%static '/img/favicon/favicon-32x32.png' %}>
+    <link rel="icon" type="image/png" sizes="16x16" href={%static '/img/favicon/favicon-16x16.png' %}>
+    <link rel="manifest" href={%static '/img/favicon/site.webmanifest' %}>
+    <link rel="mask-icon" href={%static '/img/favicon/safari-pinned-tab.svg' %} color="#5bbad5">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <!-- FAVICON -->
+
     <!-- Sweet alert 2 -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src={%static '/js/main.js' %}></script>
+    <script src={%static '/js/password.js' %}></script>
     <!-- Sweet alert 2 -->
 </head>
 
@@ -25,21 +36,71 @@
     style="font-family: 'League Spartan', sans-serif;--bs-body-bg: #d6d6d6;--bs-light: #EBEBEB;--bs-light-rgb: 235,235,235;--bs-primary: #F09C10;--bs-primary-rgb: 240,156,16;--bs-secondary: #FECA51;--bs-secondary-rgb: 254,202,81;--bs-success: #B1DFC4;--bs-success-rgb: 177,223,196;--bs-info: #B1DFC4;--bs-info-rgb: 177,223,196;--bs-warning: #FECA51;--bs-warning-rgb: 254,202,81;--bs-danger: #E03600;--bs-danger-rgb: 224,54,0;--bs-dark: #494038;--bs-dark-rgb: 73,64,56;--bs-body-color: #2d2d2d;background: #EBEBEB;">
     <div class="d-flex flex-column" id="content-wrapper">
         <div id="content">
-            {% if messages %}
-            {% for m in messages %}
-            <script>
-                MessageConfirm('Barf barf..', '{{m}}')
-            </script>
-            {% endfor %}
-            {% endif %}
             {% include 'base/navbar.html' %}
+
+            {% if messages %}
+                {% for m in messages %}
+                    <script>
+                        MessageConfirm('Barf barf..', '{{m}}')
+                    </script>
+                    {% if m.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                        <script>
+                          Swal.fire({
+                            "title": "Bien hecho!",
+                            "text": "{{ m }}",
+                            "icon": "success",
+                            "confirmButtonText": "OK"
+                          })
+                        </script>
+                    {% endif %}
+
+                    {% if m.level == DEFAULT_MESSAGE_LEVELS.WARNING %}
+                    <script>
+                      Swal.fire({
+                        "title": "Atención!",
+                        "text": "{{ m }}",
+                        "icon": "warning",
+                        "confirmButtonText": "OK"
+                      })
+                    </script>                
+                    {% endif %}
+
+                    {% if m.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+                    <script>
+                      Swal.fire({
+                        "title": "Error!",
+                        "text": "{{ m }}",
+                        "icon": "error",
+                        "confirmButtonText": "OK"
+                      })
+                    </script>
+                    {% endif %}
+
+                    {% if m.level == DEFAULT_MESSAGE_LEVELS.INFO %}
+                    <script>
+                      Swal.fire({
+                        "title": "Advertencia!",
+                        "text": "{{ m }}",
+                        "icon": "info",
+                        "confirmButtonText": "OK"
+                      })
+                    </script>
+                    {% endif %}
+        
+        
+                {% endfor %}
+            {% endif %}
+
+
             {% block content %}
 
             {% endblock %}
         </div>
         {% include 'base/footer.html' %}
-    </div><a class="border rounded d-inline scroll-to-top" href="#page-top"><i class="fas fa-angle-up"></i></a>
+    </div>
     <script src={%static '/bootstrap/js/bootstrap.min.js' %}></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+
 
     <script src="https://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
 
@@ -47,7 +108,7 @@
     <script src={%static '/js/script.min.js' %}></script>
 
 
-    <script src="https://maps.google.com/maps/api/js?key=AIzaSyAE-kJmjaiSIJfE6Js-YN6Tcg2DRDy6vrY" ></script>
+    <script src="https://maps.google.com/maps/api/js?key=AIzaSyCvooEKJpUzwm3DHwPT6Z4_imtvomduaHI" ></script>
     <script src={%static '/js/jquery-3.6.1.min.js' %}> </script>
     <script src={%static '/js/jquery.gomap-1.3.3.min.js' %}> </script>
 </body>

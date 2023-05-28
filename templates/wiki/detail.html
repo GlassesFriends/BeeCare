@@ -1,0 +1,129 @@
+{% extends 'base/base.html' %}
+
+{% load blog_extras %}
+
+{% block content %}
+<header class="header">
+    <div class="header-container d-md-none d-lg-block d-sm-none d-md-block d-none d-sm-block"
+        style="background-image: url(&quot;{{post.bPostCoverImage.url}}&quot;);margin-bottom: 37px;padding-bottom: 46px;padding-top: 32px;">
+        <div class="container">
+            <div class="col-md-6 offset-md-3 header-title">
+                <h1 class="text-center"
+                    style="color: #ffffff;padding-right: 107px;padding-left: 108px;border-width: 6px;border-style: solid;margin-bottom: 30px;padding-bottom: 30px;padding-top: 30px;font-size: 60px;margin-left: -210px;margin-right: -210px;margin-top: 32px;">
+                    <strong>{% block title %}{{ post.bPostTitle }}{% endblock title %}</strong>
+                </h1>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="container py-4 py-xl-5" style="margin-top: -26px;">
+    <h2 class="text-3xl">{{ post.bPostTitle }}</h2>
+    <div class="card border-light border-1 d-flex justify-content-center p-4"
+        style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
+        <div class="row">
+            <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12">
+                <span class="mb-4 block text-xs text-gray-600">
+                    <strong> {{ post.bPostCategory.categoryTitle }} </strong> | {{ post.bPostCreated_at }}
+                </span>
+
+                <p class="mb-6 font-semibold">{{ post.bPostIntro }}</p>
+
+                <p class="text-gray-800" style="width: 100%;">
+                    {{ post.bPostBody | convert_markdown | safe }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container py-4 py-xl-3" style="margin-top: -26px;">
+    <h3 class="mb-4 text-xl"><strong>Sección de comentarios</strong></h3>
+
+    {% for comment in post.comments.all %}
+
+    <div class="mb-4 w-full py-1 px-4 col-sm-12 col-md-10 col-lg-10 col-xl-12 col-xxl-10 card-shadow"
+        style="box-shadow: 0px 0px;text-shadow: 0px 0px;">
+        <div class="card border-light border-1 d-flex justify-content-center p-4"
+            style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
+            <div class="row" style="text-align: left;">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="text-align: left;">
+                    <div class="row">
+                        <div class="col-1">
+                            <img class="rounded-circle shadow-1-strong me-3"src="{{comment.commentMember.membProfilePicture.url}}" alt="avatar" width="160%" style="background-color: yellow;" />
+                        </div>
+                        <div class="col-11">
+                            <div class="row">
+                                <strong>{{ comment.commentMember.membFirstName }}</strong> | {{comment.commentCreated_at|timesince }} ago<br>
+                            </div>
+                            <div class="row">
+                                <p class="text-gray-500">{{ comment.commentText }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+    <h3 class="mb-4 text-xl">Has un comentario</h3>
+
+    <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="box-shadow: 0px 0px;text-shadow: 0px 0px;">
+        <div class="card border-light border-1 d-flex justify-content-center p-4"
+            style="border-radius: 20px;padding-left: 16px;margin-left: -3px;">
+            <div class="row" style="text-align: center;">
+                <div class="col-12 col-sm-12 col-md-12 col-lg-12 col-xl-12 col-xxl-12" style="text-align: center;">
+                    {% if user.is_authenticated %}
+                    <form method="post" action="." class="space-y-4">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
+                                <div class="row">
+                                    <div class="col-md-12 col-xxl-12" style="text-align: left;">
+                                        <div class="input-group" style="border-radius: 8px;border-style: none;"><input
+                                                class="form-control" type="text"
+                                                style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);"
+                                                placeholder="Bee" inputmode="email" name="membName" required=""
+                                                minlength="5" maxlength="64" value="{{user.member.membFirstName}}"
+                                                hidden></div>
+                                    </div>
+                                    <div class="col-md-12 col-xxl-12" style="text-align: left;">
+                                        <div class="input-group" style="border-radius: 8px;border-style: none;"><input
+                                                class="form-control" type="text"
+                                                style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);"
+                                                placeholder="bienvenido@beecare.com" inputmode="email" name="membEmail"
+                                                required="" minlength="5" maxlength="64"
+                                                value="{{user.member.membEmail}}" hidden></div>
+                                    </div>
+                                    <div class="col-md-12 col-xxl-12" style="text-align: left;"><label
+                                            class="form-label"
+                                            style="text-align: left;margin-left: 8px;">Comentario</label>
+                                        <div class="input-group" style="border-radius: 8px;border-style: none;"><input
+                                                class="form-control" type="text"
+                                                style="border-radius: 20px;border-style: none;background: var(--bs-gray-200);"
+                                                inputmode="tel" placeholder="Escribe un comentario" maxlength="250"
+                                                minlength="10" name="membComment" required=""></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xxl-12" style="margin-top: 8px;margin-bottom: 8px;">
+                                <div class="row">
+                                    <div class="col-md-12" style="text-align: center;"><input class="btn btn-primary"
+                                            type="submit"
+                                            style="background: var(--bs-primary);border-style: none;border-radius: 20px;"
+                                            value="Envíar comentario"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    {% else %}
+                    <p class="text-gray-500">¿Estás intentando dejar un comentario? No te preocupes, sólo tienes que <a
+                            href="{% url 'signin'%}">iniciar sesión</a></p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
